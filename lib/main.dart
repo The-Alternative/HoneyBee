@@ -5,10 +5,11 @@ import 'package:bassel/utils/notifiers.dart';
 import 'package:bassel/utils/notifiredb.dart';
 import 'package:bassel/views/BMI/bmi1.dart';
 import 'package:bassel/views/children/Home.dart';
-import 'file:///C:/Users/Mohammad/AndroidStudioProjects/bassel/lib/views/study/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+
+import 'views/study/home.dart';
 
 void printHello() {
   final DateTime now = DateTime.now();
@@ -16,15 +17,19 @@ void printHello() {
   // print("[$now] Hello, world! isolate=${isolateId} function='$printHello'");
 }
 
-bool result =false;
+bool result = false;
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 
 const List<Choice> choices = <Choice>[
   Choice(title: 'مواعيد', icons: Icons.notifications_active_rounded),
-  Choice(title: 'اسماء', icons: Icons.notes,),
-  Choice(title: 'سجل الدواء', icons: Icons.eleven_mp),];
+  Choice(
+    title: 'اسماء',
+    icons: Icons.notes,
+  ),
+  Choice(title: 'سجل الدواء', icons: Icons.eleven_mp),
+];
 
 class Choice {
   final String title;
@@ -89,7 +94,7 @@ class Choice {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var initializationSettingsAndroid =
-  AndroidInitializationSettings('codex_logo');
+      AndroidInitializationSettings('codex_logo');
   var initializationSettingsIOS = IOSInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
@@ -119,52 +124,50 @@ class FirstRoute extends StatelessWidget {
         title: Text('HoneyBee'),
       ),
       body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-              child: Text('الدراسة'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => StudyHome()),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: Text('يوميات الاولاد'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ChildrenHome()),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: Text('الادوية'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DefaultTabController(
-                    length: 3, child: MyHomePage(title: 'Flutter  Home Page'),
-                  )),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: Text('BMI'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Bmi1()),
-                );
-              },
-            ),
-          ],
-        )
-      ),
+          child: Column(
+        children: [
+          ElevatedButton(
+            child: Text('الدراسة'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => StudyHome()),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: Text('يوميات الاولاد'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChildrenHome()),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: Text('الادوية'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DefaultTabController(
+                          length: 3,
+                          child: MyHomePage(title: 'Flutter  Home Page'),
+                        )),
+              );
+            },
+          ),
+          ElevatedButton(
+            child: Text('BMI'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Bmi1()),
+              );
+            },
+          ),
+        ],
+      )),
     );
   }
 }
-
-
-  
