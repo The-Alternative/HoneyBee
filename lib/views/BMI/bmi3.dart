@@ -1,9 +1,11 @@
 
-import 'package:bassel/controllers/bmi/desccontroller.dart';
-import 'package:bassel/models/bmi/bmimodels.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+
+import '../../controllers/bmi/desccontroller.dart';
+import '../../models/bmi/bmimodels.dart';
 
 
 class Bmi3 extends StatefulWidget {
@@ -22,7 +24,7 @@ class _Bmi3State extends State<Bmi3> {
   DescController db = new DescController();
   Future<List<CardInfo>> _futureCardList;
   List<CardInfo> _cardList;
-  BmiModel _bmiModel;
+  List<Color> colors = new List<Color>();
 
   @override
   void initState() {
@@ -32,10 +34,15 @@ class _Bmi3State extends State<Bmi3> {
 
   @override
   Widget build(BuildContext context) {
+
+    colors = [Colors.green,Colors.blue,Colors.orange,Colors.red];
+
     if (_cardList == null) {
       _cardList = List<CardInfo>();
       addCardListView();
+
     }
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Directionality(textDirection: TextDirection.rtl,
@@ -62,73 +69,72 @@ class _Bmi3State extends State<Bmi3> {
                       child:Column(children: <Widget>[
 
                         Container(
-                        decoration: BoxDecoration(
-                          color:Colors.white,
-                          boxShadow:[
-                            BoxShadow(color: Colors.grey[500],spreadRadius: .1,blurRadius: 1,offset: Offset(1,1),
-                          )],
-                        ),
+                          decoration: BoxDecoration(
+                            color:Colors.white,
+                            boxShadow:[
+                              BoxShadow(color: Colors.grey[500],spreadRadius: .1,blurRadius: 1,offset: Offset(1,1),
+                              )],
+                          ),
                           child:
-                           Column(children: <Widget>[
+                          Column(children: <Widget>[
                             Padding(
-                            padding: const EdgeInsets.only(right: 260),
-                             child:  Row(
+                                padding: const EdgeInsets.only(right: 260),
+                                child:  Row(
+                                  children: [
+                                    Expanded(flex:1, child: Text(_cardList[position].datt.substring(0,10),
+                                      style: TextStyle(fontSize: 15,color: Colors.grey[500]),)),
+
+                                  ],)
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
                                 children: [
-                                  Expanded(flex:1, child: Text(_cardList[position].datt.substring(0,10),
-                                    style: TextStyle(fontSize: 15,color: Colors.grey[500]),)),
+                                  Expanded(flex: 1, child: Text("الوزن",)),
+                                  Expanded(flex: 1, child: Text("الطول",)),
+                                  Expanded(flex: 1, child: Text("BMI",)),
+                                  Expanded(flex: 2, child: Text("الوضع الصحي",)),
 
-                                ],)
+                                ],
                               ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Expanded(flex: 1, child: Text(_cardList[position].wight,)),
+                                  SizedBox(width: 25,),
+                                  Expanded(flex: 1, child: Text(_cardList[position].length)),
+                                  SizedBox(width: 25,),
+                                  Expanded(flex: 1, child: Text(_cardList[position].bmi,
+                                    style: TextStyle(
+                                        color: colors[_cardList[position].index],
+                                        fontWeight: FontWeight.w900
+                                    ),)),
+                                  SizedBox(width: 40,),
+                                  Expanded(flex: 2, child: Text(_cardList[position].comment,
+                                    style: TextStyle(
+                                        color: colors[_cardList[position].index],
+                                        fontWeight: FontWeight.w900
+                                    ),)),
 
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 1, child: Text("الوزن",)),
-                                    Expanded(flex: 1, child: Text("الطول",)),
-                                    Expanded(flex: 1, child: Text("BMI",)),
-                                    Expanded(flex: 2, child: Text("الوضع الصحي",)),
-
-                                  ],
-                                ),
+                                  Expanded(flex: 1, child:GestureDetector(child:
+                                  Icon(Icons.delete,color: Colors.black,),
+                                    onTap: () {
+                                      print('${_cardList[position].id}');
+                                      deleteCardListView(_cardList[position].id);
+                                    },
+                                  ))
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(flex: 1, child: Text(_cardList[position].wight,)),
-                                    SizedBox(width: 25,),
-                                    Expanded(flex: 1, child: Text(_cardList[position].length)),
-                                    SizedBox(width: 25,),
-                                    Expanded(flex: 1, child: Text(_cardList[position].bmi,
-                                      style: TextStyle(
-                                          color: color(),
-                                          fontWeight: FontWeight.w900),)),
-                                    SizedBox(width: 40,),
-                                    Expanded(flex: 2, child: Text(_cardList[position].comment,
-                                      style: TextStyle(
-                                          color: color(),
-                                          fontWeight: FontWeight.w900
-                                      ),)),
-
-                                    Expanded(flex: 1, child:GestureDetector(child:
-                                    Icon(Icons.delete,color: Colors.black38,),
-                                      onTap: () {
-                                        print('${_cardList[position].id}');
-                                        deleteCardListView(_cardList[position].id);
-                                      },
-                                    ))
-                                  ],
-                                ),
-                              ),
-
-                            ]),
-                          )
-                        ])
+                            ),
+                          ]),
+                        )
+                      ])
                       ,);
                   })
           ),
-
         ));
   }
   addCardListView() {
@@ -139,22 +145,11 @@ class _Bmi3State extends State<Bmi3> {
       });
     });
   }
+
   deleteCardListView(int i) {
     db.deleteobj(i);
     addCardListView();
   }
 
-  Color color(){
-    if(widget.bmiModel.result >=18.5 && widget.bmiModel.result <=25){
-      return Colors.green;
-    }else if(widget.bmiModel.result > 25 && widget.bmiModel.result <=30){
-      return Colors.orange;
-    }
-    else if(widget.bmiModel.result > 30){
-      return Colors.red;
-    }
-    else if(widget.bmiModel.result < 18.5){
-      return Colors.blue;
-    }
-  }
 }
+  

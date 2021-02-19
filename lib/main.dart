@@ -5,10 +5,12 @@ import 'package:bassel/utils/notifiers.dart';
 import 'package:bassel/utils/notifiredb.dart';
 import 'package:bassel/views/BMI/bmi1.dart';
 import 'package:bassel/views/children/Home.dart';
-import 'file:///C:/Users/Mohammad/AndroidStudioProjects/bassel/lib/views/study/home.dart';
+// import 'file:///C:/Users/Mohammad/AndroidStudioProjects/bassel/lib/views/study/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+
+import 'views/study/home.dart';
 
 void printHello() {
   final DateTime now = DateTime.now();
@@ -87,6 +89,7 @@ class Choice {
 //   }
 // }
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   var initializationSettingsAndroid =
   AndroidInitializationSettings('codex_logo');
@@ -106,14 +109,17 @@ void main() async {
   //       }
   //     });
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     title: 'Navigation Basics',
     home: FirstRoute(),
   ));
 }
 
 class FirstRoute extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('HoneyBee'),

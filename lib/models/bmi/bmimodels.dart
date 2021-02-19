@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class BmiModel {
 
@@ -10,8 +11,9 @@ class BmiModel {
   String length;
   String wight;
   Color color;
+  int index;
 
-  BmiModel({this.result,this.isNormal,this.comment,this.res,this.reso,this.length,this.wight,this.color});
+  BmiModel({this.result,this.isNormal,this.comment,this.res,this.reso,this.length,this.wight,this.index,this.color});
 }
 
 class CardInfo {
@@ -22,8 +24,10 @@ class CardInfo {
   String bmi;
   String comment;
   int id;
+  int index;
 
-  CardInfo({this.length,this.wight,this.datt,this.bmi,this.id,this.comment});
+
+  CardInfo({this.length,this.wight,this.datt,this.bmi,this.id,this.comment,this.index});
 
   factory CardInfo.fromMap(Map<String, dynamic> json) => CardInfo(
     id: json["id"],
@@ -32,6 +36,8 @@ class CardInfo {
     wight:json["weight"],
     datt:json["date"],
     comment: json["comment"],
+    index: json["colorindex"],
+
   );
 
   Map<String, dynamic> toMap() => {
@@ -41,5 +47,6 @@ class CardInfo {
     "weight":wight,
     "date":datt,
     "comment":comment,
+    "colorindex": index,
   };
 }

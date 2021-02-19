@@ -21,6 +21,7 @@ class DatabaseConfig {
   final String cloumnBmi = 'bmi';
   final String cloumnDate = 'date';
   final String columnComment = 'comment';
+  final String columnIndex = 'colorindex';
   //////////////////////////////////CHildrenDiary///////////////////
   final String childTable = 'childTable';
   // final String cloumnId = 'id';
@@ -105,7 +106,7 @@ class DatabaseConfig {
         "CREATE TABLE $courses($columnid INTEGER PRIMARY KEY, $columnnamecourse TEXT ,$columnnameteachar TEXT , $columnemail TEXT , $columnteacharnumber TEXT , $columnimage TEXT)";
     await db.execute(coursesql);
     var descsql = "CREATE TABLE $descTable ($cloumnId INTEGER PRIMARY KEY ,"
-        "$cloumnHeight TEXT,$cloumnWeight TEXT,$cloumnBmi TEXT,$cloumnDate TEXT,$columnComment TEXT)";
+        "$cloumnHeight TEXT,$cloumnWeight TEXT,$cloumnBmi TEXT,$cloumnDate TEXT,$columnComment TEXT,$columnIndex INTEGER)";
     await db.execute(descsql);
     var childSql = "CREATE TABLE $childTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnName TEXT,$cloumnSex TEXT,$cloumnBirthDate TEXT,$cloumnImage TEXT,$cloumnIsActive INTEGER)";

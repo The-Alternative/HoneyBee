@@ -1,7 +1,9 @@
-import 'package:bassel/models/bmi/bmimodels.dart';
-import 'package:bassel/utils/databaseconfig.dart';
+
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
+
+import '../../models/bmi/bmimodels.dart';
+import '../../utils/databaseconfig.dart';
 
 class DescService {
 
@@ -14,8 +16,7 @@ class DescService {
   final String cloumnBmi = 'bmi';
   final String cloumnDate = 'date';
   final String columnComment = 'comment';
-
-
+  final String columnIndex ='colorindex';
 
   final DatabaseConfig db = new DatabaseConfig();
 
@@ -46,4 +47,6 @@ class DescService {
     var dbClient = await db.honeyBee;
     return await dbClient.close();
   }
+
+
 }
