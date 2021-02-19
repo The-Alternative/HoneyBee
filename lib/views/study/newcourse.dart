@@ -155,6 +155,55 @@ class _NewcourseState extends State<Newcourse> {
                                   TextStyle(color: Colors.black, fontSize: 16),
                             ),
                             onPressed: () {
+                              if (namecourse == null) {
+                                return showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                          title: Row(children: [
+                                            SizedBox(width: 169),
+                                            Text(
+                                              " ! تنبيه",
+                                              style: TextStyle(
+                                                  color: Colors.amber[400]),
+                                            ),
+                                          ]),
+                                          content: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 37,
+                                              ),
+                                              Icon(Icons.error_outline),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                "الرجاء ادخال اسم المقرر",
+                                              ),
+                                            ],
+                                          ),
+                                          actions: [
+                                            Row(
+                                              children: [
+                                                FlatButton(
+                                                  child: Text(
+                                                    "موافق",
+                                                    style:
+                                                        TextStyle(fontSize: 16),
+                                                  ),
+                                                  textColor: Colors.black,
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                  width: 180,
+                                                ),
+                                              ],
+                                            ),
+                                          ]);
+                                    });
+                              }
                               Course course = Course(
                                 namecourse: 'namecourse',
                                 nameteachar: 'nameteachar',
