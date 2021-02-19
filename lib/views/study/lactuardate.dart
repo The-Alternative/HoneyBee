@@ -1,3 +1,5 @@
+import 'package:bassel/views/study/repet.dart';
+import 'package:bassel/views/study/startdate.dart';
 import 'package:flutter/material.dart';
 import 'package:bassel/views/study/lactuarappointments.dart';
 
@@ -82,7 +84,7 @@ class _LactuarDateState extends State<LactuarDate> {
                           hintText: 'اسم المقرر',
                           enabledBorder: UnderlineInputBorder(
                               borderSide:
-                              BorderSide(color: Colors.amber[400]))),
+                                  BorderSide(color: Colors.amber[400]))),
                     ),
                     SizedBox(
                       height: 37,
@@ -97,7 +99,7 @@ class _LactuarDateState extends State<LactuarDate> {
                               border: Border.all(
                                   color: Colors.amber[400], width: 1.5),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(100)),
+                                  BorderRadius.all(Radius.circular(100)),
                               image: DecorationImage(
                                 image: AssetImage("assets/Ocloc.png"),
                                 scale: 2.0,
@@ -105,7 +107,10 @@ class _LactuarDateState extends State<LactuarDate> {
                             ),
                             child: FlatButton(
                               child: null,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Repeted()));
+                              },
                             ),
                           ),
                         ),
@@ -120,7 +125,7 @@ class _LactuarDateState extends State<LactuarDate> {
                               border: Border.all(
                                   color: Colors.amber[400], width: 1.5),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(100)),
+                                  BorderRadius.all(Radius.circular(100)),
                               image: DecorationImage(
                                 image: AssetImage("assets/date.png"),
                                 scale: 2.0,
@@ -128,7 +133,10 @@ class _LactuarDateState extends State<LactuarDate> {
                             ),
                             child: FlatButton(
                               child: null,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => StartDate()));
+                              },
                             ),
                           ),
                         ),
@@ -143,7 +151,7 @@ class _LactuarDateState extends State<LactuarDate> {
                               border: Border.all(
                                   color: Colors.amber[400], width: 1.5),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(100)),
+                                  BorderRadius.all(Radius.circular(100)),
                               image: DecorationImage(
                                 image: AssetImage("assets/calendar(1).png"),
                                 scale: 2.2,
@@ -260,7 +268,7 @@ class _LactuarDateState extends State<LactuarDate> {
                         FlatButton(
                           child: Text('موافق ',
                               style:
-                              TextStyle(color: Colors.black, fontSize: 16)),
+                                  TextStyle(color: Colors.black, fontSize: 16)),
                           onPressed: () {},
                         ),
                         SizedBox(
@@ -269,7 +277,7 @@ class _LactuarDateState extends State<LactuarDate> {
                         FlatButton(
                           child: Text('إلغاء الأمر',
                               style:
-                              TextStyle(color: Colors.black, fontSize: 16)),
+                                  TextStyle(color: Colors.black, fontSize: 16)),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },

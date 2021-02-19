@@ -125,7 +125,7 @@ class _LactuarAppointmentsState extends State<LactuarAppointments> {
                     ],
                   ),
                   SizedBox(
-                    height: 150,
+                    height: 225,
                   ),
                   Row(
                     children: [

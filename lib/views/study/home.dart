@@ -5,7 +5,6 @@ import 'package:bassel/views/study/newcourse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-
 class StudyHome extends StatefulWidget {
   @override
   _StudyHomeState createState() => _StudyHomeState();
@@ -25,23 +24,27 @@ class _StudyHomeState extends State<StudyHome> {
             appBar: AppBar(
               leadingWidth: 60,
               toolbarHeight: 120,
-              title: Row(
-                textDirection: TextDirection.rtl,
+              title: Column(
                 children: [
-                  Image.asset(
-                    "assets/logo.png",
-                    height: 52,
-                    width: 52,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'الدراسة',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
+                  Row(
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Image.asset(
+                        "assets/logo.png",
+                        height: 52,
+                        width: 52,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'الدراسة',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

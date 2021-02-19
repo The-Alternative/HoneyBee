@@ -1,3 +1,4 @@
+import 'package:bassel/views/study/repet.dart';
 import 'package:flutter/material.dart';
 
 class StartDate extends StatefulWidget {
@@ -126,7 +127,7 @@ class _StartDateState extends State<StartDate> {
                   ],
                 ),
                 SizedBox(
-                  height: 134,
+                  height: 209,
                 ),
                 Row(
                   children: [
@@ -136,7 +137,10 @@ class _StartDateState extends State<StartDate> {
                     FlatButton(
                       child: Text(' التالي',
                           style: TextStyle(color: Colors.black, fontSize: 16)),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => Repeted()));
+                      },
                     ),
                     SizedBox(
                       width: 80,
