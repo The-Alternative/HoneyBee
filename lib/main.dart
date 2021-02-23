@@ -5,10 +5,12 @@ import 'package:bassel/utils/notifiers.dart';
 import 'package:bassel/utils/notifiredb.dart';
 import 'package:bassel/views/BMI/bmi1.dart';
 import 'package:bassel/views/children/Home.dart';
-import 'file:///C:/Users/Mohammad/AndroidStudioProjects/bassel/lib/views/study/home.dart';
+import 'package:bassel/views/login_page.dart';
+import 'package:bassel/views/study/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void printHello() {
   final DateTime now = DateTime.now();
@@ -107,7 +109,7 @@ void main() async {
   //     });
   runApp(MaterialApp(
     title: 'Navigation Basics',
-    home: FirstRoute(),
+    home: LoginPage(),
   ));
 }
 
