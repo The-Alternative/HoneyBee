@@ -111,9 +111,11 @@ void main() async {
   //       }
   //     });
   runApp(MaterialApp(
-    title: 'Navigation Basics',
-    home: FirstRoute(),
-  ));
+      title: 'Navigation Basics',
+      home: FirstRoute(),
+      routes: <String, WidgetBuilder>{
+        '/StudyHome': (BuildContext context) => new StudyHome(),
+      }));
 }
 
 class FirstRoute extends StatelessWidget {

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:bassel/controllers/study/coursecontroller.dart';
 import 'package:bassel/models/study/course.dart';
 import 'package:flutter/material.dart';
-
 import 'package:image_picker/image_picker.dart';
 
 class Newcourse extends StatefulWidget {
@@ -15,7 +14,13 @@ class _NewcourseState extends State<Newcourse> {
   String namecourse, nameteachar, email, image;
   String teacharnumber;
 
-  CourseController helper = new CourseController();
+  CourseController helper;
+
+  @override
+  void initState() {
+    super.initState();
+    helper = CourseController();
+  }
 
   PickedFile _imageFile;
   final ImagePicker _picker = ImagePicker();
@@ -204,14 +209,19 @@ class _NewcourseState extends State<Newcourse> {
                                           ]);
                                     });
                               }
+
                               Course course = Course(
                                 namecourse: 'namecourse',
                                 nameteachar: 'nameteachar',
                                 email: 'email',
                                 teacharnumber: 'teacharnumber',
                               );
+
                               helper.saveCourse(course);
-                              Navigator.of(context).pop();
+
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  '/StudyHome',
+                                  (Route<dynamic> route) => false);
                             },
                           ),
                           SizedBox(

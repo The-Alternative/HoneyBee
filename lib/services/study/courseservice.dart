@@ -1,4 +1,3 @@
-
 import 'package:bassel/models/study/course.dart';
 import 'package:bassel/utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';

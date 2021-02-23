@@ -11,7 +11,13 @@ class StudyHome extends StatefulWidget {
 }
 
 class _StudyHomeState extends State<StudyHome> {
-  CourseController helper = new CourseController();
+  CourseController helper;
+
+  @override
+  void initState() {
+    super.initState();
+    helper = CourseController();
+  }
 
   @override
   Widget build(BuildContext context) {

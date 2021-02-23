@@ -68,7 +68,7 @@ class _Repeted extends State<Repeted> {
                 Row(
                   children: [
                     Container(
-                        height: 35,
+                        height: 40,
                         width: 150,
                         decoration: BoxDecoration(
                           border:
@@ -98,7 +98,7 @@ class _Repeted extends State<Repeted> {
                       width: 33,
                     ),
                     Container(
-                      height: 35,
+                      height: 40,
                       width: 100,
                       decoration: BoxDecoration(
                         border:

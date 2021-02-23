@@ -2,6 +2,7 @@ import 'package:bassel/views/study/startdate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:intl/intl.dart';
 
 class LactuarAppointments2 extends StatefulWidget {
   @override
@@ -9,6 +10,24 @@ class LactuarAppointments2 extends StatefulWidget {
 }
 
 class _LactuarAppointments2State extends State<LactuarAppointments2> {
+  String date;
+
+  DateTime dateTime = DateTime.now();
+  selectedTodoDate(BuildContext context) async {
+    var pickedDate = await showDatePicker(
+        context: context,
+        initialDate: dateTime,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100));
+
+    if (pickedDate != null) {
+      setState(() {
+        dateTime = pickedDate;
+        date = DateFormat('yyyy-MM-dd').format(pickedDate);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +37,6 @@ class _LactuarAppointments2State extends State<LactuarAppointments2> {
             leadingWidth: 60,
             toolbarHeight: 65,
             title: Row(
-              textDirection: TextDirection.rtl,
               children: [
                 Image.asset(
                   "assets/logo.png",
@@ -81,24 +99,30 @@ class _LactuarAppointments2State extends State<LactuarAppointments2> {
                     ],
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
                   Row(
                     children: [
                       IconButton(
                           icon: Image.asset("assets/date-basel.png"),
-                          onPressed: () {}),
+                          onPressed: () {
+                            selectedTodoDate(context);
+                          }),
                       SizedBox(
-                        width: 20,
+                        width: 11,
                       ),
                       Container(
-                        height: 35,
-                        width: 120,
+                        height: 40,
+                        width: 130,
                         decoration: BoxDecoration(
                           border:
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
+                        child: Center(
+                            child: Text(
+                          '$date',
+                        )),
                       ),
                       SizedBox(
                         width: 16,
@@ -123,11 +147,11 @@ class _LactuarAppointments2State extends State<LactuarAppointments2> {
                           ),
                           onPressed: () {}),
                       SizedBox(
-                        width: 20,
+                        width: 11,
                       ),
                       Container(
-                        height: 35,
-                        width: 120,
+                        height: 40,
+                        width: 130,
                         decoration: BoxDecoration(
                           border:
                               Border.all(color: Colors.amber[400], width: 1.0),

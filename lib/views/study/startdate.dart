@@ -1,5 +1,6 @@
 import 'package:bassel/views/study/repet.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class StartDate extends StatefulWidget {
   @override
@@ -7,6 +8,24 @@ class StartDate extends StatefulWidget {
 }
 
 class _StartDateState extends State<StartDate> {
+  String date;
+
+  DateTime dateTime = DateTime.now();
+  selectedTodoDate(BuildContext context) async {
+    var pickedDate = await showDatePicker(
+        context: context,
+        initialDate: dateTime,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100));
+
+    if (pickedDate != null) {
+      setState(() {
+        dateTime = pickedDate;
+        date = DateFormat('yyyy-MM-dd').format(pickedDate);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,15 +35,9 @@ class _StartDateState extends State<StartDate> {
             leadingWidth: 60,
             toolbarHeight: 65,
             title: Row(
-              textDirection: TextDirection.rtl,
               children: [
-                Image.asset(
-                  "assets/logo.png",
-                  height: 52,
-                  width: 52,
-                ),
                 SizedBox(
-                  width: 10,
+                  width: 203,
                 ),
                 Text(
                   'الدراسة',
@@ -32,6 +45,17 @@ class _StartDateState extends State<StartDate> {
                     color: Colors.black,
                     fontSize: 20,
                   ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset(
+                  "assets/logo.png",
+                  height: 52,
+                  width: 52,
+                ),
+                SizedBox(
+                  width: 10,
                 ),
                 SizedBox(),
               ],
@@ -67,18 +91,24 @@ class _StartDateState extends State<StartDate> {
                   children: [
                     IconButton(
                         icon: Image.asset("assets/date-basel.png"),
-                        onPressed: () {}),
+                        onPressed: () {
+                          selectedTodoDate(context);
+                        }),
                     SizedBox(
                       width: 20,
                     ),
                     Container(
-                      height: 35,
-                      width: 120,
+                      height: 40,
+                      width: 135,
                       decoration: BoxDecoration(
                         border:
                             Border.all(color: Colors.amber[400], width: 1.0),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
+                      child: Center(
+                          child: Text(
+                        '$date',
+                      )),
                     ),
                     SizedBox(
                       width: 30,
@@ -106,8 +136,8 @@ class _StartDateState extends State<StartDate> {
                       width: 20,
                     ),
                     Container(
-                      height: 35,
-                      width: 120,
+                      height: 40,
+                      width: 135,
                       decoration: BoxDecoration(
                         border:
                             Border.all(color: Colors.amber[400], width: 1.0),
