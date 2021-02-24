@@ -1,6 +1,7 @@
 import 'dart:isolate';
 
 import 'package:bassel/Welcome/home.dart';
+import 'package:bassel/services/sign_in.dart';
 import 'package:bassel/utils/notifiers.dart';
 import 'package:bassel/utils/notifiredb.dart';
 import 'package:bassel/views/BMI/bmi1.dart';
@@ -158,6 +159,16 @@ class FirstRoute extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Bmi1()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: Text('signOut'),
+              onPressed: () {
+                signOutGoogle();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
                 );
               },
             ),
