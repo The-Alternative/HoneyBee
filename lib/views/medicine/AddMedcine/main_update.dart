@@ -7,6 +7,7 @@ import 'package:bassel/controllers/medicine/patientController.dart';
 import 'package:bassel/controllers/medicine/timesDayesController.dart';
 import 'package:bassel/models/medicine/Diagon.dart';
 import 'package:bassel/models/medicine/Medicine.dart';
+import 'package:bassel/models/medicine/MedicineInfo.dart';
 import 'package:bassel/models/medicine/MedicineTimes.dart';
 import 'package:bassel/models/medicine/Medicine_Date.dart';
 import 'package:bassel/models/medicine/Medicine_clocl.dart';
@@ -18,7 +19,6 @@ import 'package:bassel/utils/alarm_helper.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:image_picker/image_picker.dart';
 import '../ViewTimes/times_list.dart';
 import 'times_radioButton.dart';
@@ -28,12 +28,23 @@ import 'diagon.dart';
 import 'first_date.dart';
 import 'instruction.dart';
 
-class Main_input extends StatefulWidget {
+class Main_update extends StatefulWidget {
+  MedicineInfo  crd ;
+  Main_update (MedicineInfo card){
+    this.crd=card;
+  }
   @override
-  _Main_inputState createState() => _Main_inputState();
+  _Main_inputState createState() => _Main_inputState( crd);
 }
 
-class _Main_inputState extends State<Main_input> {
+class _Main_inputState extends State<Main_update> {
+  MedicineInfo card;
+  _Main_inputState (MedicineInfo card){
+    this.card=card;
+    _patnameController.text =card.personName;
+    print(card.doctname);
+    _medTitleController.text=card.medTitle;
+  }
   DateTime _alarmTime;
   File _image;
   File _savedImage;
@@ -77,7 +88,7 @@ class _Main_inputState extends State<Main_input> {
   void initState() {
     _alarmTime = DateTime.now();
     _alarmHelper.initializeDatabase().then((value) {
-      print('------database intialized');
+      print(_patient.patId);
     });
     if (Alarmmm.alarmList == null)
       Alarmmm.alarmList = List<DateTime>();
@@ -86,8 +97,16 @@ class _Main_inputState extends State<Main_input> {
 
     Alarmmm.alarmList.clear();
     Entry.imgPath = '';
-    Entry.pat_name = '';
-    Entry.doct_name = '';
+    Entry.pat_name = card.personName;
+    _patient.patId=card.patId;
+    _patnameController.text =card.personName;
+    _noticeController.text=card.notice;
+    _medicin.medId=card.medId;
+    _diagonObject.diagonId=card.diagid;
+    _diagonObject.medId =card.medId;
+    _diagonObject.patId =card.patId;
+    print(_diagonObject.diagonId);
+    Entry.doct_name = card.doctname;
     Entry.times_num = '';
     Entry.code = '';
     Entry.incAmount = 0;
@@ -95,7 +114,9 @@ class _Main_inputState extends State<Main_input> {
     Entry.first_clock = '';
     Entry.teratment_days = '';
     Entry.instruc = '';
-    Entry.pain = '';
+    Entry.pain = card.diagon;
+    print('mosss${card.patId}');
+
     Entry.imgPath = '';
     // Entry.info.clear();
     super.initState();
@@ -342,10 +363,9 @@ class _Main_inputState extends State<Main_input> {
                                 MaterialPageRoute(builder: (context) {
                                   return Diagonsis();
                                 }));
-                            if (result == true) {
                               update_diagon();
                               print(Entry.pain + Entry.doct_name);
-                            }
+
                           }, // button pressed
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -466,11 +486,8 @@ class _Main_inputState extends State<Main_input> {
                         style: style4,
                       ),
                       onPressed: () {
-                        setState(() {
                           _save();
 
-                        });
-                        print('Nooooooooha ${Alarmmm.alarmList.length}');
                       }),
                   MaterialButton(
                       color: Colors.blue,
@@ -570,34 +587,35 @@ class _Main_inputState extends State<Main_input> {
   void _save() async {
     Timesupdate.res2 = true;
     Timesupdate.res = true;
+     print('mosss${card.medId}');
     _medicin.medTitle = _medTitleController.text;
     _medicin.medform = _medAmountController.text;
-    //_diagonObject.medAmount=_medAmountController.text;
     _patient.patName = _patnameController.text;
     _diagonObject.notice = _noticeController.text;
     _diagonObject.img_direct = Entry.imgPath;
-    _diagonObject.medId = await _medicineController.insert(_medicin);
-    _diagonObject.patId = await _patientController.insertPatient(_patient); //id
-    _diagonId = await _diagonController.insertDiagon(_diagonObject);
+     _medicineController.updateMedicine(_medicin);
+    if(_patient.patName!='' )
+      _patientController.updatePatient(_patient);
+    _diagonController.updateDiagon(_diagonObject);
     _dateList = List<Medicine_Date>();
     _clockList = List<Medicine_clocl>();
-    if (Entry.code == 'Manual_entry') {
-      for (var i = 0; i < Entry.info.length; i++) {
-        String forma2 =
-        Entry.info[i].date.split('')[0].replaceAll(new RegExp(r'/'), '');
-        int dayId = await _medicineDayController.insertDayes(MedicineDays(Entry.info[i].date, int.parse(forma2)));
-        _timesDayesController.insert_DayTimes(
-            MedicineTimes(dayId, Entry.info[i].time, 1, _diagonId));
-        print('ubbbbbb$forma2');
-        insr = true;
-        // onSaveAlarm( dayId,insr);
-      }
-    } else {
-      _calcDaylist(int.parse(Entry.teratment_days));
-      if (_diagonId != 0 &&
-          _dateList.length != 0 &&
-          int.parse(Entry.times_num) != 0) _cancel(_diagonId);
-    }
+    // if (Entry.code == 'Manual_entry') {
+    //   for (var i = 0; i < Entry.info.length; i++) {
+    //     String forma2 =
+    //     Entry.info[i].date.split('')[0].replaceAll(new RegExp(r'/'), '');
+    //     int dayId = await _medicineDayController.insertDayes(MedicineDays(Entry.info[i].date, int.parse(forma2)));
+    //     _timesDayesController.insert_DayTimes(
+    //         MedicineTimes(dayId, Entry.info[i].time, 1, _diagonId));
+    //     print('ubbbbbb$forma2');
+    //     insr = true;
+    //     // onSaveAlarm( dayId,insr);
+    //   }
+    // } else {
+    //   _calcDaylist(int.parse(Entry.teratment_days));
+    //   if (_diagonId != 0 &&
+    //       _dateList.length != 0 &&
+    //       int.parse(Entry.times_num) != 0) _cancel(_diagonId);
+    // }
     int z = _diagonObject.patId;
     moveToLastScreen();
     if (_diagonId != 0) {

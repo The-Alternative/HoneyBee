@@ -1,9 +1,8 @@
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/services/medicine/cardinfoService.dart';
-import 'package:bassel/services/medicine/medicineDayService.dart';
-import 'package:bassel/services/medicine/medicineService.dart';
-import 'package:sqflite/sqflite.dart';
+
 import 'dart:async';
+
+import 'package:bassel/models/medicine/MedicineInfo.dart';
+import 'package:bassel/services/medicine/medicineService.dart';
 
 class MedicineController {
 
@@ -11,25 +10,28 @@ class MedicineController {
 
 
   Future<int> insert(medicine) async {
-    return await this._medicineinfoService.insert_medicine(medicine);
+    return this._medicineinfoService.insert_medicine(medicine);
   }
 
   Future<int> deleteMedicine(int id) async {
-    return await this._medicineinfoService.deleteMedicine(id);
+    return this._medicineinfoService.deleteMedicine(id);
   }
 
   Future<int> deleteselectedMedicine( medicineInfo) async {
-    return await this._medicineinfoService.deleteselectedMedicine(medicineInfo);
+    return this._medicineinfoService.deleteselectedMedicine(medicineInfo);
   }
 
   Future<List<MedicineInfo>> getFMedicine() async {
-    return await this._medicineinfoService.getFMedicine();
+    return this._medicineinfoService.getFMedicine();
 
   }
 
   Future<List<MedicineInfo>> getselectMedicine( name) async {
-    return await this._medicineinfoService.getselectMedicine(name);
+    return this._medicineinfoService.getselectMedicine(name);
 
   }
+  Future<int> updateMedicine( medicine) async {
+    return this._medicineinfoService.updateMedicine(medicine);
 
+  }
 }

@@ -1,13 +1,17 @@
-import 'package:bassel/services/medicine/cardinfoService.dart';
-import 'package:bassel/services/medicine/diagonService.dart';
+
 import 'dart:async';
+
+import 'package:bassel/services/medicine/diagonService.dart';
 
 class DiagonController {
 
   final DiagonService _diagonService =  DiagonService();
 
   Future<int> insertDiagon(diagon ) async{
-    return await this._diagonService.insertDiagon(diagon);
+    return this._diagonService.insertDiagon(diagon);
   }
+  Future<int> updateDiagon( diagon) async {
+    return this._diagonService.updateDiagon(diagon);
 
+  }
 }
