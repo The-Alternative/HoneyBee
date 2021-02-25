@@ -1,7 +1,10 @@
 
 
+import 'package:bassel/models/medicine/Card_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'dart:async';
 
 import '../../controllers/bmi/desccontroller.dart';
@@ -58,84 +61,111 @@ class _Bmi3State extends State<Bmi3> {
                       fontSize: 20,
                     ),
                     ),
+                    // FlatButton(
+                    //     onPressed: (){
+                    //       Navigator.of(context).pop();
+                    //     },
+                    //     child: Icon(Icons.arrow_back_ios_outlined)
+                    // )
                   ],
                 ),
               ),
 
-              body: new ListView.builder(
-                  itemCount: _cardList.length,
-                  itemBuilder: (BuildContext context, int position) {
-                    return Card(
-                      child:Column(children: <Widget>[
-
-                        Container(
-                          decoration: BoxDecoration(
-                            color:Colors.white,
-                            boxShadow:[
-                              BoxShadow(color: Colors.grey[500],spreadRadius: .1,blurRadius: 1,offset: Offset(1,1),
-                              )],
-                          ),
-                          child:
-                          Column(children: <Widget>[
-                            Padding(
-                                padding: const EdgeInsets.only(right: 260),
-                                child:  Row(
-                                  children: [
-                                    Expanded(flex:1, child: Text(_cardList[position].datt.substring(0,10),
-                                      style: TextStyle(fontSize: 15,color: Colors.grey[500]),)),
-
-                                  ],)
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Expanded(flex: 1, child: Text("الوزن",)),
-                                  Expanded(flex: 1, child: Text("الطول",)),
-                                  Expanded(flex: 1, child: Text("BMI",)),
-                                  Expanded(flex: 2, child: Text("الوضع الصحي",)),
-
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Expanded(flex: 1, child: Text(_cardList[position].wight,)),
-                                  SizedBox(width: 25,),
-                                  Expanded(flex: 1, child: Text(_cardList[position].length)),
-                                  SizedBox(width: 25,),
-                                  Expanded(flex: 1, child: Text(_cardList[position].bmi,
-                                    style: TextStyle(
-                                        color: colors[_cardList[position].index],
-                                        fontWeight: FontWeight.w900
-                                    ),)),
-                                  SizedBox(width: 40,),
-                                  Expanded(flex: 2, child: Text(_cardList[position].comment,
-                                    style: TextStyle(
-                                        color: colors[_cardList[position].index],
-                                        fontWeight: FontWeight.w900
-                                    ),)),
-
-                                  Expanded(flex: 1, child:GestureDetector(child:
-                                  Icon(Icons.delete,color: Colors.black,),
-                                    onTap: () {
-                                      print('${_cardList[position].id}');
-                                      deleteCardListView(_cardList[position].id);
-                                    },
-                                  ))
-                                ],
-                              ),
-                            ),
-                          ]),
-                        )
-                      ])
-                      ,);
-                  })
-          ),
+              body: getbody() ,
+          )
         ));
+  }
+ Widget getbody(){
+    if(_cardList.length ==0)
+      return
+    Center(
+            child: (
+                Text('"لايوجد بيانات لعرضها"',
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                     fontFamily:'Times-Regular'
+                  ),)
+            ),
+
+        );
+    else
+   return ListView.builder(
+       itemCount: _cardList.length,
+
+       itemBuilder: (BuildContext context, int position) {
+         return Card(
+           child:Column(children: <Widget>[
+
+             SizedBox(height: 10,),
+             Container(
+               decoration: BoxDecoration(
+                 color:Colors.white,
+                 boxShadow:[
+                   BoxShadow(color: Colors.grey[500],spreadRadius: .1,blurRadius: 1,offset: Offset(1,1),
+                   )],
+               ),
+               child:
+               Column(children: <Widget>[
+                 Padding(
+                     padding: const EdgeInsets.only(right: 260),
+                     child:  Row(
+                       children: [
+                         Expanded(flex:1, child: Text(_cardList[position].datt.substring(0,10),
+                           style: TextStyle(fontSize: 15,color: Colors.grey[500]),)),
+
+                       ],)
+                 ),
+
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Row(
+                     children: [
+                       Expanded(flex: 1, child: Text("الوزن",)),
+                       Expanded(flex: 1, child: Text("الطول",)),
+                       Expanded(flex: 1, child: Text("BMI",)),
+                       Expanded(flex: 2, child: Text("الوضع الصحي",)),
+
+                     ],
+                   ),
+                 ),
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Row(
+                     children: [
+                       Expanded(flex: 1, child: Text(_cardList[position].wight,)),
+                       SizedBox(width: 25,),
+                       Expanded(flex: 1, child: Text(_cardList[position].length)),
+                       SizedBox(width: 25,),
+                       Expanded(flex: 1, child: Text(_cardList[position].bmi,
+                         style: TextStyle(
+                             color: colors[_cardList[position].index],
+                             fontWeight: FontWeight.w900
+                         ),)),
+                       SizedBox(width: 40,),
+                       Expanded(flex: 2, child: Text(_cardList[position].comment,
+                         style: TextStyle(
+                             color: colors[_cardList[position].index],
+                             fontWeight: FontWeight.w900
+                         ),)),
+
+                       Expanded(flex: 1, child:GestureDetector(child:
+                       Icon(Icons.delete,color: Colors.black,),
+                         onTap: () {
+                           print('${_cardList[position].id}');
+                           deleteCardListView(_cardList[position].id);
+                         },
+                       ))
+                     ],
+                   ),
+                 ),
+               ]),
+             )
+           ])
+           ,);
+       });
+
   }
   addCardListView() {
     _futureCardList = db.getAll();

@@ -71,7 +71,7 @@ class _Bmi1State extends State<Bmi1> {
                   color: Colors.grey[200],
                   child: Center(
                     child: Container(
-                      height: 340,
+                      height: 370,
                       width: MediaQuery.of(context).size.width,
 
                       child: Card(
@@ -113,7 +113,8 @@ class _Bmi1State extends State<Bmi1> {
                                           ),
                                         ),
                                       ),
-                                      Padding(padding: EdgeInsets.all(10)),
+                                      Padding(
+                                          padding: EdgeInsets.all(10)),
                                       SizedBox(width: 10,),
                                       Expanded(flex:1,child: Text("سم",style: TextStyle(fontSize: 16),))
                                     ],
@@ -152,8 +153,8 @@ class _Bmi1State extends State<Bmi1> {
                                                     style:BorderStyle.solid)),
                                               ),
                                             ),
-                                          )),
-                                      // ),
+                                          )
+                                      ),
 
                                       Padding(padding: EdgeInsets.all(10)),
                                       SizedBox(width: 10,),
@@ -162,40 +163,45 @@ class _Bmi1State extends State<Bmi1> {
                                   ),
 
                                   Container(
-                                    margin: EdgeInsets.only(top:30,left: 60,right: 50),
+                                    margin:const EdgeInsets.only(top:30,left: 50,right: 50),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        RaisedButton(
-                                            child: Text("احسب",style: TextStyle(fontSize: 15,color: Colors.black87,fontWeight: FontWeight.bold),),
-                                            color: Colors.white,
-                                            onPressed: () async {
-                                              final isValid = _formKey.currentState.validate();
-                                              if (!isValid) {
-                                                return;
-                                              }
-                                              _formKey.currentState.save();
+                                        Expanded(
+                                          flex: 1,
+                                          child: RaisedButton(
+                                              child: Text("احسب",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),),
+                                              color: Colors.blue,
+                                              onPressed: () async {
+                                                final isValid = _formKey.currentState.validate();
+                                                if (!isValid) {
+                                                  return;
+                                                }
+                                                _formKey.currentState.save();
 
-                                              calculateBMI();
-                                              result = await Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context) {
-                                                    return Bmi2(bmiModel: _bmiModel);
-                                                  }));
-                                              clearTextInput();
-                                            }
+                                                calculateBMI();
+                                                result = await Navigator.push(context,
+                                                    MaterialPageRoute(builder: (context) {
+                                                      return Bmi2(bmiModel: _bmiModel);
+                                                    }));
+                                                clearTextInput();
+                                              }
+                                          ),
                                         ),
                                         SizedBox(width: 30,),
-                                        RaisedButton(
-                                          child: Text("السجل",style: TextStyle(color: Colors.black87,fontWeight: FontWeight.bold),),
-                                          color: Colors.white,
+                                        Expanded(flex: 1,
+                                          child: RaisedButton(
+                                            child: Text("السجل",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                                            color: Colors.blue,
 
-                                          onPressed: (){
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Bmi3(
-                                                          bmiModel: _bmiModel,)));
-                                          },
+                                            onPressed: (){
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Bmi3(
+                                                            bmiModel: _bmiModel,)));
+                                            },
+                                          ),
                                         ),
 
 

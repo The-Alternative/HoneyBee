@@ -222,21 +222,31 @@ class _Bmi2State extends State<Bmi2> {
 
                       Row(
                         children: [
-                          Padding(padding: EdgeInsets.only(right: 65,),),
-                          RaisedButton(
-                            child: Text("الغاء الأمر",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                            color: Colors.white,
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
+                         // Padding(padding: EdgeInsets.only(right: 65,),),
+                          Expanded(flex: 1,
+                            child: Container(
+                              margin: EdgeInsets.all(20),
+                              child: RaisedButton(
+                                child: Text("الغاء الأمر",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                color: Colors.white,
+                                onPressed: (){
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
                           ),
-                          SizedBox(width: 50,),
-                          RaisedButton(
-                            child: Text("موافق",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
-                            color: Colors.white,
-                            onPressed: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Bmi3(bmiModel: bmiModel,)));
-                            },
+                          SizedBox(width: 10,),
+                          Expanded(flex: 1,
+                            child: Container(
+                              margin: EdgeInsets.all(20),
+                              child: RaisedButton(
+                                child: Text("موافق",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                color: Colors.white,
+                                onPressed: (){
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Bmi3(bmiModel: bmiModel,)));
+                                },
+                              ),
+                            ),
                           ),
                         ],
                       )

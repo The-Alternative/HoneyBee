@@ -52,9 +52,12 @@ class _ImageSaveState extends State<ImageSave> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(onTap: _getImageCamera, child: Image.asset("assets/ic_add_a_photo_24px.png" ,
+              child: GestureDetector(
+                  onTap: _getImageCamera,
+                  child: Image.asset("assets/ic_add_a_photo_24px.png" ,
                   width: 50, height: 50)),
-            ),SizedBox(height: 25,width: 25,),
+            ),
+            SizedBox(height: 25,width: 25,),
             GestureDetector(onTap: _getImageGallery, child: Icon(Icons.image_search,size: 50,color: Colors.lightBlue,)),
           ],
         ),Divider(),
