@@ -33,15 +33,9 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
             leadingWidth: 60,
             toolbarHeight: 65,
             title: Row(
-              textDirection: TextDirection.rtl,
               children: [
-                Image.asset(
-                  "assets/logo.png",
-                  height: 52,
-                  width: 52,
-                ),
                 SizedBox(
-                  width: 10,
+                  width: 203,
                 ),
                 Text(
                   'الدراسة',
@@ -50,6 +44,18 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                     fontSize: 20,
                   ),
                 ),
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset(
+                  "assets/logo.png",
+                  height: 52,
+                  width: 52,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(),
               ],
             ),
             backgroundColor: Colors.amber[400],

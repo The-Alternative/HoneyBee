@@ -41,13 +41,8 @@ class _ProgramStudayState extends State<ProgramStuday> {
             toolbarHeight: 65,
             title: Row(
               children: [
-                Image.asset(
-                  "assets/logo.png",
-                  height: 52,
-                  width: 52,
-                ),
                 SizedBox(
-                  width: 10,
+                  width: 203,
                 ),
                 Text(
                   'الدراسة',
@@ -55,6 +50,17 @@ class _ProgramStudayState extends State<ProgramStuday> {
                     color: Colors.black,
                     fontSize: 20,
                   ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset(
+                  "assets/logo.png",
+                  height: 52,
+                  width: 52,
+                ),
+                SizedBox(
+                  width: 10,
                 ),
                 SizedBox(),
               ],
