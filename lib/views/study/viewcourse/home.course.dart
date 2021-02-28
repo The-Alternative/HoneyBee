@@ -1,5 +1,6 @@
 import 'package:bassel/controllers/study/coursecontroller.dart';
 import 'package:bassel/models/study/course.dart';
+import 'package:bassel/views/study/viewcourse/listcourse.dart';
 import 'package:flutter/material.dart';
 
 class HomeCourse extends StatefulWidget {
@@ -14,7 +15,7 @@ class _HomeCourseState extends State<HomeCourse> {
   void initState() {
     super.initState();
     setState(() {
-      courselist.clear();
+      setData();
     });
   }
 
@@ -31,9 +32,8 @@ class _HomeCourseState extends State<HomeCourse> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: courselist.isEmpty!
-       Text('no course'):
-      
-    );
+        body: courselist.isEmpty
+            ? Text('no course')
+            : ListCourse(courselist, setData));
   }
 }

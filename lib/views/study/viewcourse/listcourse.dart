@@ -1,8 +1,9 @@
+import 'package:bassel/models/study/course.dart';
 import 'package:bassel/views/study/viewcourse/cardcourse.dart';
 import 'package:flutter/material.dart';
 
 class ListCourse extends StatelessWidget {
-  final List<ListCourse> listOfCourse;
+  final List<Course> listOfCourse;
   final Function setData;
   ListCourse(this.listOfCourse, this.setData);
   @override
