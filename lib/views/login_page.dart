@@ -32,14 +32,21 @@ class _LoginPageState extends State<LoginPage> {
     return OutlineButton(
       splashColor: Colors.grey,
       onPressed: () {
-        signInWithGoogle().whenComplete(() {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return FirstRoute();
-              },
-            ),
-          );
+        signInWithGoogle().whenComplete(() async {
+          String x = await signInWithGoogle();
+          if(!(x == "false")){
+
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return FirstRoute();
+                },
+              ),
+            );
+          }else{
+            _showMaterialDialog();
+          }
+
         });
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
@@ -67,4 +74,22 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+  _showMaterialDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+          title: new Text("الرجاء اختيار حساب غوغل لتسجيل الدخول"),
+          content: new Text(""),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('حسنا'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        ));
+  }
 }
+
+

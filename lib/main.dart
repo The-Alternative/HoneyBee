@@ -6,17 +6,17 @@ import 'package:bassel/utils/notifiers.dart';
 import 'package:bassel/utils/notifiredb.dart';
 import 'package:bassel/views/BMI/bmi1.dart';
 import 'package:bassel/views/children/Home.dart';
+import 'package:bassel/views/init.dart';
 import 'package:bassel/views/login_page.dart';
 import 'package:bassel/views/study/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 void printHello() {
   final DateTime now = DateTime.now();
   final int isolateId = Isolate.current.hashCode;
-  // print("[$now] Hello, world! isolate=${isolateId} function='$printHello'");
+  print("[$now] Hello, world! isolate=${isolateId} function='$printHello'");
 }
 
 bool result =false;
@@ -110,7 +110,7 @@ void main() async {
   //     });
   runApp(MaterialApp(
     title: 'Navigation Basics',
-    home: LoginPage(),
+    home: App(),
   ));
 }
 
