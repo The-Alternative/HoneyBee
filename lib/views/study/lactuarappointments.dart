@@ -216,25 +216,6 @@ class _LactuarAppointmentsState extends State<LactuarAppointments> {
               ),
             ),
           ),
-          bottomNavigationBar: Container(
-            height: 55,
-            width: 150,
-            decoration: BoxDecoration(
-              color: Colors.amber[400],
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 150,
-                ),
-                IconButton(
-                  icon: Icon(Icons.home),
-                  iconSize: 40,
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );

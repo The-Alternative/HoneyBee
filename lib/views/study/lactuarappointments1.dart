@@ -1,6 +1,7 @@
 import 'package:bassel/views/medicine/ViewMedecineRecord/home.dart';
 import 'package:bassel/views/study/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class LactuarAppointments1 extends StatefulWidget {
   @override
@@ -8,6 +9,107 @@ class LactuarAppointments1 extends StatefulWidget {
 }
 
 class _LactuarAppointments1State extends State<LactuarAppointments1> {
+  String time, time1, time2, time3, time4, time5, time6;
+
+  TimeOfDay timeOfDay = TimeOfDay.now();
+  selectedTodotime(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
+
+  selectedTodotime1(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time1 = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
+
+  selectedTodotime2(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time2 = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
+
+  selectedTodotime3(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time3 = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
+
+  selectedTodotime4(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time4 = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
+
+  selectedTodotime5(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time5 = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
+
+  selectedTodotime6(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time6 = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
+
   bool value1 = false;
   bool value2 = false;
   bool value3 = false;
@@ -105,6 +207,16 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                   ),
                   Row(
                     children: [
+                      IconButton(
+                          icon: Image.asset(
+                            "assets/clock.png",
+                          ),
+                          onPressed: () {
+                            selectedTodotime(context);
+                          }),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         height: 35,
                         width: 120,
@@ -113,19 +225,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "الساعة",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                        child: Center(
+                          child: time == null
+                              ? Text('')
+                              : Text(
+                                  '$time',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(
-                        width: 33,
+                        width: 25,
                       ),
                       Text(
                         "السبت",
@@ -146,10 +259,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                     ],
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 6,
                   ),
                   Row(
                     children: [
+                      IconButton(
+                          icon: Image.asset(
+                            "assets/clock.png",
+                          ),
+                          onPressed: () {
+                            selectedTodotime1(context);
+                          }),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         height: 35,
                         width: 120,
@@ -158,19 +281,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "الساعة",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                        child: Center(
+                          child: time1 == null
+                              ? Text('')
+                              : Text(
+                                  '$time1',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(
-                        width: 35,
+                        width: 26,
                       ),
                       Text(
                         "الأحد",
@@ -180,7 +304,7 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                         ),
                       ),
                       SizedBox(
-                        width: 4,
+                        width: 5,
                       ),
                       Checkbox(
                         value: value2,
@@ -191,10 +315,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                     ],
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 6,
                   ),
                   Row(
                     children: [
+                      IconButton(
+                          icon: Image.asset(
+                            "assets/clock.png",
+                          ),
+                          onPressed: () {
+                            selectedTodotime2(context);
+                          }),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         height: 35,
                         width: 120,
@@ -203,19 +337,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "الساعة",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                        child: Center(
+                          child: time2 == null
+                              ? Text('')
+                              : Text(
+                                  '$time2',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(
-                        width: 30,
+                        width: 21,
                       ),
                       Text(
                         "الإثنين",
@@ -225,7 +360,7 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                         ),
                       ),
                       SizedBox(
-                        width: 4,
+                        width: 5,
                       ),
                       Checkbox(
                         value: value3,
@@ -236,10 +371,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                     ],
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 6,
                   ),
                   Row(
                     children: [
+                      IconButton(
+                          icon: Image.asset(
+                            "assets/clock.png",
+                          ),
+                          onPressed: () {
+                            selectedTodotime3(context);
+                          }),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         height: 35,
                         width: 120,
@@ -248,19 +393,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "الساعة",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                        child: Center(
+                          child: time3 == null
+                              ? Text('')
+                              : Text(
+                                  '$time3',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(
-                        width: 26,
+                        width: 18,
                       ),
                       Text(
                         "الثلاثاء",
@@ -281,10 +427,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                     ],
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 6,
                   ),
                   Row(
                     children: [
+                      IconButton(
+                          icon: Image.asset(
+                            "assets/clock.png",
+                          ),
+                          onPressed: () {
+                            selectedTodotime4(context);
+                          }),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         height: 35,
                         width: 120,
@@ -293,19 +449,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "الساعة",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                        child: Center(
+                          child: time4 == null
+                              ? Text('')
+                              : Text(
+                                  '$time4',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(
-                        width: 24,
+                        width: 16,
                       ),
                       Text(
                         "الإربعاء",
@@ -326,10 +483,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                     ],
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 6,
                   ),
                   Row(
                     children: [
+                      IconButton(
+                          icon: Image.asset(
+                            "assets/clock.png",
+                          ),
+                          onPressed: () {
+                            selectedTodotime5(context);
+                          }),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         height: 35,
                         width: 120,
@@ -338,19 +505,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "الساعة",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                        child: Center(
+                          child: time5 == null
+                              ? Text('')
+                              : Text(
+                                  '$time5',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 12,
                       ),
                       Text(
                         "الخميس",
@@ -371,10 +539,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                     ],
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 6,
                   ),
                   Row(
                     children: [
+                      IconButton(
+                          icon: Image.asset(
+                            "assets/clock.png",
+                          ),
+                          onPressed: () {
+                            selectedTodotime6(context);
+                          }),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
                         height: 35,
                         width: 120,
@@ -383,19 +561,20 @@ class _LactuarAppointments1State extends State<LactuarAppointments1> {
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "الساعة",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                        child: Center(
+                          child: time6 == null
+                              ? Text('')
+                              : Text(
+                                  '$time6',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(
-                        width: 24,
+                        width: 16,
                       ),
                       Text(
                         "الجمعة",

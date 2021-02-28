@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:bassel/views/study/startdate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:date_time_format/date_time_format.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 
 class LactuarAppointments2 extends StatefulWidget {
@@ -11,6 +15,22 @@ class LactuarAppointments2 extends StatefulWidget {
 
 class _LactuarAppointments2State extends State<LactuarAppointments2> {
   String date;
+  String time;
+
+  TimeOfDay timeOfDay = TimeOfDay.now();
+  selectedTodotime(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
 
   DateTime dateTime = DateTime.now();
   selectedTodoDate(BuildContext context) async {
@@ -126,9 +146,16 @@ class _LactuarAppointments2State extends State<LactuarAppointments2> {
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                         child: Center(
-                            child: Text(
-                          '$date',
-                        )),
+                          child: date == null
+                              ? Text('')
+                              : Text(
+                                  '$date',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                        ),
                       ),
                       SizedBox(
                         width: 16,
@@ -151,7 +178,9 @@ class _LactuarAppointments2State extends State<LactuarAppointments2> {
                           icon: Image.asset(
                             "assets/clock.png",
                           ),
-                          onPressed: () {}),
+                          onPressed: () {
+                            selectedTodotime(context);
+                          }),
                       SizedBox(
                         width: 11,
                       ),
@@ -162,6 +191,17 @@ class _LactuarAppointments2State extends State<LactuarAppointments2> {
                           border:
                               Border.all(color: Colors.amber[400], width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Center(
+                          child: time == null
+                              ? Text('')
+                              : Text(
+                                  '$time',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
                         ),
                       ),
                       SizedBox(

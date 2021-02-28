@@ -1,6 +1,8 @@
 import 'package:bassel/views/study/repet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart';
 
 class StartDate extends StatefulWidget {
   @override
@@ -9,14 +11,31 @@ class StartDate extends StatefulWidget {
 
 class _StartDateState extends State<StartDate> {
   String date;
+  String time;
+
+  TimeOfDay timeOfDay = TimeOfDay.now();
+  selectedTodotime(BuildContext context) async {
+    var pickTime = await showTimePicker(
+      context: context,
+      initialTime: timeOfDay,
+    );
+    if (pickTime != null) {
+      setState(() {
+        timeOfDay = pickTime;
+        time = TimeOfDay(hour: pickTime.hour, minute: pickTime.minute)
+            .format(context);
+      });
+    }
+  }
 
   DateTime dateTime = DateTime.now();
   selectedTodoDate(BuildContext context) async {
     var pickedDate = await showDatePicker(
-        context: context,
-        initialDate: dateTime,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100));
+      context: context,
+      initialDate: dateTime,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
 
     if (pickedDate != null) {
       setState(() {
@@ -106,9 +125,16 @@ class _StartDateState extends State<StartDate> {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       child: Center(
-                          child: Text(
-                        '$date',
-                      )),
+                        child: date == null
+                            ? Text('')
+                            : Text(
+                                '$date',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                ),
+                              ),
+                      ),
                     ),
                     SizedBox(
                       width: 30,
@@ -131,7 +157,9 @@ class _StartDateState extends State<StartDate> {
                         icon: Image.asset(
                           "assets/clock.png",
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          selectedTodotime(context);
+                        }),
                     SizedBox(
                       width: 20,
                     ),
@@ -142,6 +170,17 @@ class _StartDateState extends State<StartDate> {
                         border:
                             Border.all(color: Colors.amber[400], width: 1.0),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Center(
+                        child: time == null
+                            ? Text('')
+                            : Text(
+                                '$time',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                ),
+                              ),
                       ),
                     ),
                     SizedBox(

@@ -100,8 +100,9 @@ class _StudyHomeState extends State<StudyHome> {
                         padding: const EdgeInsets.all(15.0),
                         child: ListView.builder(
                             itemCount: snapshot.data.length,
-                            itemBuilder: (context, i) {
-                              Course course = Course.fromMap(snapshot.data[i]);
+                            itemBuilder: (context, int) {
+                              Course course =
+                                  Course.fromMap(snapshot.data[int]);
                               return Card(
                                 margin: EdgeInsets.symmetric(vertical: 8),
                                 child: ListTile(

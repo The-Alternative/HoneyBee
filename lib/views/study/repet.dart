@@ -110,6 +110,25 @@ class _Repeted extends State<Repeted> {
                             Border.all(color: Colors.amber[400], width: 1.0),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 12, left: 12),
+                        child: Center(
+                          child: TextFormField(
+                            cursorColor: Colors.amber[400],
+                            cursorHeight: 25,
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.amber[400])),
+                            ),
+                            onChanged: (value) {
+                              setState(() {});
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
