@@ -4,7 +4,7 @@ import 'package:bassel/models/medicine/MedicineInfo.dart';
 import 'package:bassel/models/medicine/MedicineTimes.dart';
 import 'package:sqflite/sqflite.dart';
 
-class MedicineService{
+class MedicineService {
   String medicinTable = 'med_table';
   String medId = 'id'; //primry/forign..key
   String medTitle = 'title';
@@ -21,33 +21,32 @@ class MedicineService{
 
   DatabaseConfig _medicineDatabase = DatabaseConfig();
 
-
   //insert something to database
-  Future<int> insertData(String table,Map<String,dynamic> data) async{
+  Future<int> insertData(String table, Map<String, dynamic> data) async {
     Database db = await this._medicineDatabase.honeyBee;
-    try{
+    try {
       return await db.insert(table, data);
-    }catch(e){
+    } catch (e) {
       return null;
     }
   }
 
   //get all data from database
-  Future<List<Map<String,dynamic>>> getAllData(table) async{
+  Future<List<Map<String, dynamic>>> getAllData(table) async {
     Database db = await this._medicineDatabase.honeyBee;
-    try{
+    try {
       return db.query(table);
-    }catch(e){
+    } catch (e) {
       return null;
     }
   }
 
   //delete data
-  Future<int> deleteData(String table,int id) async{
+  Future<int> deleteData(String table, int id) async {
     Database db = await this._medicineDatabase.honeyBee;
-    try{
-      return await db.delete(table,where: "id = ?", whereArgs: [id]);
-    }catch(e){
+    try {
+      return await db.delete(table, where: "id = ?", whereArgs: [id]);
+    } catch (e) {
       return null;
     }
   }
@@ -78,7 +77,7 @@ class MedicineService{
   Future<int> deleteDayTimes(int id, int day) async {
     var db = await this._medicineDatabase.honeyBee;
     int result =
-    await db.rawDelete('DELETE FROM $dayTimesTable WHERE $timesId = $id');
+        await db.rawDelete('DELETE FROM $dayTimesTable WHERE $timesId = $id');
     int t = await getCountDayesTime(day);
     if (t == 0) deleteDayes(day);
     return result;
@@ -88,7 +87,7 @@ class MedicineService{
   Future<int> getCountDayTimes() async {
     Database db = await this._medicineDatabase.honeyBee;
     List<Map<String, dynamic>> x =
-    await db.rawQuery('SELECT COUNT (*) from $dayTimesTable');
+        await db.rawQuery('SELECT COUNT (*) from $dayTimesTable');
     int result = Sqflite.firstIntValue(x);
     return result;
   }
@@ -96,7 +95,7 @@ class MedicineService{
   // Get the 'Map List' [ List<Map> ] and convert it to 'Note List' [ List<Note> ]
   Future<List<MedicineTimes>> getDayTimesList() async {
     var medicineTimesMapList =
-    await getDayTimesMapList(); // Get 'Map List' from database
+        await getDayTimesMapList(); // Get 'Map List' from database
     int count = medicineTimesMapList
         .length; // Count the number of map entries in db table
     List<MedicineTimes> medicineTimeList = List<MedicineTimes>();
@@ -136,7 +135,7 @@ class MedicineService{
       var result = await db.insert(medicinTable, medicine.toMap());
       return result;
     } catch (e) {
-      return getIdMedicine(medicinTable,medicine.medTitle);
+      return getIdMedicine(medicinTable, medicine.medTitle);
     }
   }
 
@@ -145,8 +144,8 @@ class MedicineService{
     var db = await this._medicineDatabase.honeyBee;
     var result = await db.rawQuery(
         'SELECT $medicinTable.$medId,$medTitle,$medform,$diagid FROM $medicinTable,$diagonTable,$patientTable'
-            ' WHERE $diagonTable.$patId = $patientTable.$patId AND $diagonTable.$medId = $medicinTable.$medId '
-            'AND $patientTable.$patname =?',
+        ' WHERE $diagonTable.$patId = $patientTable.$patId AND $diagonTable.$medId = $medicinTable.$medId '
+        'AND $patientTable.$patname =?',
         ['$name']);
     result.forEach((element) {
       var medicineInfo = MedicineInfo.fromMap(element);
@@ -167,7 +166,7 @@ class MedicineService{
   Future<int> deleteMedicine(int id) async {
     var db = await this._medicineDatabase.honeyBee;
     int result =
-    await db.rawDelete('DELETE FROM $medicinTable WHERE $medId = $id');
+        await db.rawDelete('DELETE FROM $medicinTable WHERE $medId = $id');
     return result;
   }
 
@@ -187,7 +186,6 @@ class MedicineService{
     return result;
   }
 
-
   testDay() async {
     var db = await this._medicineDatabase.honeyBee;
     // get single row
@@ -204,17 +202,20 @@ class MedicineService{
       if (getCountDayesTime(ids[i]) == 0) deleteDayes(ids[i]);
       return result;
     }
-  }  Future<int> getCountDayesTime(int id) async {
+  }
+
+  Future<int> getCountDayesTime(int id) async {
     Database db = await this._medicineDatabase.honeyBee;
     List<Map<String, dynamic>> x = await db
         .rawQuery('SELECT COUNT (*) from $dayTimesTable where $dayesId = $id');
     int result = Sqflite.firstIntValue(x);
     return result;
   }
+
   Future<int> deleteDayes(int id) async {
     var db = await this._medicineDatabase.honeyBee;
     int result =
-    await db.rawDelete('DELETE FROM $midDayesTable WHERE $dayesId = $id');
+        await db.rawDelete('DELETE FROM $midDayesTable WHERE $dayesId = $id');
     return result;
   }
 
@@ -222,7 +223,7 @@ class MedicineService{
   Future<int> getCount_Medicine() async {
     Database db = await this._medicineDatabase.honeyBee;
     List<Map<String, dynamic>> x =
-    await db.rawQuery('SELECT COUNT (*) from $medicinTable');
+        await db.rawQuery('SELECT COUNT (*) from $medicinTable');
     int result = Sqflite.firstIntValue(x);
     return result;
   }
@@ -230,7 +231,7 @@ class MedicineService{
   // Get the 'Map List' [ List<Map> ] and convert it to 'Note List' [ List<Note> ]
   Future<List<Medicine>> getMedicineList() async {
     var medicineMapList =
-    await getMedicineMapList(); // Get 'Map List' from database
+        await getMedicineMapList(); // Get 'Map List' from database
     int count =
         medicineMapList.length; // Count the number of map entries in db table
     List<Medicine> medicineList = List<Medicine>();
@@ -242,9 +243,7 @@ class MedicineService{
     return medicineList;
   }
 
-
-
-  Future<int> getIdMedicine(table,String title) async {
+  Future<int> getIdMedicine(table, String title) async {
     // get a reference to the database
     Database db = await this._medicineDatabase.honeyBee;
     // get single row
@@ -260,6 +259,4 @@ class MedicineService{
     rowId = Sqflite.firstIntValue(result);
     return rowId;
   }
-
-
 }

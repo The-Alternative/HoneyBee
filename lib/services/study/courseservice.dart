@@ -15,6 +15,7 @@ class CourseService {
   Future<int> saveCourse(Course course) async {
     var dbClient = await db.honeyBee;
     int result = await dbClient.insert("$courses", course.toMap());
+    print(result);
     return result;
   }
 
@@ -34,6 +35,13 @@ class CourseService {
   Future<int> deleteCourse(Course course) async {
     var dbClient = await db.honeyBee;
     return await dbClient.delete(courses, where: "$columnid = ${course.id}");
+  }
+
+  Future<List<Map<String, dynamic>>> getInfo(table) async {
+    var db = await this.db.honeyBee;
+    var result = await db.query(table);
+
+    return result;
   }
 
   close() async {

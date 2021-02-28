@@ -2,6 +2,7 @@ import 'package:bassel/controllers/study/coursecontroller.dart';
 import 'package:bassel/models/study/course.dart';
 import 'package:bassel/views/study/assignments.dart';
 import 'package:bassel/views/study/newcourse.dart';
+import 'package:bassel/views/study/viewcourse/home.course.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
@@ -79,61 +80,7 @@ class _StudyHomeState extends State<StudyHome> {
                 ],
               ),
             ),
-            body: TabBarView(
-              children: [
-                FutureBuilder(
-                  future: helper.getAllcourse(),
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: Image(
-                          width: 280,
-                          height: 280,
-                          image: AssetImage(
-                            "assets/center.png",
-                          ),
-                          alignment: Alignment.center,
-                        ),
-                      );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: ListView.builder(
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, int) {
-                              Course course =
-                                  Course.fromMap(snapshot.data[int]);
-                              return Card(
-                                margin: EdgeInsets.symmetric(vertical: 8),
-                                child: ListTile(
-                                  title: Text(course.namecourse),
-                                  trailing: IconButton(
-                                    icon: Icon(Icons.delete),
-                                    onPressed: () {
-                                      setState(() {
-                                        helper.deleteCourse(course);
-                                      });
-                                    },
-                                  ),
-                                ),
-                              );
-                            }),
-                      );
-                    }
-                  },
-                ),
-                new Center(
-                  child: Image(
-                    width: 280,
-                    height: 280,
-                    image: AssetImage(
-                      "assets/center.png",
-                    ),
-                    alignment: Alignment.center,
-                  ),
-                ),
-              ],
-            ),
+            body: HomeCourse(),
             floatingActionButton: SpeedDial(
               animatedIcon: AnimatedIcons.add_event,
               backgroundColor: Colors.amber[400],

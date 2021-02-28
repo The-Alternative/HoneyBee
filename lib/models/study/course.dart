@@ -27,4 +27,11 @@ class Course {
         "email": email,
         "teacharnumber": teacharnumber,
       };
+  Course courseMapToObject(Map<String, dynamic> json) => Course(
+        id: json["id"],
+        namecourse: json["namecourse"],
+        nameteachar: json["nameteachar"],
+        email: json["email"],
+        teacharnumber: json["teacharnumber"],
+      );
 }
