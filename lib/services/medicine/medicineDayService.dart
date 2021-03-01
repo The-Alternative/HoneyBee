@@ -1,6 +1,6 @@
-import 'package:bassel/utils/databaseconfig.dart';
 import 'package:bassel/models/medicine/MedicineTimes.dart';
 import 'package:bassel/models/medicine/medicineDays.dart';
+import 'package:bassel/utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineDayService{
@@ -10,15 +10,25 @@ class MedicineDayService{
   String sortNum = 'sortn';
   String dayTimesTable = 'mTimes_table';
   String timesId = 'tid';
-
+  String diagonTable = 'diagon_table';
+  String diagid = 'd_id'; //primry/forign..key
   DatabaseConfig _medicineDatabase = DatabaseConfig();
+  static Database _database;
 
+  //init database
+  // Future<Database> get database async{
+  //   if(_database != null) return _database;
+  //   _database = await _medicineDatabase.setDatabase();
+  //   return _database;
+  // }
   /////////////////////////////////////////////////////////////midDayes///////////////////////////////////////////////////
-  Future<List<Map<String, dynamic>>> getmidDayesMapList() async {
+  Future<List<Map<String, dynamic>>> getmidDayesMapList(String name) async {
     Database db = await this._medicineDatabase.honeyBee;
 
     var result = await db.rawQuery('SELECT * FROM $midDayesTable '
-        ' WHERE $dayesId in(SELECT $dayesId FROM $dayTimesTable ) order by $sortNum ASC');
+        ' WHERE $dayesId in(SELECT $dayesId FROM $dayTimesTable WHERE '
+        ' d_id in(SELECT $diagid FROM $diagonTable WHERE '
+        ' p_id =(SELECT p_id FROM patent_table WHERE p_name like '+"'"+'$name'+"'"+' ))) order by $sortNum ASC');
     //var result = db.query(midDayesTable, orderBy: '$sortNum ASC');
     return result;
   }
@@ -53,7 +63,7 @@ class MedicineDayService{
   }
 
   Future<int> updateDayes(MedicineDays days) async {
-    var db = await this._medicineDatabase.honeyBee;
+    Database db = await this._medicineDatabase.honeyBee;
     var result = await db.update(midDayesTable, days.toMap(),
         where: '$dayesId = ?', whereArgs: [days.dayesId]);
     return result;
@@ -61,7 +71,7 @@ class MedicineDayService{
 
   // Delete Operation: Delete a Note object from database
   Future<int> deleteDayes(int id) async {
-    var db = await this._medicineDatabase.honeyBee;
+    Database db = await this._medicineDatabase.honeyBee;
     int result =
     await db.rawDelete('DELETE FROM $midDayesTable WHERE $dayesId = $id');
     return result;
@@ -84,9 +94,9 @@ class MedicineDayService{
     return result;
   }
 
-  // Get the 'Map List' [ List<Map> ] and convert it to 'Note List' [ List<Note> ]
-  Future<List<MedicineDays>> getmidDayesList() async {
-    var midDayesMapList = await getmidDayesMapList(); // Get 'Map List' from database
+
+  Future<List<MedicineDays>> getselectmidDayesList(String name) async {
+    var midDayesMapList = await getmidDayesMapList(''); // Get 'Map List' from database
     int count = midDayesMapList.length; // Count the number of map entries in db table
     List<MedicineDays> dayesList = List<MedicineDays>();
     // For loop to create a 'Note List' from a 'Map List'
@@ -95,21 +105,8 @@ class MedicineDayService{
     }
     return dayesList;
   }
-
-  Future<List<MedicineDays>> getselectmidDayesList(String name) async {
-    var midDayesMapList =
-    await getmidDayesMapList(); // Get 'Map List' from database
-    int count =
-        midDayesMapList.length; // Count the number of map entries in db table
-    List<MedicineDays> dayesList = List<MedicineDays>();
-    // For loop to create a 'Note List' from a 'Map List'
-    for (int i = 0; i < count; i++) {
-      dayesList.add(MedicineDays.fromMapObject(midDayesMapList[i]));
-    }
-    return dayesList;
-  }
   Future<int> updateDayTimes(MedicineTimes medicineTimes) async {
-    var db = await this._medicineDatabase.honeyBee;
+    Database db = await this._medicineDatabase.honeyBee;
     var result = await db.update(dayTimesTable, medicineTimes.toMap(),
         where: '$timesId = ?', whereArgs: [medicineTimes.timesId]);
     return result;

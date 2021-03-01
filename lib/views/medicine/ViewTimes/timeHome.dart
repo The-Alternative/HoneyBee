@@ -8,10 +8,8 @@ import 'package:bassel/models/medicine/Patient.dart';
 import 'package:bassel/models/medicine/medicineDays.dart';
 import 'package:bassel/views/medicine/ViewTimes/timeList.dart';
 import 'package:bassel/views/medicine/ViewTimes/times_list.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class TimesHome extends StatefulWidget {
   @override
@@ -24,7 +22,7 @@ class _TimesHomeState extends State<TimesHome> {
   var style2 = TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'Times');
   var style4 = TextStyle(fontSize: 16, fontWeight: FontWeight.normal,
       fontFamily: 'Times', color: Colors.white);
- String _selectedName;
+  String _selectedName;
   //--------------------| Lists of tables from database |----------------------
   MedicineDayController _medicineDayController =MedicineDayController();
   PatientController _patientController =PatientController();
@@ -41,25 +39,26 @@ class _TimesHomeState extends State<TimesHome> {
   void initState() {
     super.initState();
     setState(() {
-    setDayData();
-    setNames();
-    setTimesData();
+      setDayData('');
+      setNames();
+      setTimesData('');
 
     });
 
   }
 
-   setdata() async {
-
-      print(  'daysList.length');
-       setDayData();
-     await setTimesData();
+  setdata()  {
+    print(  '${daysList.length}');
+    setState(() {
+      setDayData(_selectedName);
+      setTimesData(_selectedName);
+    });
 
   }
   //--------------------GET ALL DATA FROM DATABASE---------------------
-   setDayData() async {
+  setDayData(String name) async {
     daysList.clear();
-    (await _medicineDayController.getmidDayesMapList()).forEach((dayMap) {
+    (await _medicineDayController.getmidDayesMapList(name)).forEach((dayMap) {
       setState(() {
         daysList.add(  MedicineDays.WithId().fromMapObject(dayMap));
       });
@@ -68,10 +67,10 @@ class _TimesHomeState extends State<TimesHome> {
 
   }
   //===================================================================
-  Future setTimesData() async {
+  setTimesData(String name) async {
 
     cardList.clear();
-    (await _cardinfoController.getSelectCards('')).forEach((timeMap) {
+    (await _cardinfoController.getSelectCards(name)).forEach((timeMap) {
       setState(() {
         cardList.add(timeMap);
 
@@ -88,7 +87,6 @@ class _TimesHomeState extends State<TimesHome> {
       setState(() {
         NamesList.add(Patient("").patientMapToObject(patientMap));
       });
-      print(  'NamesList.length');
     });
   }
   //===================================================================
@@ -97,15 +95,15 @@ class _TimesHomeState extends State<TimesHome> {
   Widget build(BuildContext context) {
 
     if (Timesupdate.res) {
-      setdata();
+      // setdata();
       setNames();
-    Timesupdate.res=false;}
+      Timesupdate.res=false;}
     if (Timesupdate.res2) {
-   //   setTimesData();
+      //   setTimesData();
       Timesupdate.res2=false;}
     final double deviceHeight =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
-  print( NamesList .length);
+    print( NamesList .length);
     print( cardList .length);
 
 
@@ -152,20 +150,20 @@ class _TimesHomeState extends State<TimesHome> {
                 SizedBox(height: deviceHeight * 0.03),
                 cardList.isEmpty
                     ? SizedBox(
-                        width: double.infinity,
-                        height: 200,
-                        child: WavyAnimatedTextKit(
-                          textStyle: TextStyle(
-                              fontSize: 32.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                          text: [
-                            "No data..."
-                          ],
-                          isRepeatingAnimation: true,
-                          speed: Duration(milliseconds: 50),
-                        ),
-                      )
+                  width: double.infinity,
+                  height: 200,
+                  child: WavyAnimatedTextKit(
+                    textStyle: TextStyle(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                    text: [
+                      "No data..."
+                    ],
+                    isRepeatingAnimation: false,
+                    speed: Duration(milliseconds: 50),
+                  ),
+                )
                     : TimesList(cardList,daysList,setdata)
               ],
             ),
@@ -179,42 +177,45 @@ class _TimesHomeState extends State<TimesHome> {
   //-------------------------| Click on the calendar day |-------------------------
   Widget getDrop() {
     return(
-    NamesList.isEmpty?
+        NamesList.isEmpty?
         Text("لايوجد مريض") :DropdownButtonHideUnderline(
-        child: DropdownButton(
-          isExpanded: false,
-          style: style10,
-          // Not necessary for Option 1
-          value: _selectedName,
-          onChanged: (newValue) {
-            setState(() {
-              _selectedName = newValue;
-              print(_selectedName);
-              // getselectDaysListView(_selectedName);
-              // getselectCardListView(_selectedName);
-            });
-          },
-          items: NamesList.map((name) {
-            return DropdownMenuItem(
-              child: Padding(
-                  padding: const EdgeInsets.only(left: 0),
-                  child: Column(
-                    children: [
-                      Text(
-                        name.patName,
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      Divider(
-                        thickness: 1,
-                        height: 1,
-                      )
-                    ],
-                  )),
-              value: name.patName,
-            );
-          }).toList(),
-        ),
-      ));
+          child: DropdownButton(
+            isExpanded: false,
+            style: style10,
+            // Not necessary for Option 1
+            value: _selectedName,
+            onChanged: (newValue) {
+              setState(() {
+                _selectedName = newValue;
+                print(_selectedName);
+                // getselectDaysListView(_selectedName);
+                // getselectCardListView(_selectedName);
+                setDayData(_selectedName);
+                setTimesData(_selectedName);
+
+              });
+            },
+            items: NamesList.map((name) {
+              return DropdownMenuItem(
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: Column(
+                      children: [
+                        Text(
+                          name.patName,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Divider(
+                          thickness: 1,
+                          height: 1,
+                        )
+                      ],
+                    )),
+                value: name.patName,
+              );
+            }).toList(),
+          ),
+        ));
 
   }
 }

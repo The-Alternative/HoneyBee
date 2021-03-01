@@ -1,14 +1,13 @@
 import 'dart:io';
-
-
 import 'package:bassel/controllers/medicine/medicineDayController.dart';
 import 'package:bassel/controllers/medicine/medicineViewController.dart';
 import 'package:bassel/controllers/medicine/timesDayesController.dart';
 import 'package:bassel/models/medicine/MedicineInfo.dart';
 import 'package:bassel/models/medicine/MedicineTimes.dart';
 import 'package:bassel/models/medicine/medicineDays.dart';
+import 'package:bassel/notifications/notifications.dart';
+import 'package:bassel/utils/alarm_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 
 class TimesCard extends StatefulWidget {
@@ -21,11 +20,13 @@ class TimesCard extends StatefulWidget {
   }
 }
 class _TimesCard extends State<TimesCard> {
-MedicineDayController _medicineDayController = MedicineDayController();
-TimesDayesController _timesDayesController =TimesDayesController();
-MedicineViewController _medicineViewController =MedicineViewController();
+
+  AlarmHelper _alarmHelper= AlarmHelper();
+  MedicineDayController _medicineDayController = MedicineDayController();
+  TimesDayesController _timesDayesController =TimesDayesController();
+  MedicineViewController _medicineViewController =MedicineViewController();
   MedicineInfo medicine;
-   Function setData;
+  Function setData;
   _TimesCard(this.medicine,this.setData);
   var style10 = TextStyle(
     fontSize: 20,
@@ -39,7 +40,6 @@ MedicineViewController _medicineViewController =MedicineViewController();
       fontWeight: FontWeight.normal,
       fontFamily: 'Times',
       color: Colors.white);
-
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -54,7 +54,7 @@ MedicineViewController _medicineViewController =MedicineViewController();
       });
   }
 
-   DateTime _alarmTime;
+  DateTime _alarmTime;
   String _alarmTimeString;
 
 
@@ -135,9 +135,10 @@ MedicineViewController _medicineViewController =MedicineViewController();
                   size: 30,
                   color: Colors.blue,
                 ),
-                onPressed: () {
-                  print(medicine.img_direct);
+                onPressed: () async {
+                  //   str_todate(medicine.daydate,medicine.day_time);
                   _delete(context, medicine);
+
                   // *******
                   //print('card:${selecttimesList[ii].timesId}day:${selecttimesList[ii].dayesId}time:${selecttimesList[ii].day_time}');
                 }),
@@ -284,11 +285,14 @@ MedicineViewController _medicineViewController =MedicineViewController();
                           padding: const EdgeInsets.only(right: 25),
                           child: FloatingActionButton.extended(
                             onPressed: () {
+                              str_todate(card_info.daydate, card_info.day_time);
                               Navigator.pop(context);
+
                             },
                             icon: Icon(Icons.cancel_outlined),
                             label: Text('الغاء الأمر'),
                             backgroundColor: Colors.red,
+
                           ),
                         ),
                         FloatingActionButton.extended(
@@ -302,18 +306,20 @@ MedicineViewController _medicineViewController =MedicineViewController();
                                   medTitle: card_info.medTitle,
                                   medform: 'amount',
                                   amount:card_info.amount ,
-                                  personName: card_info.personName,notice:card_info.notice ,last_date:card_info.daydate
+                                  personName: card_info.personName,
+                                  notice:card_info.notice
+                                  ,last_date:card_info.daydate
                                   ,first_date:card_info.first_date
-                                  ,doctname:card_info.doctname ,img_direct:card_info.img_direct ,diagon:card_info.diagon );
-                              print(card_info.notice);
-                              // print('bbbb${selectedDate.toLocal()}'.split(' ')[0].replaceAll(new RegExp(r'-'), '/'));
+                                  ,doctname:card_info.doctname ,
+                                  img_direct:card_info.img_direct ,
+                                  diagon:card_info.diagon );
                               _medicineViewController.insertRecordMedicine(medicine);
                               _delete(context, card_info);
                             } else {
                               _update(context, card_info, selectedDate,
                                   _alarmTimeString);
+                              setData();
                             }
-                            setData();
                             Navigator.pop(context);
                           },
                           icon: Icon(Icons.alarm),
@@ -330,11 +336,18 @@ MedicineViewController _medicineViewController =MedicineViewController();
   }
   //============================================================================================
   void _delete(BuildContext context, MedicineInfo card_info) async {
-    int result = await _timesDayesController.deleteDayTimes(card_info.timesId, card_info.dayesId);
+    int a = await _alarmHelper.getId(
+        card_info.diagid, str_todate(card_info.daydate, card_info.day_time));
+    int result = await _timesDayesController.deleteDayTimes(
+        card_info.timesId, card_info.dayesId);
+    print('moooo$a');
+    Ass.removeNotify(a);
+    _alarmHelper.delete(a);
     if (result != 0) {
       setData();
     }
   }
+
   //============================================================================================
   void _update(BuildContext context, MedicineInfo card_info, DateTime selectedDate, String _alarmTimeString) async
   {
@@ -344,17 +357,35 @@ MedicineViewController _medicineViewController =MedicineViewController();
         .toString()
         .split(' ')[0]
         .replaceAll(new RegExp(r'-'), '/');
-        String forma2 = selectedDate
+    String forma2 = selectedDate
         .toLocal()
         .toString()
         .split(' ')[0]
         .replaceAll(new RegExp(r'-'), '');
-        print(forma);
-        int dayId =
-        await _medicineDayController.insertDayes(MedicineDays(forma, int.parse(forma2)));
-    _medicineDayController.updateDayTimes(MedicineTimes(
-        dayId, _alarmTimeString, 1, card_info.diagid, card_info.timesId));
-       setData;
+    print(forma);
+    int dayId = await _medicineDayController.insertDayes(MedicineDays(forma, int.parse(forma2)));
+    _medicineDayController.updateDayTimes(MedicineTimes(dayId, _alarmTimeString, 1,
+        card_info.diagid, card_info.timesId));
+  }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  DateTime str_todate(String s1,String s2){
+    var arr = List(3);
+    arr = s1.split('/');
+    int dd = int.parse(arr[2]);
+    int mm = int.parse(arr[1]);
+    int yyyy = int.parse(arr[0]);
+    var arr2 = List(2);
+    arr2 = s2.split(':');
+    int mi = int.parse(arr2[1]);
+    int ho = int.parse(arr2[0]);
+    var selectedDateTime = DateTime(
+        yyyy,
+        mm,
+        dd,
+        ho,
+        mi);
+    // print ('$selectedDateTime');
+    return selectedDateTime;
   }
   //============================================================================================
 
@@ -364,37 +395,37 @@ MedicineViewController _medicineViewController =MedicineViewController();
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text("Delete ?"),
-              content: Text("Are you sure to delete $medicineName medicine?"),
-              contentTextStyle:
-                  TextStyle(fontSize: 17.0, color: Colors.grey[800]),
-              actions: [
-                FlatButton(
-                  splashColor: Theme.of(context).primaryColor.withOpacity(0.3),
-                  child: Text(
-                    "Cancel",
-                    style: TextStyle(color: Theme.of(context).primaryColor),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                FlatButton(
-                  splashColor: Theme.of(context).primaryColor.withOpacity(0.3),
-                  child: Text("Delete",
-                      style: TextStyle(color: Theme.of(context).primaryColor)),
-                  onPressed: () async {
-                    //
-                    // await Repository().deleteData('Pills', medicineId);
-                    // await Notifications().removeNotify(notifyId, flutterLocalNotificationsPlugin);
-                    setData();
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ));
+          title: Text("Delete ?"),
+          content: Text("Are you sure to delete $medicineName medicine?"),
+          contentTextStyle:
+          TextStyle(fontSize: 17.0, color: Colors.grey[800]),
+          actions: [
+            FlatButton(
+              splashColor: Theme.of(context).primaryColor.withOpacity(0.3),
+              child: Text(
+                "Cancel",
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              splashColor: Theme.of(context).primaryColor.withOpacity(0.3),
+              child: Text("Delete",
+                  style: TextStyle(color: Theme.of(context).primaryColor)),
+              onPressed: ()  {
+                //
+                // await Repository().deleteData('Pills', medicineId);
+                // await Notifications().removeNotify(notifyId, flutterLocalNotificationsPlugin);
+                setData();
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ));
   }
-  //============================================================================================
+//============================================================================================
 
 
 }

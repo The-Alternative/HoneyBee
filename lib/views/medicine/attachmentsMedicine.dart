@@ -16,7 +16,6 @@ class AttachmentsMedicine extends StatefulWidget {
 }
 
 class _AttachmentsMedicineState extends State<AttachmentsMedicine> {
-  DateTime _alarmTime;
   File _image;
   TextEditingController _nameController = TextEditingController();
   DiagonController _diagonController =DiagonController();
