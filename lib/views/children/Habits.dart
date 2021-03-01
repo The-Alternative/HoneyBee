@@ -386,20 +386,7 @@ class HabitsState extends State<Habits>{
                             new FlatButton(
                                 child:new Text('موافق',style: new TextStyle(fontSize: 19.0,color: Colors.black)),
                                 onPressed:(){
-//                            if(widget.health.id != null){
-//                              db.updateChild(Health.fromeMap({
-//                                'id' : widget.health.id,
-//                                'name' : _nameController.text,
-//                                'note' : _noteController.text,
-//                                'tall' : int.parse(_tallController.text),
-//                                'weight' : int.parse(_weightController.text),
-//                                'tempreture' : int.parse(_tempretureController.text),
-//                              })).then((_) {
-//                                Navigator.pop(context,'update');
-//                              });
-//                            }else{
-
-                                for(int i =0 ; i<nvalue.length ; i++){
+                                  for(int i =0 ; i<nvalue.length ; i++){
                                   if(nvalue[i] == true){
                                     if(nnvalue[i] == false){
                                       db2.saveChildHabit(ChildHabit(
@@ -409,16 +396,8 @@ class HabitsState extends State<Habits>{
                                           formattedDate
                                       ));
                                     }
-
                                   }else{
-                                    print("xxxxxxxxxxxxxxxxxx/////////////");
                                     if(nnvalue[i] == true){
-                                      // print("||||||||||||||||||||||||||xxxxxxxxxxxxxxxxxx/////////////");
-                                      // try{
-                                      //   db2.deleteChildHabit(childHabits[i]);
-                                      // }catch(e){
-                                      //   print("sssssssssssddddddddd${e}");
-                                      // }
                                       for(int k =0;k<nchildHa.length;k++){
                                         if(nchildHa[k].habitId == nhabits[i].id){
                                           db2.deleteChildHabit(nchildHa[k]);
@@ -447,11 +426,7 @@ class HabitsState extends State<Habits>{
                                     }
                                   }
                                 }
-
                                  Navigator.pop(context,'save');
-
-
-
                                 },
                             ),
                             new Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width *0.15 )),
@@ -485,9 +460,27 @@ class HabitsState extends State<Habits>{
         nnvalue.clear();
         allHabits.forEach((habit) {
           nhabits.add(Habit.fromeMap(habit));
-          nvalue.add(false);
-          nnvalue.add(false);
+//          nvalue.add(false);
         });
+        for(int i = 0 ; i <nhabits.length  ; i++){
+          for(int j = 0 ; j < childHabits.length ; j++){
+            if (nhabits[i].id == childHabits[j].habitId){
+              nvalue.add(true);
+              nnvalue.add(true);
+              nchildHa.add(childHabits[j]);
+              x =true;
+//                print("$i==$j==${nhabits[i].id}:1111111: ${childHabits[j].habitId}/////$x");
+              break;
+            }
+//            print("$i==$j==${nhabits[i].id}:222222: ${childHabits[j].habitId}/$x");
+          }
+          if(!x){
+            nvalue.add(false);
+            nnvalue.add(false);
+//            print("$i==${nhabits[i].id}:333333:///////$x ");
+          }
+          x= false;
+        }
       });
     });
   }
@@ -501,11 +494,29 @@ class HabitsState extends State<Habits>{
         phabits.clear();
         pvalue.clear();
         ppvalue.clear();
-        allHabits.forEach((habit) {
-          phabits.add(Habit.fromeMap(habit));
-          pvalue.add(false);
-          ppvalue.add(false);
+        allHabits.forEach((phabit) {
+          phabits.add(Habit.fromeMap(phabit));
+//          pvalue.add(false);
         });
+        for(int i = 0 ; i <phabits.length  ; i++){
+          for(int j = 0 ; j < childHabits.length ; j++){
+            if (phabits[i].id == childHabits[j].habitId){
+              pchildHa.add(childHabits[j]);
+              pvalue.add(true);
+              ppvalue.add(true);
+              y =true;
+//              print("$i==$j==${phabits[i].id}:1111111: ${childHabits[j].habitId}/////$x");
+              break;
+            }
+//            print("$i==$j==${phabits[i].id}:222222: ${childHabits[j].habitId}/$x");
+          }
+          if(!y){
+            pvalue.add(false);
+            ppvalue.add(false);
+//            print("$i==${phabits[i].id}:333333:///////$x ");
+          }
+          y= false;
+        }
       });
     });
   }
