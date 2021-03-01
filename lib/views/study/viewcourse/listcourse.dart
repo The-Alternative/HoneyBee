@@ -9,7 +9,7 @@ class ListCourse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) => TimesCard(listOfCourse[index], setData),
+      itemBuilder: (context, index) => CardCourse(listOfCourse[index], setData),
       itemCount: listOfCourse.length,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),

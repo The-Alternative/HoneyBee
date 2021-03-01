@@ -80,7 +80,21 @@ class _StudyHomeState extends State<StudyHome> {
                 ],
               ),
             ),
-            body: HomeCourse(),
+            body: TabBarView(
+              children: [
+                HomeCourse(),
+                new Center(
+                  child: Image(
+                    width: 280,
+                    height: 280,
+                    image: AssetImage(
+                      "assets/center.png",
+                    ),
+                    alignment: Alignment.center,
+                  ),
+                ),
+              ],
+            ),
             floatingActionButton: SpeedDial(
               animatedIcon: AnimatedIcons.add_event,
               backgroundColor: Colors.amber[400],

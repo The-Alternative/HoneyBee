@@ -215,18 +215,16 @@ class _NewcourseState extends State<Newcourse> {
                                     });
                               }
 
-                              Course course = Course(
-                                namecourse: 'namecourse',
-                                nameteachar: 'nameteachar',
-                                email: 'email',
-                                teacharnumber: 'teacharnumber',
-                              );
+                              Course course = Course();
+                              course.namecourse = namecourse;
+                              course.nameteachar = nameteachar;
+                              course.email = email;
+                              course.teacharnumber = teacharnumber;
 
                               helper.saveCourse(course);
 
                               Navigator.of(context).pushNamedAndRemoveUntil(
-                                  '/StudyHome',
-                                  (Route<dynamic> route) => false);
+                                  '/StudyHome', (Route<dynamic> route) => true);
                             },
                           ),
                           SizedBox(

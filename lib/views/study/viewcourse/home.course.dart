@@ -25,15 +25,34 @@ class _HomeCourseState extends State<HomeCourse> {
       setState(() {
         courselist.add(Course().courseMapToObject(medMap));
       });
-      print('mosa${courselist.length}');
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: courselist.isEmpty
-            ? Text('no course')
-            : ListCourse(courselist, setData));
+      body: ListView(
+        children: <Widget>[
+          courselist.isEmpty
+              ? Center(
+                  child: Column(
+                    children: [
+                      SizedBox(width: 43),
+                      SizedBox(height: 127),
+                      Image(
+                        width: 280,
+                        height: 280,
+                        image: AssetImage(
+                          "assets/center.png",
+                        ),
+                        alignment: Alignment.center,
+                      ),
+                    ],
+                  ),
+                )
+              : ListCourse(courselist, setData),
+        ],
+      ),
+    );
   }
 }
