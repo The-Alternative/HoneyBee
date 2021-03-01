@@ -35,6 +35,8 @@ class HabitsState extends State<Habits>{
   List<bool>  pvalue = new List();
   List<bool>  nnvalue = new List();
   List<bool>  ppvalue = new List();
+  List<ChildHabit> nchildHa = new List();
+  List<ChildHabit> pchildHa = new List();
   List<ChildHabit> childHabits = new List();
 
   Habit list;
@@ -69,6 +71,7 @@ class HabitsState extends State<Habits>{
             if (nhabits[i].id == childHabits[j].habitId){
                 nvalue.add(true);
                 nnvalue.add(true);
+                nchildHa.add(childHabits[j]);
                 x =true;
 //                print("$i==$j==${nhabits[i].id}:1111111: ${childHabits[j].habitId}/////$x");
                 break;
@@ -93,6 +96,7 @@ class HabitsState extends State<Habits>{
         for(int i = 0 ; i <phabits.length  ; i++){
           for(int j = 0 ; j < childHabits.length ; j++){
             if (phabits[i].id == childHabits[j].habitId){
+              pchildHa.add(childHabits[j]);
               pvalue.add(true);
               ppvalue.add(true);
               y =true;
@@ -407,8 +411,19 @@ class HabitsState extends State<Habits>{
                                     }
 
                                   }else{
+                                    print("xxxxxxxxxxxxxxxxxx/////////////");
                                     if(nnvalue[i] == true){
-                                      db2.deleteChildHabit(childHabits[i]);
+                                      // print("||||||||||||||||||||||||||xxxxxxxxxxxxxxxxxx/////////////");
+                                      // try{
+                                      //   db2.deleteChildHabit(childHabits[i]);
+                                      // }catch(e){
+                                      //   print("sssssssssssddddddddd${e}");
+                                      // }
+                                      for(int k =0;k<nchildHa.length;k++){
+                                        if(nchildHa[k].habitId == nhabits[i].id){
+                                          db2.deleteChildHabit(nchildHa[k]);
+                                        }
+                                      }
                                     }
                                   }
                                 }
@@ -424,7 +439,11 @@ class HabitsState extends State<Habits>{
                                     }
                                   }else{
                                     if(ppvalue[j] == true){
-                                      db2.deleteChildHabit(childHabits[j]);
+                                      for(int r =0;r<pchildHa.length;r++){
+                                        if(pchildHa[r].habitId == phabits[j].id){
+                                          db2.deleteChildHabit(pchildHa[r]);
+                                        }
+                                      }
                                     }
                                   }
                                 }
@@ -462,9 +481,12 @@ class HabitsState extends State<Habits>{
     db.getNegaiveHabits().then((allHabits) {
       setState(() {
         nhabits.clear();
+        nvalue.clear();
+        nnvalue.clear();
         allHabits.forEach((habit) {
           nhabits.add(Habit.fromeMap(habit));
           nvalue.add(false);
+          nnvalue.add(false);
         });
       });
     });
@@ -477,9 +499,12 @@ class HabitsState extends State<Habits>{
     db.getPositiveHabits().then((allHabits) {
       setState(() {
         phabits.clear();
+        pvalue.clear();
+        ppvalue.clear();
         allHabits.forEach((habit) {
           phabits.add(Habit.fromeMap(habit));
           pvalue.add(false);
+          ppvalue.add(false);
         });
       });
     });
