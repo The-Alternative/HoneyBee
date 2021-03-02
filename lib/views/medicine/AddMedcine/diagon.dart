@@ -1,5 +1,5 @@
 
-import 'package:bassel/constants/const_data.dart';
+import 'package:bassel/Config/insert_data.dart';
 import 'package:flutter/material.dart';
 
 class Diagonsis extends StatefulWidget {

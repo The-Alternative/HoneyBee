@@ -367,7 +367,7 @@ class _TimesCard extends State<TimesCard> {
     _medicineDayController.updateDayTimes(MedicineTimes(dayId, _alarmTimeString, 1,
         card_info.diagid, card_info.timesId));
   }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //============================================================================================
   DateTime str_todate(String s1,String s2){
     var arr = List(3);
     arr = s1.split('/');

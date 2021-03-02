@@ -1,5 +1,6 @@
 import 'dart:io';
-import 'package:bassel/constants/const_data.dart';
+import 'package:bassel/Config/general.dart';
+import 'package:bassel/Config/insert_data.dart';
 import 'package:bassel/controllers/medicine/diagonController.dart';
 import 'package:bassel/controllers/medicine/medicineController.dart';
 import 'package:bassel/controllers/medicine/medicineDayController.dart';
@@ -576,8 +577,17 @@ class _Main_inputState extends State<Main_input> {
     _patient.patName = _patnameController.text;
     _diagonObject.notice = _noticeController.text;
     _diagonObject.img_direct = Entry.imgPath;
+    _diagonObject.patId = await _patientController.insertPatient(_patient);
+    if (_diagonObject.patId  == 0) {
+      // Success
+      _showAlertDialog('لايمكن اضافة مريض', 'عدد المرضى تجاوز:$limitUser ');
+      print('عدد المرضى تجاوز:$limitUser ');
+
+      return;
+    }
+    else{
     _diagonObject.medId = await _medicineController.insert(_medicin);
-    _diagonObject.patId = await _patientController.insertPatient(_patient); //id
+    //id
     _diagonId = await _diagonController.insertDiagon(_diagonObject);
     _dateList = List<Medicine_Date>();
     _clockList = List<Medicine_clocl>();
@@ -598,16 +608,7 @@ class _Main_inputState extends State<Main_input> {
           _dateList.length != 0 &&
           int.parse(Entry.times_num) != 0) _cancel(_diagonId);
     }
-    int z = _diagonObject.patId;
-    moveToLastScreen();
-    if (_diagonId != 0) {
-      // Success
-      _showAlertDialog('Status', 'diagon:$_diagonId Saved Successfully');
-    } else {
-      // Failure
-      _showAlertDialog('Status', 'daiagon Saving Note');
-    }
-    //moveToLastScreen();
+    moveToLastScreen();}
   }
 
 /////////////////////////////////////////////////////////////////////////////////
