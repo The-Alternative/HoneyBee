@@ -1,10 +1,11 @@
-import 'package:bassel/utils/databaseconfig.dart';
+
 import 'package:bassel/models/medicine/Medicine.dart';
 import 'package:bassel/models/medicine/MedicineInfo.dart';
 import 'package:bassel/models/medicine/MedicineTimes.dart';
+import 'package:bassel/utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
-class MedicineService{
+class MedicineService {
   String medicinTable = 'med_table';
   String medId = 'id'; //primry/forign..key
   String medTitle = 'title';
@@ -18,73 +19,101 @@ class MedicineService{
   String dayesId = 'day_id';
   String dayTimesTable = 'mTimes_table';
   String timesId = 'tid';
+  String doctname = 'd_name';
+  String medAmount = 'amount';
+  String instruction = 'description';
+  String diagon = 'diagon';
+  String img_direct = 'img_direct';
+  String times = 'times';
+  String dayes = 'dayes';
+  String first_date = 'fdate';
+  String last_date = 'ldate';
+  String first_clock = 'fclock';
+  String notice = 'notic';
+  String day_date = 'd_date';
+  String sortNum = 'sortn';
+  String day_time = 'd_time';
+  //============================================================================================
 
   DatabaseConfig _medicineDatabase = DatabaseConfig();
+  static Database _database;
+  //============================================================================================
 
+  // //init database
+  // Future<Database> get database async {
+  //   if (_database != null) return _database;
+  //   _database = await _medicineDatabase.setDatabase();
+  //   return _database;
+  // }
+  //============================================================================================
 
   //insert something to database
-  Future<int> insertData(String table,Map<String,dynamic> data) async{
+  Future<int> insertData(String table, Map<String, dynamic> data) async {
     Database db = await this._medicineDatabase.honeyBee;
-    try{
+    try {
       return await db.insert(table, data);
-    }catch(e){
+    } catch (e) {
       return null;
     }
   }
+  //============================================================================================
 
   //get all data from database
-  Future<List<Map<String,dynamic>>> getAllData(table) async{
+  Future<List<Map<String, dynamic>>> getAllData(table) async {
     Database db = await this._medicineDatabase.honeyBee;
-    try{
+    try {
       return db.query(table);
-    }catch(e){
+    } catch (e) {
       return null;
     }
   }
+  //============================================================================================
 
   //delete data
-  Future<int> deleteData(String table,int id) async{
+  Future<int> deleteData(String table, int id) async {
     Database db = await this._medicineDatabase.honeyBee;
-    try{
-      return await db.delete(table,where: "id = ?", whereArgs: [id]);
-    }catch(e){
+    try {
+      return await db.delete(table, where: "id = ?", whereArgs: [id]);
+    } catch (e) {
       return null;
     }
   }
 
-/////////////////////////////timesday//////////////////////////////////////////////////////
+  //============================================================================================
   Future<List<Map<String, dynamic>>> getDayTimesMapList() async {
     Database db = await this._medicineDatabase.honeyBee;
-
-//		var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
     var result = db.query(dayTimesTable, orderBy: '$timesId ASC');
     return result;
   }
+  //============================================================================================
 
   Future<int> insert_DayTimes(MedicineTimes medicineTimes) async {
     Database db = await this._medicineDatabase.honeyBee;
     var result = await db.insert(dayTimesTable, medicineTimes.toMap());
     return result;
   }
+  //============================================================================================
 
   Future<int> updateDayTimes(MedicineTimes medicineTimes) async {
-    var db = await this._medicineDatabase.honeyBee;
+    Database db = await this._medicineDatabase.honeyBee;
     var result = await db.update(dayTimesTable, medicineTimes.toMap(),
         where: '$timesId = ?', whereArgs: [medicineTimes.timesId]);
     return result;
   }
+  //============================================================================================
 
-  // Delete Operation: Delete a Note object from database
+  // Delete Operation: deleteDayTimes object from database
   Future<int> deleteDayTimes(int id, int day) async {
-    var db = await this._medicineDatabase.honeyBee;
+    Database db = await this._medicineDatabase.honeyBee;
     int result =
     await db.rawDelete('DELETE FROM $dayTimesTable WHERE $timesId = $id');
     int t = await getCountDayesTime(day);
     if (t == 0) deleteDayes(day);
     return result;
   }
+  //============================================================================================
 
-  // Get number of Note objects in database
+  // Get number of Times objects in database
   Future<int> getCountDayTimes() async {
     Database db = await this._medicineDatabase.honeyBee;
     List<Map<String, dynamic>> x =
@@ -92,15 +121,14 @@ class MedicineService{
     int result = Sqflite.firstIntValue(x);
     return result;
   }
+  //============================================================================================
 
-  // Get the 'Map List' [ List<Map> ] and convert it to 'Note List' [ List<Note> ]
+  // Get the 'Map List' [ List<Map> ] and convert it to 'medicine List' [ List<medicine> ]
   Future<List<MedicineTimes>> getDayTimesList() async {
-    var medicineTimesMapList =
-    await getDayTimesMapList(); // Get 'Map List' from database
-    int count = medicineTimesMapList
-        .length; // Count the number of map entries in db table
+    var medicineTimesMapList = await getDayTimesMapList(); // Get 'Map List' from database
+    int count = medicineTimesMapList.length; // Count the number of map entries in db table
     List<MedicineTimes> medicineTimeList = List<MedicineTimes>();
-    // For loop to create a 'Note List' from a 'Map List'
+    // For loop to create a 'medicine List' from a 'Map List'
     for (int i = 0; i < count; i++) {
       medicineTimeList
           .add(MedicineTimes.fromMapObject(medicineTimesMapList[i]));
@@ -109,18 +137,18 @@ class MedicineService{
     return medicineTimeList;
   }
 
-/////////////////////////////Medicine//////////////////////////
+  //============================================================================================
   Future<List<Map<String, dynamic>>> getMedicineMapList() async {
     Database db = await this._medicineDatabase.honeyBee;
-//		var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
     var result = await db.query(medicinTable, orderBy: '$medId ASC');
     return result;
   }
+  //============================================================================================
 
   Future<List<MedicineInfo>> getFMedicine() async {
     List<MedicineInfo> _medicn = [];
 
-    var db = await this._medicineDatabase.honeyBee;
+    Database db = await this._medicineDatabase.honeyBee;
     var result = await db.query(medicinTable);
     result.forEach((element) {
       var medicineInfo = MedicineInfo.fromMap(element);
@@ -129,6 +157,7 @@ class MedicineService{
 
     return _medicn;
   }
+  //============================================================================================
 
   Future<int> insert_medicine(Medicine medicine) async {
     Database db = await this._medicineDatabase.honeyBee;
@@ -136,18 +165,30 @@ class MedicineService{
       var result = await db.insert(medicinTable, medicine.toMap());
       return result;
     } catch (e) {
-      return getIdMedicine(medicinTable,medicine.medTitle);
+      return getIdMedicine(medicinTable, medicine.medTitle);
     }
   }
+  //============================================================================================
 
   Future<List<MedicineInfo>> getselectMedicine(String name) async {
     List<MedicineInfo> _medicn = [];
-    var db = await this._medicineDatabase.honeyBee;
-    var result = await db.rawQuery(
-        'SELECT $medicinTable.$medId,$medTitle,$medform,$diagid FROM $medicinTable,$diagonTable,$patientTable'
-            ' WHERE $diagonTable.$patId = $patientTable.$patId AND $diagonTable.$medId = $medicinTable.$medId '
-            'AND $patientTable.$patname =?',
-        ['$name']);
+    Database db = await this._medicineDatabase.honeyBee;
+    var result = await db.rawQuery('SELECT  $patientTable.$patId as p_id, '
+        '$patname,'
+        '$medicinTable.$medId as id,'
+        '$medTitle,'
+        '$img_direct,'
+        '$diagon,'
+        '$first_date,'
+        '$doctname,'
+        '$notice,'
+        '$instruction,'
+        '$diagonTable.$diagid as dgid,'
+        '$medAmount'
+        ' FROM $patientTable,$medicinTable,$diagonTable'
+        ' WHERE $diagonTable.$patId = $patientTable.$patId '
+        'AND $diagonTable.$medId = $medicinTable.$medId '
+        'AND $patientTable.$patId =$name');
     result.forEach((element) {
       var medicineInfo = MedicineInfo.fromMap(element);
       _medicn.add(medicineInfo);
@@ -155,30 +196,50 @@ class MedicineService{
 
     return _medicn;
   }
+  //============================================================================================
 
   Future<int> updateMedicine(Medicine medicine) async {
-    var db = await this._medicineDatabase.honeyBee;
+    // print(medicine.medId);
+
+    Database db = await this._medicineDatabase.honeyBee;
     var result = await db.update(medicinTable, medicine.toMap(),
         where: '$medId = ?', whereArgs: [medicine.medId]);
+    // print(medicine.medId);
+    //
+    // var result2 = await db.update(patientTable, medicine.toMap(),
+    //     where: '$patId = ?', whereArgs: [medicine.medId]);
+    //
+    // var result3 = await db.update(diagonTable, medicine.toMap(),
+    //     where: '$diagid = ?', whereArgs: [medicine.medId]);
+    //  db.delete(table);
+    /////////update patent
+    ////update diagon
+    ///delete times on diag id
+    ///
+    ///delet date
+    ///add day
+    ///add times
     return result;
   }
+  //============================================================================================
 
-  // Delete Operation: Delete a Note object from database
+  // Delete Operation: Delete an  object from database
   Future<int> deleteMedicine(int id) async {
-    var db = await this._medicineDatabase.honeyBee;
+    Database db = await this._medicineDatabase.honeyBee;
     int result =
     await db.rawDelete('DELETE FROM $medicinTable WHERE $medId = $id');
     return result;
   }
+  //============================================================================================
 
   Future<int> deleteselectedMedicine(MedicineInfo medicineInfo) async {
-    var db = await this._medicineDatabase.honeyBee;
+    Database db = await this._medicineDatabase.honeyBee;
     int result = 0;
-    if (medicineInfo.diagonid != null) {
+    if (medicineInfo.diagid != null) {
       result = await db.rawDelete(
-          'DELETE FROM $dayTimesTable WHERE $diagid = ${medicineInfo.diagonid}');
+          'DELETE FROM $dayTimesTable WHERE $diagid = ${medicineInfo.diagid}');
       result = await db.rawDelete(
-          'DELETE FROM $diagonTable WHERE $diagid = ${medicineInfo.diagonid}');
+          'DELETE FROM $diagonTable WHERE $diagid = ${medicineInfo.diagid}');
       result = await db.rawDelete(
           'DELETE FROM $medicinTable WHERE $medId = ${medicineInfo.medId}');
     }
@@ -186,7 +247,7 @@ class MedicineService{
 
     return result;
   }
-
+  //============================================================================================
 
   testDay() async {
     var db = await this._medicineDatabase.honeyBee;
@@ -204,19 +265,25 @@ class MedicineService{
       if (getCountDayesTime(ids[i]) == 0) deleteDayes(ids[i]);
       return result;
     }
-  }  Future<int> getCountDayesTime(int id) async {
+  }
+  //============================================================================================
+
+  Future<int> getCountDayesTime(int id) async {
     Database db = await this._medicineDatabase.honeyBee;
     List<Map<String, dynamic>> x = await db
         .rawQuery('SELECT COUNT (*) from $dayTimesTable where $dayesId = $id');
     int result = Sqflite.firstIntValue(x);
     return result;
   }
+  //============================================================================================
+
   Future<int> deleteDayes(int id) async {
     var db = await this._medicineDatabase.honeyBee;
     int result =
     await db.rawDelete('DELETE FROM $midDayesTable WHERE $dayesId = $id');
     return result;
   }
+  //============================================================================================
 
   // Get number of Note objects in database
   Future<int> getCount_Medicine() async {
@@ -226,6 +293,7 @@ class MedicineService{
     int result = Sqflite.firstIntValue(x);
     return result;
   }
+  //============================================================================================
 
   // Get the 'Map List' [ List<Map> ] and convert it to 'Note List' [ List<Note> ]
   Future<List<Medicine>> getMedicineList() async {
@@ -241,10 +309,9 @@ class MedicineService{
 
     return medicineList;
   }
+  //============================================================================================
 
-
-
-  Future<int> getIdMedicine(table,String title) async {
+  Future<int> getIdMedicine(table, String title) async {
     // get a reference to the database
     Database db = await this._medicineDatabase.honeyBee;
     // get single row
@@ -260,6 +327,4 @@ class MedicineService{
     rowId = Sqflite.firstIntValue(result);
     return rowId;
   }
-
-
 }

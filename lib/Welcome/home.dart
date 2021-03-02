@@ -6,10 +6,7 @@ import 'package:bassel/views/medicine/ViewTimes/timeHome.dart';
 import 'package:bassel/views/medicine/ViewTimes/times_list.dart';
 import 'package:bassel/views/medicine/attachmentsMedicine.dart';
 import 'package:flutter/material.dart';
-import 'dart:isolate';
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:provider/provider.dart';
+
 
 const List<Choice> choices = <Choice>[
   Choice(title: 'مواعيد', icons: Icons.notifications_active_rounded),

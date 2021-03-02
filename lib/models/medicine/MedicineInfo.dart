@@ -2,7 +2,6 @@ class MedicineInfo {
   int medId;
   String medTitle;
   String medform;
-  int diagonid;
   String personName;
   String img_direct;
   int diagid ;
@@ -13,6 +12,7 @@ class MedicineInfo {
   String doctname ;
   int patId ;
   String diagon ;
+  String instruc ;
   String notice ;
   String last_date ;
   int timesId;
@@ -21,20 +21,21 @@ class MedicineInfo {
 
   MedicineInfo(
       {this.medId,
-        this.medTitle,
-        this.medform, this.diagonid,this.personName,this.img_direct,
+        this.medTitle,this.instruc,
+        this.medform,this.personName,this.img_direct,
         this.first_date,this.last_date,this.first_clock
-        ,this.notice,this.diagon,this.patId,this.diagid,this.doctname,this.dayesId,this.timesId,this.sortn,this.day_time_state
+        ,this.notice,this.diagon,this.patId,this.diagid,this.doctname,
+        this.dayesId,this.timesId,this.sortn,this.day_time_state
         ,this.daydate,this.day_time,this.amount});
 
   factory MedicineInfo.fromMap(Map<String, dynamic> json) => MedicineInfo(
     medId: json["id"],
+    instruc: json["description"],
     medTitle: json["title"],
     medform: json["form"],
-    diagonid:json["d_id"],
     personName:json["p_name"],
     img_direct:json["img_direct"],
-    diagid: json["d_id"],
+    diagid: json["dgid"],
     doctname: json["d_name"]
     ,diagon: json["diagon"] ,
     first_clock:  json["fclock"]
@@ -51,32 +52,31 @@ class MedicineInfo {
     sortn : json["sortn"],
   );
   MedicineInfo medicineMapToObject(Map<String, dynamic> json) => MedicineInfo(
-    medId: json["id"],
-    medTitle: json["title"],
-    medform: json["form"],
-    diagonid:json["d_id"],
-    personName:json["p_name"],
-    img_direct:json["img_direct"],
-    diagid: json["d_id"],
-    doctname: json["d_name"]
-    ,diagon: json["diagon"] ,
-    first_clock:  json["fclock"]
-    ,first_date:  json["fdate"],
-    last_date: json["ldate"]
-    ,notice: json["notic"] ,
-    patId: json["p_id"] ,
-    amount : json['amount'],
-    timesId :json['tmid'],
-    dayesId :json['dayid'],
-    daydate :json['d_date'],
-    day_time :json['d_time'],
-    sortn : json["sortn"],
+      medId: json["id"],
+      medTitle: json["title"],
+      medform: json["form"],
+      personName:json["p_name"],
+      img_direct:json["img_direct"],
+      diagid: json["dgid"],
+      doctname: json["d_name"]
+      ,diagon: json["diagon"] ,
+      first_clock:  json["fclock"]
+      ,first_date:  json["fdate"],
+      last_date: json["ldate"]
+      ,notice: json["notic"] ,
+      patId: json["p_id"] ,
+      amount : json['amount'],
+      timesId :json['tmid'],
+      dayesId :json['dayid'],
+      daydate :json['d_date'],
+      day_time :json['d_time'],
+      sortn : json["sortn"],
+      instruc: json["description"]
 
   );
   Map<String, dynamic> toMap() => {
     "title": medTitle,
     "form": medform,
-    "d_id":diagonid,
     "p_name":personName,
     "img_direct":img_direct,
     "d_name": doctname,
@@ -87,6 +87,8 @@ class MedicineInfo {
     "notic" :notice,
     "p_id" :patId,
     'amount' :amount,
+    'dgid':diagid,
+    "description":instruc
 
   };
 }

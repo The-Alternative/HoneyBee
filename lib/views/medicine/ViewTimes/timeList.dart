@@ -31,7 +31,7 @@ class TimesList extends StatelessWidget {
     //if (!loaded) _loadZones();
     var body =  Column(
       children: <Widget>[
-         Container(child: getday())
+        Container(child: getday())
       ],
     );
     return   body;
@@ -87,7 +87,6 @@ class TimesList extends StatelessWidget {
     for (int i = 0; i < cardList.length; i++) {
       if (cardList[i].dayesId == id)
         selecttimesList.add(cardList[i]);
-      //print ('${ cardList[i].medicine}');
     }
     return ListView(
         physics: ClampingScrollPhysics(),
