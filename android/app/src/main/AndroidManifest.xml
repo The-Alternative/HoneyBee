@@ -14,9 +14,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
     <uses-permission android:name="android.hardware.camera.autofocus" />
-
+<uses-permission android:name="android.permission.INTERNET"/>
     <permission android:name="com.example.bassel.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-    <!-- //Change to your package name .permission.C2D_MESSAGE -->
     <uses-permission android:name="com.example.bassel.permission.C2D_MESSAGE" />
     <!-- //Change to your package name .permission.C2D_MESSAGE -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -26,7 +25,7 @@
     <uses-permission android:name="com.android.vending.BILLING" />
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="bassel"
+        android:label="Honey Bee"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -1,5 +1,6 @@
 import 'package:bassel/views/BMI/bmi1.dart';
 import 'package:bassel/views/children/Home.dart';
+import 'package:bassel/views/medicine/google/upload.dart';
 import 'package:bassel/views/study/home.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,8 @@ import 'home.dart';
 class HomeWelcom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(child:  Center(
+    return
+      Container(child:  Center(
         child: Column(
           children: [
             ElevatedButton(
@@ -45,6 +47,15 @@ class HomeWelcom extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Bmi1()),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: Text('google drive'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DriveScreen()),
                 );
               },
             ),

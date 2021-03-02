@@ -1,3 +1,4 @@
+import 'package:bassel/Config/general.dart';
 import 'package:bassel/utils/databaseconfig.dart';
 import 'package:bassel/models/medicine/Patient.dart';
 import 'package:sqflite/sqflite.dart';
@@ -23,6 +24,9 @@ class PatientService{
 
 
   Future<int> insertPatient(Patient patient) async {
+    bool test = await testPatientNumber();
+    if( test)
+    {
     Database db = await this._medicineDatabase.honeyBee;
     try {
       var result = await db.insert(patientTable, patient.toMap());
@@ -30,6 +34,9 @@ class PatientService{
     } catch (e) {
       return getIdPatient(patient.patName);
     }
+    }
+    else return 0;
+
   }
 
   Future<int> updatePatient(Patient patient) async {
@@ -38,7 +45,14 @@ class PatientService{
         where: '$patId = ?', whereArgs: [patient.patId]);
     return result;
   }
+  Future<bool> testPatientNumber() async{
+    int count =await getCountPatient();
+   if (count< limitUser)
+   return true;
+   else
+     return false;
 
+  }
   // Delete Operation: Delete a Note object from database
   Future<int> deletePatient(int id) async {
     var db = await this._medicineDatabase.honeyBee;
