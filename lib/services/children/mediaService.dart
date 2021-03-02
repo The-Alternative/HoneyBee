@@ -14,56 +14,90 @@ class MediaService {
 
 
   Future<int> saveMedia(Media media) async{
-    var dbClient = await db.honeyBee;
-    int result = await dbClient.insert("$mediaTable", media.toMap());
-    print("h4h4h4h4h4h");
-    print("$result h4h4h4h4h4h");
-    print("${media.itemId}");
-    print("${media.mediaUrl}");
-    return result;
+    try{
+      var dbClient = await db.honeyBee;
+      int result = await dbClient.insert("$mediaTable", media.toMap());
+      return result;
+    }catch(e){
+      return -1;
+    }
+
   }
 
   Future<List> getAllMedia() async{
-    var dbClient = await db.honeyBee;
-    var sql ="SELECT * FROM $mediaTable";
-    List result = await dbClient.rawQuery(sql);
-    return result.toList();
+    try{
+      var dbClient = await db.honeyBee;
+      var sql ="SELECT * FROM $mediaTable";
+      List result = await dbClient.rawQuery(sql);
+      return result.toList();
+    }catch(e){
+      List error = new List();
+      error.add(e);
+      return error;
+    }
+
   }
 
   Future<List> getItemMedias(int tableid,int itemId) async{
-    var dbClient = await db.honeyBee;
-    var sql ="SELECT * FROM $mediaTable Where $cloumnTableId = $tableid AND $cloumnItemId = $itemId";
-    List result = await dbClient.rawQuery(sql);
-    return result.toList();
+    try{
+      var dbClient = await db.honeyBee;
+      var sql ="SELECT * FROM $mediaTable Where $cloumnTableId = $tableid AND $cloumnItemId = $itemId";
+      List result = await dbClient.rawQuery(sql);
+      return result.toList();
+    }catch(e){
+      List error = new List();
+      error.add(e);
+      return error;
+    }
+
   }
 
 
 
   Future<int> getMediaCount () async{
-    var dbClient = await db.honeyBee;
-    var sql ="SELECT COUNT(*) FROM $mediaTable";
-    return Sqflite.firstIntValue(
-        await dbClient.rawQuery(sql)
-    );
+    try{
+      var dbClient = await db.honeyBee;
+      var sql ="SELECT COUNT(*) FROM $mediaTable";
+      return Sqflite.firstIntValue(
+          await dbClient.rawQuery(sql)
+      );
+    }catch(e){
+      return -1;
+    }
+
   }
 
 
 
   Future<int> updateMedia(Media media) async{
-    var dbClient = await db.honeyBee;
-    return await dbClient.update(
-        mediaTable, media.toMap(),where: "$cloumnId = ${media.id}"
-    );
+    try{
+      var dbClient = await db.honeyBee;
+      return await dbClient.update(
+          mediaTable, media.toMap(),where: "$cloumnId = ${media.id}"
+      );
+    }catch(e){
+      return -1;
+    }
+
   }
 
   Future<int> deleteMedia(Media media) async{
-    var dbClient = await db.honeyBee;
+    try{
+      var dbClient = await db.honeyBee;
+      return await dbClient.delete(mediaTable, where: "$cloumnId = ${media.id}");
+    }catch(e){
+      return -1;
+    }
 
-    return await dbClient.delete(mediaTable, where: "$cloumnId = ${media.id}");
   }
 
   close() async{
-    var dbClient = await db.honeyBee;
-    return await dbClient.close();
+    try{
+      var dbClient = await db.honeyBee;
+      return await dbClient.close();
+    }catch(e){
+      return -1;
+    }
+
   }
 }
