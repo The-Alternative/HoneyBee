@@ -34,61 +34,6 @@ class Choice {
   final IconData icons;
   const Choice({this.title, this.icons});
 }
-
-// main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//
-//   var initializationSettingsAndroid =
-//   AndroidInitializationSettings('codex_logo');
-//   var initializationSettingsIOS = IOSInitializationSettings(
-//       requestAlertPermission: true,
-//       requestBadgePermission: true,
-//       requestSoundPermission: true,
-//       onDidReceiveLocalNotification:
-//           (int id, String title, String body, String payload) async {});
-//   var initializationSettings = InitializationSettings(
-//       initializationSettingsAndroid, initializationSettingsIOS);
-//   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-//       onSelectNotification: (String payload) async {
-//         if (payload != null) {
-//           debugPrint('notification payload: ' + payload);
-//         }
-//       });
-//   runApp(MultiProvider(
-//     providers: [
-//       ChangeNotifierProvider<SingleNotifier>(
-//         create: (_) => SingleNotifier(),
-//       ),
-//       ChangeNotifierProvider<MultipleNotifier>(
-//         create: (_) => MultipleNotifier([]),
-//       ),
-//       ChangeNotifierProvider<CountryProvider>(
-//           create: (context) => CountryProvider()),
-//     ],
-//     child: MyApp(),
-//   ));
-//
-// }
-//
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//           primarySwatch: Colors.blue,
-//           visualDensity: VisualDensity.adaptivePlatformDensity,
-//           primaryColor: Colors.redAccent,
-//           primaryColorDark: Colors.red,
-//           fontFamily: 'Times'),
-//       home: DefaultTabController(
-//         length: 3, child: MyHomePage(title: 'Flutter  Home Page'),
-//       ),
-//     );
-//   }
-// }
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var initializationSettingsAndroid =
