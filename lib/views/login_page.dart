@@ -1,3 +1,4 @@
+import 'package:bassel/Welcome/HomeWelcom.dart';
 import 'package:bassel/main.dart';
 import 'package:bassel/services/sign_in.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return FirstRoute();
+                  return HomeWelcom();
                 },
               ),
             );

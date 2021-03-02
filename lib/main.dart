@@ -6,6 +6,7 @@ import 'package:bassel/utils/notifiers.dart';
 import 'package:bassel/utils/notifiredb.dart';
 import 'package:bassel/views/BMI/bmi1.dart';
 import 'package:bassel/views/children/Home.dart';
+import 'package:bassel/views/init.dart';
 import 'package:bassel/views/study/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -62,15 +63,7 @@ class FirstRoute extends StatelessWidget {
           primaryColor: Colors.amber,
           primaryColorDark: Colors.amber,
           fontFamily: 'Times'),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('HoneyBee'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(100.0),
-          child: HomeWelcom(),
-        ),
-      ),
+      home: App(),
 
     );
 
