@@ -1,7 +1,7 @@
-import 'package:bassel/models/children/habitType.dart';
+import '../../models/children/habitType.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
-import 'package:bassel/utils/databaseConfig.dart';
+import '../../utils/databaseConfig.dart';
 
 class HabitTypeService {
 

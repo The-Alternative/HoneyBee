@@ -1,5 +1,5 @@
-import 'package:bassel/models/children/media.dart';
-import 'package:bassel/services/children/mediaService.dart';
+import '../../models/children/media.dart';
+import '../../services/children/mediaService.dart';
 import 'dart:async';
 
 class MediaController {

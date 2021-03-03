@@ -1,8 +1,8 @@
 
 import 'dart:async';
 
-import 'package:bassel/models/bmi/bmimodels.dart';
-import 'package:bassel/services/bmi/descservice.dart';
+import '../../models/bmi/bmimodels.dart';
+import '../../services/bmi/descservice.dart';
 
 class DescController {
   final DescService descService = new DescService();

@@ -1,5 +1,5 @@
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/services/children/childService.dart';
+import '../../models/children/child.dart';
+import '../../services/children/childService.dart';
 import 'dart:async';
 
 class ChildController {

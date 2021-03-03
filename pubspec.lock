@@ -273,7 +273,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.56.1"
-
   http:
     dependency: "direct main"
     description:

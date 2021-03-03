@@ -1,6 +1,6 @@
-import 'package:bassel/Config/general.dart';
-import 'package:bassel/utils/databaseconfig.dart';
-import 'package:bassel/models/medicine/Patient.dart';
+import '../../Config/general.dart';
+import '../../utils/databaseconfig.dart';
+import '../../models/medicine/Patient.dart';
 import 'package:sqflite/sqflite.dart';
 
 class PatientService{

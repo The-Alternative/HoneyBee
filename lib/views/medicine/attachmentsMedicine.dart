@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:bassel/controllers/medicine/diagonController.dart';
-import 'package:bassel/controllers/medicine/medicineController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/models/medicine/Diagon.dart';
-import 'package:bassel/models/medicine/Medicine.dart';
-import 'package:bassel/models/medicine/Patient.dart';
+import '../../controllers/medicine/diagonController.dart';
+import '../../controllers/medicine/medicineController.dart';
+import '../../controllers/medicine/patientController.dart';
+import '../../models/medicine/Diagon.dart';
+import '../../models/medicine/Medicine.dart';
+import '../../models/medicine/Patient.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'ViewTimes/times_list.dart';

@@ -1,5 +1,5 @@
-import 'package:bassel/models/study/course.dart';
-import 'package:bassel/services/study/courseservice.dart';
+import '../../models/study/course.dart';
+import '../../services/study/courseservice.dart';
 
 class CourseController {
   final CourseService courseService = new CourseService();

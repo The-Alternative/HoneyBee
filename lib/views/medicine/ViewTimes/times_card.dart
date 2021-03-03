@@ -1,12 +1,12 @@
 import 'dart:io';
-import 'package:bassel/controllers/medicine/medicineDayController.dart';
-import 'package:bassel/controllers/medicine/medicineViewController.dart';
-import 'package:bassel/controllers/medicine/timesDayesController.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/notifications/notifications.dart';
-import 'package:bassel/utils/alarm_helper.dart';
+import '../../../controllers/medicine/medicineDayController.dart';
+import '../../../controllers/medicine/medicineViewController.dart';
+import '../../../controllers/medicine/timesDayesController.dart';
+import '../../../models/medicine/MedicineInfo.dart';
+import '../../../models/medicine/MedicineTimes.dart';
+import '../../../models/medicine/medicineDays.dart';
+import '../../../notifications/notifications.dart';
+import '../../../utils/alarm_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

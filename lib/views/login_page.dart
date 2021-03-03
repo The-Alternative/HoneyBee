@@ -1,6 +1,6 @@
-import 'package:bassel/Welcome/HomeWelcom.dart';
-import 'package:bassel/main.dart';
-import 'package:bassel/services/sign_in.dart';
+import '../Welcome/HomeWelcom.dart';
+import '../main.dart';
+import '../services/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -34,8 +34,8 @@ class _LoginPageState extends State<LoginPage> {
       splashColor: Colors.grey,
       onPressed: () {
         signInWithGoogle().whenComplete(() async {
-          String x = await signInWithGoogle();
-          if(!(x == "false")){
+          // String x = await signInWithGoogle();
+          // if(!(x == "false")){
 
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -44,9 +44,9 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
             );
-          }else{
-            _showMaterialDialog();
-          }
+          // }else{
+          //   _showMaterialDialog();
+          // }
 
         });
       },

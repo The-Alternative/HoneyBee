@@ -1,5 +1,5 @@
-import 'package:bassel/models/bmi/bmimodels.dart';
-import 'package:bassel/utils/databaseconfig.dart';
+import '../../models/bmi/bmimodels.dart';
+import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 

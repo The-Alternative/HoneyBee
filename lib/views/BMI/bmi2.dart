@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:bassel/models/bmi/bmimodels.dart';
-import 'package:bassel/views/BMI/bmi1.dart';
-import 'package:bassel/views/BMI/bmi3.dart';
+import '../../models/bmi/bmimodels.dart';
+import '../../views/BMI/bmi1.dart';
+import '../../views/BMI/bmi3.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

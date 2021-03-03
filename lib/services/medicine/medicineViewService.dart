@@ -1,5 +1,5 @@
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/utils/databaseconfig.dart';
+import '../../models/medicine/MedicineInfo.dart';
+import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineView{
