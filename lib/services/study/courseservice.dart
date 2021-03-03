@@ -10,6 +10,7 @@ class CourseService {
   final String columnnameteachar = 'nameteachar';
   final String columnemail = 'email';
   final String columnteacharnumber = 'teacharnumber';
+  final String columnimage = 'image';
   final DatabaseConfig db = new DatabaseConfig();
 
   Future<int> saveCourse(Course course) async {

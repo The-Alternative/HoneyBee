@@ -188,7 +188,7 @@ class _NewcourseState extends State<Newcourse> {
                                                 width: 10,
                                               ),
                                               Text(
-                                                "الرجاء ادخال اسم المقرر",
+                                                " الرجاء ادخال اسم المقرر",
                                               ),
                                             ],
                                           ),
@@ -220,11 +220,13 @@ class _NewcourseState extends State<Newcourse> {
                               course.nameteachar = nameteachar;
                               course.email = email;
                               course.teacharnumber = teacharnumber;
+                              course.image = _imageFile.path;
 
                               helper.saveCourse(course);
 
                               Navigator.of(context).pushNamedAndRemoveUntil(
-                                  '/StudyHome', (Route<dynamic> route) => true);
+                                  '/StudyHome',
+                                  (Route<dynamic> route) => false);
                             },
                           ),
                           SizedBox(
