@@ -1,5 +1,6 @@
-import 'package:bassel/constants/const_data.dart';
-import 'package:bassel/utils/notifiers.dart';
+import '../../../Config/general.dart';
+import '../../../Config/insert_data.dart';
+import '../../../utils/notifiers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'manual_entry.dart';
@@ -26,7 +27,7 @@ class RadioGroupWidget extends State<Radiooo> {
   TextEditingController controllerEvery =TextEditingController();
   String codeDialog;
   String _valueText;
-  String _selectedDay = types_list[0];
+  String _selectedDay = limitedPeriodList[0];
   // Default Radio Button Item
   String radioItem = '';
   int _radioValue = 0;
@@ -109,7 +110,7 @@ class RadioGroupWidget extends State<Radiooo> {
                               print(_selectedDay);
                             });
                           },
-                          items: types_list.map((location) {
+                          items: limitedPeriodList.map((location) {
                             return DropdownMenuItem(
                               child: new Text(location),
                               value: location,
@@ -265,7 +266,7 @@ class RadioGroupWidget extends State<Radiooo> {
                 width: double.infinity,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: dayes_list
+                  children: weekDaysList
                       .map((e) => CheckboxListTile(
                             title: Text(e,),
                             onChanged: (value) {

@@ -1,7 +1,7 @@
 
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/views/medicine/ViewTimes/times_card.dart';
+import '../../../models/medicine/MedicineInfo.dart';
+import '../../../models/medicine/medicineDays.dart';
+import '../../../views/medicine/ViewTimes/times_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

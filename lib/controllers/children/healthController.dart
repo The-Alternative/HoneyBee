@@ -1,5 +1,5 @@
-import 'package:bassel/models/children/health.dart';
-import 'package:bassel/services/children/healthService.dart';
+import '../../models/children/health.dart';
+import '../../services/children/healthService.dart';
 import 'dart:async';
 
 class HealthController {

@@ -1,5 +1,5 @@
-import 'package:bassel/models/children/habit.dart';
-import 'package:bassel/services/children/habitService.dart';
+import '../../models/children/habit.dart';
+import '../../services/children/habitService.dart';
 import 'dart:async';
 
 class HabitController {

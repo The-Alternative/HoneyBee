@@ -1,8 +1,8 @@
 
-import 'package:bassel/models/medicine/Medicine.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/utils/databaseconfig.dart';
+import '../../models/medicine/Medicine.dart';
+import '../../models/medicine/MedicineInfo.dart';
+import '../../models/medicine/MedicineTimes.dart';
+import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineService {

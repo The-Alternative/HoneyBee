@@ -1,7 +1,7 @@
-import 'package:bassel/models/children/event.dart';
+import '../../models/children/event.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
-import 'package:bassel/utils/databaseConfig.dart';
+import '../../utils/databaseConfig.dart';
 
 class EventService {
 

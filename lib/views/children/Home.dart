@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:bassel/views/children/AddChild.dart';
-import 'package:bassel/controllers/children/childController.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/views/children/ChildInfo.dart';
+import '../../views/children/AddChild.dart';
+import '../../controllers/children/childController.dart';
+import '../../models/children/child.dart';
+import '../../views/children/ChildInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

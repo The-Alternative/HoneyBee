@@ -1,7 +1,7 @@
-import 'package:bassel/models/children/health.dart';
+import '../../models/children/health.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
-import 'package:bassel/utils/databaseConfig.dart';
+import '../../utils/databaseConfig.dart';
 
 class HealthService {
   final String healthTable = 'healthTable';

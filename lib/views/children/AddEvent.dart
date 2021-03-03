@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:bassel/controllers/children/eventController.dart';
-import 'package:bassel/controllers/children/healthController.dart';
-import 'package:bassel/controllers/children/mediaController.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/models/children/event.dart';
-import 'package:bassel/models/children/health.dart';
-import 'package:bassel/models/children/media.dart';
+import '../../controllers/children/eventController.dart';
+import '../../controllers/children/healthController.dart';
+import '../../controllers/children/mediaController.dart';
+import '../../models/children/child.dart';
+import '../../models/children/event.dart';
+import '../../models/children/health.dart';
+import '../../models/children/media.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

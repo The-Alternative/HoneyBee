@@ -1,5 +1,5 @@
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/utils/databaseConfig.dart';
+import '../../models/children/child.dart';
+import '../../utils/databaseConfig.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 

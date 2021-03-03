@@ -103,7 +103,12 @@ class DatabaseConfig {
 
   void _oncreate(Database db, int newVersion) async {
     var coursesql =
-        "CREATE TABLE $courses($columnid INTEGER PRIMARY KEY, $columnnamecourse TEXT ,$columnnameteachar TEXT , $columnemail TEXT , $columnteacharnumber TEXT , $columnimage TEXT)";
+        "CREATE TABLE $courses($columnid INTEGER PRIMARY KEY,"
+        " $columnnamecourse TEXT ,"
+        "$columnnameteachar TEXT , "
+        "$columnemail TEXT ,"
+        " $columnteacharnumber TEXT , "
+        "$columnimage TEXT)";
     await db.execute(coursesql);
     var descsql = "CREATE TABLE $descTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnHeight TEXT,$cloumnWeight TEXT,$cloumnBmi TEXT,$cloumnDate TEXT,$columnComment TEXT)";

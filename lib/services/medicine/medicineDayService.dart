@@ -1,6 +1,6 @@
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/utils/databaseconfig.dart';
+import '../../models/medicine/MedicineTimes.dart';
+import '../../models/medicine/medicineDays.dart';
+import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineDayService{

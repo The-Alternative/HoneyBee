@@ -1,6 +1,6 @@
-import 'package:bassel/Welcome/HomeWelcom.dart';
-import 'package:bassel/main.dart';
-import 'package:bassel/services/sign_in.dart';
+import '../Welcome/HomeWelcom.dart';
+import '../main.dart';
+import '../services/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {

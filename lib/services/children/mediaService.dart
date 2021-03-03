@@ -1,7 +1,7 @@
-import 'package:bassel/models/children/media.dart';
+import '../../models/children/media.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
-import 'package:bassel/utils/databaseConfig.dart';
+import '../../utils/databaseConfig.dart';
 
 class MediaService {
   final String mediaTable = 'mediaTable';

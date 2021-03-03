@@ -1,20 +1,21 @@
 import 'dart:io';
-import 'package:bassel/constants/const_data.dart';
-import 'package:bassel/controllers/medicine/diagonController.dart';
-import 'package:bassel/controllers/medicine/medicineController.dart';
-import 'package:bassel/controllers/medicine/medicineDayController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/controllers/medicine/timesDayesController.dart';
-import 'package:bassel/models/medicine/Diagon.dart';
-import 'package:bassel/models/medicine/Medicine.dart';
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/models/medicine/Medicine_Date.dart';
-import 'package:bassel/models/medicine/Medicine_clocl.dart';
-import 'package:bassel/models/medicine/Patient.dart';
-import 'package:bassel/models/medicine/alarm_info.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/notifications/notifications.dart';
-import 'package:bassel/utils/alarm_helper.dart';
+import '../../../Config/general.dart';
+import '../../../Config/insert_data.dart';
+import '../../../controllers/medicine/diagonController.dart';
+import '../../../controllers/medicine/medicineController.dart';
+import '../../../controllers/medicine/medicineDayController.dart';
+import '../../../controllers/medicine/patientController.dart';
+import '../../../controllers/medicine/timesDayesController.dart';
+import '../../../models/medicine/Diagon.dart';
+import '../../../models/medicine/Medicine.dart';
+import '../../../models/medicine/MedicineTimes.dart';
+import '../../../models/medicine/Medicine_Date.dart';
+import '../../../models/medicine/Medicine_clocl.dart';
+import '../../../models/medicine/Patient.dart';
+import '../../../models/medicine/alarm_info.dart';
+import '../../../models/medicine/medicineDays.dart';
+import '../../../notifications/notifications.dart';
+import '../../../utils/alarm_helper.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
@@ -576,8 +577,17 @@ class _Main_inputState extends State<Main_input> {
     _patient.patName = _patnameController.text;
     _diagonObject.notice = _noticeController.text;
     _diagonObject.img_direct = Entry.imgPath;
+    _diagonObject.patId = await _patientController.insertPatient(_patient);
+    if (_diagonObject.patId  == 0) {
+      // Success
+      _showAlertDialog('لايمكن اضافة مريض', 'عدد المرضى تجاوز:$limitUser ');
+      print('عدد المرضى تجاوز:$limitUser ');
+
+      return;
+    }
+    else{
     _diagonObject.medId = await _medicineController.insert(_medicin);
-    _diagonObject.patId = await _patientController.insertPatient(_patient); //id
+    //id
     _diagonId = await _diagonController.insertDiagon(_diagonObject);
     _dateList = List<Medicine_Date>();
     _clockList = List<Medicine_clocl>();
@@ -598,16 +608,7 @@ class _Main_inputState extends State<Main_input> {
           _dateList.length != 0 &&
           int.parse(Entry.times_num) != 0) _cancel(_diagonId);
     }
-    int z = _diagonObject.patId;
-    moveToLastScreen();
-    if (_diagonId != 0) {
-      // Success
-      _showAlertDialog('Status', 'diagon:$_diagonId Saved Successfully');
-    } else {
-      // Failure
-      _showAlertDialog('Status', 'daiagon Saving Note');
-    }
-    //moveToLastScreen();
+    moveToLastScreen();}
   }
 
 /////////////////////////////////////////////////////////////////////////////////

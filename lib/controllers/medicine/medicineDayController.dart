@@ -1,8 +1,8 @@
 
 import 'dart:async';
 
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/services/medicine/medicineDayService.dart';
+import '../../models/medicine/medicineDays.dart';
+import '../../services/medicine/medicineDayService.dart';
 
 class MedicineDayController {
   final MedicineDayService _medicineDayinfoService =  MedicineDayService();

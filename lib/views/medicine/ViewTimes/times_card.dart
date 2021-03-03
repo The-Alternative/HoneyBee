@@ -1,12 +1,12 @@
 import 'dart:io';
-import 'package:bassel/controllers/medicine/medicineDayController.dart';
-import 'package:bassel/controllers/medicine/medicineViewController.dart';
-import 'package:bassel/controllers/medicine/timesDayesController.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/notifications/notifications.dart';
-import 'package:bassel/utils/alarm_helper.dart';
+import '../../../controllers/medicine/medicineDayController.dart';
+import '../../../controllers/medicine/medicineViewController.dart';
+import '../../../controllers/medicine/timesDayesController.dart';
+import '../../../models/medicine/MedicineInfo.dart';
+import '../../../models/medicine/MedicineTimes.dart';
+import '../../../models/medicine/medicineDays.dart';
+import '../../../notifications/notifications.dart';
+import '../../../utils/alarm_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -367,7 +367,7 @@ class _TimesCard extends State<TimesCard> {
     _medicineDayController.updateDayTimes(MedicineTimes(dayId, _alarmTimeString, 1,
         card_info.diagid, card_info.timesId));
   }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //============================================================================================
   DateTime str_todate(String s1,String s2){
     var arr = List(3);
     arr = s1.split('/');
