@@ -1,6 +1,6 @@
 
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/services/medicine/medicineViewService.dart';
+import '../../models/medicine/MedicineInfo.dart';
+import '../../services/medicine/medicineViewService.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 

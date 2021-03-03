@@ -1,5 +1,4 @@
-
-import 'package:bassel/models/medicine/alarm_info.dart';
+import '../models/medicine/alarm_info.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 
@@ -8,7 +7,7 @@ final String columnId = 'id';
 final String columnTitle = 'title';
 final String columnDateTime = 'alarmDateTime';
 final String columnPending = 'isPending';
-final String columnColorIndex = 'gradientColorIndex';
+final String columnDiag = 'd_id';
 
 class AlarmHelper {
   static Database _database;
@@ -43,7 +42,7 @@ class AlarmHelper {
           $columnTitle text not null,
           $columnDateTime text not null,
           $columnPending integer,
-          $columnColorIndex integer)
+          $columnDiag integer)
         ''');
       },
     );
@@ -73,5 +72,16 @@ class AlarmHelper {
   Future<int> delete(int id) async {
     var db = await this.database;
     return await db.delete(tableAlarm, where: '$columnId = ?', whereArgs: [id]);
+  }
+  Future<int> getId(int diagid,DateTime dt) async {
+    String ss= dt.toIso8601String();
+    var db = await this.database;
+    var res = await db.rawQuery('SELECT $columnId FROM $tableAlarm WHERE'
+        ' $columnDiag=$diagid AND $columnDateTime =?',['$ss']);
+    int result = Sqflite.firstIntValue(res);
+
+    print(result);
+    return result;
+    //return await db.delete(tableAlarm, where: '$columnId = ?', whereArgs: [id]);
   }
 }

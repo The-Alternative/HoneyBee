@@ -1,6 +1,6 @@
 
-import 'package:bassel/controllers/bmi/desccontroller.dart';
-import 'package:bassel/models/bmi/bmimodels.dart';
+import '../../controllers/bmi/desccontroller.dart';
+import '../../models/bmi/bmimodels.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';

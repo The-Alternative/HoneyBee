@@ -1,10 +1,10 @@
-import 'package:bassel/controllers/children/eventController.dart';
-import 'package:bassel/controllers/children/habitController.dart';
-import 'package:bassel/controllers/children/healthController.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/models/children/event.dart';
-import 'package:bassel/models/children/habit.dart';
-import 'package:bassel/models/children/health.dart';
+import '../../controllers/children/eventController.dart';
+import '../../controllers/children/habitController.dart';
+import '../../controllers/children/healthController.dart';
+import '../../models/children/child.dart';
+import '../../models/children/event.dart';
+import '../../models/children/habit.dart';
+import '../../models/children/health.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

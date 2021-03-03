@@ -41,7 +41,7 @@ class Diagon {
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
     if (_diagonId != null) {
-      map['diagonId'] = _diagonId;
+      map['d_id'] = _diagonId;
     }
     map['d_id'] = _diagonId;
     map['p_id'] = _patId;

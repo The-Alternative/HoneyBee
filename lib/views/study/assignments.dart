@@ -2,7 +2,7 @@ import 'package:bassel/views/study/exam.dart';
 import 'package:bassel/views/study/homework.dart';
 import 'package:bassel/views/study/programstudy.dart';
 import 'package:flutter/material.dart';
-import 'package:bassel/views/study/lactuardate.dart';
+import '../../views/study/lactuardate.dart';
 
 class Assignments extends StatefulWidget {
   @override

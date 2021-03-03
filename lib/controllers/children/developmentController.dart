@@ -1,5 +1,5 @@
-import 'package:bassel/models/children/development.dart';
-import 'package:bassel/services/children/developmentService.dart';
+import '../../models/children/development.dart';
+import '../../services/children/developmentService.dart';
 import 'dart:async';
 
 class DevelopmentController {

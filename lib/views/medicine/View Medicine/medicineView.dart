@@ -1,8 +1,10 @@
 
-import 'package:bassel/controllers/medicine/medicineController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/Patient.dart';
+import '../../../controllers/medicine/medicineController.dart';
+import '../../../controllers/medicine/patientController.dart';
+import '../../../models/medicine/MedicineInfo.dart';
+import '../../../models/medicine/Patient.dart';
+import '../../../views/medicine/AddMedcine/main_update.dart';
+import '../../../views/medicine/ViewTimes/times_list.dart';
 import 'package:flutter/material.dart';
 
 class MedicineView extends StatefulWidget {
@@ -11,30 +13,30 @@ class MedicineView extends StatefulWidget {
 }
 
 class _MedicineListState extends State<MedicineView> {
-MedicineController _medicineController =MedicineController();
-PatientController _patientController =PatientController();
+  MedicineController _medicineController =MedicineController();
+  PatientController _patientController =PatientController();
   int count;
   String _selectedName ;
 
   Future<List<MedicineInfo>> _medicineList;
-  Future<List<Patient>> _PatientList;
+  List<Patient> NamesList = List<Patient>();
   List<MedicineInfo> _currentMedicineList;
-  List<Patient> _currentPatientList;
   var style10 = TextStyle(fontSize: 20, fontWeight: FontWeight.w200, fontFamily: 'Times',);
   var style2 = TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'Times');
   var style4 = TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'Times', color: Colors.white);
   @override
   void initState() {
+    setNames();
     super.initState();
   }
   void loadMedicine() {
     _medicineList = _medicineController.getFMedicine();
     print('------database ');
     _currentMedicineList =List<MedicineInfo>();
-    _currentPatientList =List<Patient>();
+    NamesList =List<Patient>();
 
     // getListViewMedicine();
-   // getListViewPerson();
+    // getListViewPerson();
 
     if (mounted) setState(() {});
 
@@ -44,84 +46,76 @@ PatientController _patientController =PatientController();
     if(_currentMedicineList==null){
       _currentMedicineList =List<MedicineInfo>();
 
-      getListViewMedicine();
+      // getListViewMedicine();
 
     }
-    if(_currentPatientList==null){
-      _currentPatientList =List<Patient>();
 
-      getListViewPerson();
-
-    }
-    String _selectedDay = '';
-
-    // getListView();
     return build2(context);
-    }
+  }
   Widget build2(BuildContext context) {
     //if (!loaded) _loadZones();
     return Scaffold(body: new Column(
-    children: <Widget>[
-      new Padding(padding: EdgeInsets.fromLTRB(0, 1, 0, 0)),
-      Row(
-        children: <Widget>[
+      children: <Widget>[
+        new Padding(padding: EdgeInsets.fromLTRB(0, 1, 0, 0)),
+        Row(
+          children: <Widget>[
 
-          Padding(
-            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-          ),
-          Expanded(
-            flex: 1,
-            child: InkWell(
-              child:  Text('الاسم',style: style10),
+            Padding(
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
             ),
-          ),
-           Expanded(
+            Expanded(
+              flex: 1,
+              child: InkWell(
+                child:  Text('الاسم',style: style10),
+              ),
+            ),
+            Expanded(
               flex: 2,
               child:
               Padding(
                 padding: const EdgeInsets.only(top:15.0,left: 25),
                 child:getDrop()
-            ,
+                ,
+              ),
             ),
-          ),
-        ],
-      )
-,      new Expanded(
-          child:  getBody())
+          ],
+        )
+        ,      new Expanded(
+            child:  getBody())
 
-    ],
+      ],
     ),);
 
 
   }
   Widget getDrop(){
-    if(_currentPatientList.length !=0)
-    return   DropdownButtonHideUnderline(
-      child: DropdownButton(isExpanded: false,
-        style: style10,
-        // Not necessary for Option 1
-        value: _selectedName,
-        onChanged: (newValue) {
-          setState(() {
-            _selectedName = newValue;
-            print(_selectedName);
-            getselectListViewMedicine(_selectedName);
-          });
-        },
-        items: _currentPatientList.map((name) {
+    if(NamesList.length !=0)
+      return   DropdownButtonHideUnderline(
+        child: DropdownButton(isExpanded: false,
+          style: style10,
+          // Not necessary for Option 1
+          value: _selectedName,
+          onChanged: (newValue) {
+            setState(() {
+              _selectedName = newValue;
+              print(_selectedName);
+              getselectListViewMedicine(_selectedName);
+            });
+          },
+          items: NamesList.map((name) {
 
-          return DropdownMenuItem(
-            child: Padding(
-                padding: const EdgeInsets.only(left: 0),
-                child: Column(children: [  Text(name.patName,
-                  style: TextStyle(color: Colors.black) ,),
-                  Divider(thickness: 1,height: 1,)],)
-            ),
-            value: name.patName,
-          );
-        }).toList(),
-      ),
-    );
+            return DropdownMenuItem(
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: Column(children: [  Text(name.patName,
+                      style: TextStyle(color: Colors.black) ,),
+                      Divider(thickness: 1,height: 1,)],)
+                ),
+                value: '${name.patId}'
+            );
+          }).toList(),
+        ),
+      );
     else
       Text("لايوجد مريض");
   }
@@ -140,35 +134,69 @@ PatientController _patientController =PatientController();
           itemBuilder: (BuildContext ct, int ii) {
             return
               Container(margin: EdgeInsets.only(bottom: 15),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 0.5,color: Colors.amber),
-                    boxShadow:[BoxShadow(color: Colors.amber,spreadRadius: .1,blurRadius: 1,)],
-                    borderRadius:BorderRadius.circular(5),
-                    color: Colors.white,
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                  child:Row(children: <Widget>[
-                      Expanded(child:   Text('${_currentMedicineList[ii].medTitle}',style: style10,),flex: 100,),
-                      Expanded(child:  Container(
-                        width: 1,
-                        height: 50,
-                        color: Colors.amber,
-                      ),flex: 1,),
-                      Expanded(child:
-                      IconButton(
-                          icon: Icon(Icons.delete),
-                          color: Colors.lightBlue,
-                          onPressed: () {_delet(context,_currentMedicineList[ii]);
-                          }),flex: 20,),
-
-                    ]),);
+                decoration: BoxDecoration(
+                  border: Border.all(width: 0.5,color: Colors.amber),
+                  boxShadow:[BoxShadow(color: Colors.amber,spreadRadius: .1,blurRadius: 1,)],
+                  borderRadius:BorderRadius.circular(5),
+                  color: Colors.white,
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                child:Row(children: <Widget>[
+                  Expanded(child:   Text('${_currentMedicineList[ii].medTitle}',style: style10,),flex: 100,),
+                  Expanded(child:  Container(
+                    width: 1,
+                    height: 50,
+                    color: Colors.amber,
+                  ),flex: 1,),
+                  Expanded(child:
+                  IconButton(
+                      icon: Icon(Icons.edit),
+                      color: Colors.lightBlue,
+                      onPressed: () {_update(context,_currentMedicineList[ii]);
+                      }),flex: 20,),
+                  Expanded(child:  Container(
+                    width: 1,
+                    height: 50,
+                    color: Colors.amber,
+                  ),flex: 1,),
+                  Expanded(child:
+                  IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Colors.lightBlue,
+                      onPressed: () {_delet(context,_currentMedicineList[ii]);
+                      }),flex: 20,),
+                ]),);
           }) ;
   }
   void _delete(BuildContext context, int id) async {
     int result = await _medicineController.deleteMedicine(id);
     if (result != 0) {
-     loadMedicine();
+      loadMedicine();
     }
+  }
+  void _update(BuildContext context, MedicineInfo medicineInfo) async {
+    //NamesList.clear();
+    CardInfoUpdate.medicineInfo=medicineInfo;
+    CardInfoUpdate.updOpr=true;
+    bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return Main_update( CardInfoUpdate.medicineInfo);
+    }));
+
+    if (result == true) {
+      Timesupdate.res = false;
+      Timesupdate.res2 = false;
+      CardInfoUpdate.updOpr=false;
+
+      setState(() {
+
+        setNames();
+        print(_selectedName);
+        getselectListViewMedicine(_selectedName);
+
+      });
+    }
+    CardInfoUpdate.updOpr=false;
+
   }
   getListViewMedicine(){
     _medicineList = _medicineController.getFMedicine();
@@ -192,22 +220,31 @@ PatientController _patientController =PatientController();
       });
     });
   }
-  getListViewPerson(){
-    _PatientList = _patientController.getPatientList();
-    _PatientList.then((pList) {
-      setState(() {
-        this._currentPatientList = pList;
-        this.count = pList.length;
-       // print('------database ${_currentMedicineList.length}');
 
+  Future setNames() async {
+    NamesList.clear();
+    (await _patientController.getPatientMapList()).forEach((patientMap) {
+      setState(() {
+        NamesList.add(Patient("").patientMapToObject(patientMap));
       });
     });
+    print('------database mosssssssss');
+
   }
+
   void _delet(BuildContext context, MedicineInfo medicineInfo) async {
     int result = await _medicineController.deleteselectedMedicine(medicineInfo);
     if (result != 0) {
       // _showSnackBar(context, ' Deleted Successfully');
       getselectListViewMedicine(_selectedName);
       //_selectedDay = '';
+    }
   }
-}}
+
+
+
+}
+class CardInfoUpdate {
+  static MedicineInfo medicineInfo;
+  static bool updOpr;
+}

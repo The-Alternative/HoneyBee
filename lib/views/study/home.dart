@@ -1,8 +1,12 @@
 import 'package:bassel/controllers/study/coursecontroller.dart';
-import 'package:bassel/models/study/course.dart';
-import 'package:bassel/views/study/assignments.dart';
+import '../../models/study/course.dart';
+import '../../views/study/assignments.dart';
 import 'package:bassel/views/study/newcourse.dart';
 import 'package:bassel/views/study/viewcourse/home.course.dart';
+import '../../controllers/study/coursecontroller.dart';
+import '../../models/study/course.dart';
+import '../../views/study/assignments.dart';
+import '../../views/study/newcourse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 

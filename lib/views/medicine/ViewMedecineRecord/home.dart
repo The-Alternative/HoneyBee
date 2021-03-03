@@ -1,10 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:bassel/controllers/medicine/medicineViewController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/Patient.dart';
-
-
+import '../../../controllers/medicine/medicineViewController.dart';
+import '../../../controllers/medicine/patientController.dart';
+import '../../../models/medicine/MedicineInfo.dart';
+import '../../../models/medicine/Patient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -20,8 +18,8 @@ class _HomeState extends State<Home> {
   var style1 = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Times');
   var style2 = TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'Times');
   var style4 = TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'Times', color: Colors.white);
- String _selectedName;
- PatientController _patientController =PatientController();
+  String _selectedName;
+  PatientController _patientController =PatientController();
   MedicineViewController _medicineViewController =MedicineViewController();
 
 
@@ -37,8 +35,8 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     setState(() {
-    setData();
-    setNames();
+      setData();
+      setNames();
 
     });
 
@@ -74,7 +72,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final double deviceHeight =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
-  print(  allListOfMedicine.length);
+    print(  allListOfMedicine.length);
 
 
     return Scaffold(
@@ -141,20 +139,20 @@ class _HomeState extends State<Home> {
                 SizedBox(height: deviceHeight * 0.03),
                 allListOfMedicine.isEmpty
                     ? SizedBox(
-                        width: double.infinity,
-                        height: 200,
-                        child: WavyAnimatedTextKit(
-                          textStyle: TextStyle(
-                              fontSize: 32.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                          text: [
-                            "No data..."
-                          ],
-                          isRepeatingAnimation: true,
-                          speed: Duration(milliseconds: 50),
-                        ),
-                      )
+                  width: double.infinity,
+                  height: 200,
+                  child: WavyAnimatedTextKit(
+                    textStyle: TextStyle(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                    text: [
+                      "No data..."
+                    ],
+                    isRepeatingAnimation: true,
+                    speed: Duration(milliseconds: 50),
+                  ),
+                )
                     : MedicinesList(allListOfMedicine,setData)
               ],
             ),
@@ -168,72 +166,72 @@ class _HomeState extends State<Home> {
   //-------------------------| Click on the calendar day |-------------------------
   Widget getDrop() {
     return(
-    NamesList.isEmpty?
+        NamesList.isEmpty?
         Text("لايوجد مريض") :DropdownButtonHideUnderline(
-        child: DropdownButton(
-          isExpanded: false,
-          style: style10,
-          // Not necessary for Option 1
-          value: _selectedName,
-          onChanged: (newValue) {
-            setState(() {
-              _selectedName = newValue;
-              print(_selectedName);
-              // getselectDaysListView(_selectedName);
-              // getselectCardListView(_selectedName);
-            });
-          },
-          items: NamesList.map((name) {
-            return DropdownMenuItem(
-              child: Padding(
-                  padding: const EdgeInsets.only(left: 0),
-                  child: Column(
-                    children: [
-                      Text(
-                        name.patName,
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      Divider(
-                        thickness: 1,
-                        height: 1,
-                      )
-                    ],
-                  )),
-              value: name.patName,
-            );
-          }).toList(),
-        ),
-      ));
+          child: DropdownButton(
+            isExpanded: false,
+            style: style10,
+            // Not necessary for Option 1
+            value: _selectedName,
+            onChanged: (newValue) {
+              setState(() {
+                _selectedName = newValue;
+                print(_selectedName);
+                // getselectDaysListView(_selectedName);
+                // getselectCardListView(_selectedName);
+              });
+            },
+            items: NamesList.map((name) {
+              return DropdownMenuItem(
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: Column(
+                      children: [
+                        Text(
+                          name.patName,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        Divider(
+                          thickness: 1,
+                          height: 1,
+                        )
+                      ],
+                    )),
+                value: name.patName,
+              );
+            }).toList(),
+          ),
+        ));
 
   }
- Widget searchTextField()
- {
-   return(allListOfMedicine.isNotEmpty?
+  Widget searchTextField()
+  {
+    return(allListOfMedicine.isNotEmpty?
     TextField(
-     textAlign: TextAlign.right,
-     keyboardType: TextInputType.text,
-     decoration: InputDecoration(
-         enabledBorder: OutlineInputBorder(
-           borderRadius: BorderRadius.all(Radius.circular(50)),
-           borderSide: BorderSide(width: 1,color: Colors.amberAccent),
-         ),
-         hintText: '',
-         hintStyle: TextStyle(fontSize: 16),
-         focusedBorder: OutlineInputBorder(
-           borderRadius: BorderRadius.all(Radius.circular(50)),
-           borderSide: BorderSide(width: 1,color: Colors.amberAccent),
-         ),
-         labelStyle: TextStyle(
-             color: Colors.amberAccent
-         ),
+      textAlign: TextAlign.right,
+      keyboardType: TextInputType.text,
+      decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+            borderSide: BorderSide(width: 1,color: Colors.amberAccent),
+          ),
+          hintText: '',
+          hintStyle: TextStyle(fontSize: 16),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+            borderSide: BorderSide(width: 1,color: Colors.amberAccent),
+          ),
+          labelStyle: TextStyle(
+              color: Colors.amberAccent
+          ),
 
-         contentPadding: EdgeInsets.only(left: 10,right: 10),
-         fillColor: Colors.white70,
-         prefixIcon: Icon(Icons.search,color: Colors.amberAccent,)
-     ),
-   ):Divider());
- }
-  //===============================================================================
+          contentPadding: EdgeInsets.only(left: 10,right: 10),
+          fillColor: Colors.white70,
+          prefixIcon: Icon(Icons.search,color: Colors.amberAccent,)
+      ),
+    ):Divider());
+  }
+//===============================================================================
 
 
 }

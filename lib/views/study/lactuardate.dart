@@ -1,7 +1,7 @@
 import 'package:bassel/views/study/repet.dart';
 import 'package:bassel/views/study/startdate.dart';
 import 'package:flutter/material.dart';
-import 'package:bassel/views/study/lactuarappointments.dart';
+import '../../views/study/lactuarappointments.dart';
 
 class LactuarDate extends StatefulWidget {
   @override

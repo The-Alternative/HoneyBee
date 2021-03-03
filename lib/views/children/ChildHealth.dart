@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:bassel/controllers/children/healthController.dart';
-import 'package:bassel/controllers/children/mediaController.dart';
-import 'package:bassel/models/children/health.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/models/children/media.dart';
-import 'package:bassel/views/children/ChildInfo.dart';
+import '../../controllers/children/healthController.dart';
+import '../../controllers/children/mediaController.dart';
+import '../../models/children/health.dart';
+import '../../models/children/child.dart';
+import '../../models/children/media.dart';
+import '../../views/children/ChildInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

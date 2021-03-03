@@ -1,8 +1,6 @@
-import 'package:bassel/models/children/childHabit.dart';
-import 'package:bassel/services/children/childHabitService.dart';
-import 'package:sqflite/sqflite.dart';
+import '../../models/children/childHabit.dart';
+import '../../services/children/childHabitService.dart';
 import 'dart:async';
-import 'package:bassel/utils/databaseConfig.dart';
 
 class ChildHabitController {
 

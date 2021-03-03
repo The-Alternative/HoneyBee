@@ -1,9 +1,9 @@
 
-import 'package:bassel/constants/const_data.dart';
+import '../Config/general.dart';
 import 'package:flutter/material.dart';
 
 class SingleNotifier extends ChangeNotifier {
-  String _currentCountry = dayes_list[0];
+  String _currentCountry = weekDaysList[0];
   SingleNotifier();
 
   String get currentCountry => _currentCountry;

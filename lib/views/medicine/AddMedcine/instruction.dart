@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bassel/constants/const_data.dart';
+import '../../../Config/insert_data.dart';
 
 class IM {
   String name;

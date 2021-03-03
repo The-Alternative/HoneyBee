@@ -1,20 +1,21 @@
 import 'dart:io';
-import 'package:bassel/constants/const_data.dart';
-import 'package:bassel/controllers/medicine/diagonController.dart';
-import 'package:bassel/controllers/medicine/medicineController.dart';
-import 'package:bassel/controllers/medicine/medicineDayController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/controllers/medicine/timesDayesController.dart';
-import 'package:bassel/main.dart';
-import 'package:bassel/models/medicine/Diagon.dart';
-import 'package:bassel/models/medicine/Medicine.dart';
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/models/medicine/Medicine_Date.dart';
-import 'package:bassel/models/medicine/Medicine_clocl.dart';
-import 'package:bassel/models/medicine/Patient.dart';
-import 'package:bassel/models/medicine/alarm_info.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/utils/alarm_helper.dart';
+import '../../../Config/general.dart';
+import '../../../Config/insert_data.dart';
+import '../../../controllers/medicine/diagonController.dart';
+import '../../../controllers/medicine/medicineController.dart';
+import '../../../controllers/medicine/medicineDayController.dart';
+import '../../../controllers/medicine/patientController.dart';
+import '../../../controllers/medicine/timesDayesController.dart';
+import '../../../models/medicine/Diagon.dart';
+import '../../../models/medicine/Medicine.dart';
+import '../../../models/medicine/MedicineTimes.dart';
+import '../../../models/medicine/Medicine_Date.dart';
+import '../../../models/medicine/Medicine_clocl.dart';
+import '../../../models/medicine/Patient.dart';
+import '../../../models/medicine/alarm_info.dart';
+import '../../../models/medicine/medicineDays.dart';
+import '../../../notifications/notifications.dart';
+import '../../../utils/alarm_helper.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,7 @@ class _Main_inputState extends State<Main_input> {
   List<Medicine_Date> _dateList;
   bool insr;
   var style1 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Times');
+  TextStyle(fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Times');
   var style2 = TextStyle(
       fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'Times');
   var style4 = TextStyle(
@@ -120,14 +121,14 @@ class _Main_inputState extends State<Main_input> {
             Expanded(
               child: Padding(
                   padding:
-                      EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
+                  EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
                   child: Text("17:35")),
               flex: 1,
             ),
             Expanded(
               child: Padding(
                   padding:
-                      EdgeInsets.only(right: 15, left: 15, top: 15, bottom: 5),
+                  EdgeInsets.only(right: 15, left: 15, top: 15, bottom: 5),
                   child: Text("20/12/2020")),
               flex: 0,
             )
@@ -146,7 +147,7 @@ class _Main_inputState extends State<Main_input> {
           ),
           Padding(
               padding:
-                  EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 50),
+              EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 50),
               child: TextField(
                 controller: _patnameController,
                 onSubmitted: (value) {},
@@ -160,7 +161,7 @@ class _Main_inputState extends State<Main_input> {
               )),
           Padding(
               padding:
-                  EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 5),
+              EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 5),
               child: TextField(
                 controller: _medTitleController,
                 style: style2,
@@ -171,7 +172,7 @@ class _Main_inputState extends State<Main_input> {
               )),
           Padding(
               padding:
-                  EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 5),
+              EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 5),
               child: TextField(
                 controller: _medAmountController,
                 style: style2,
@@ -194,8 +195,8 @@ class _Main_inputState extends State<Main_input> {
                         onTap: () async {
                           bool result = await Navigator.push(this.context,
                               MaterialPageRoute(builder: (context) {
-                            return Radiooo();
-                          }));
+                                return Radiooo();
+                              }));
                           if (result == true) {
                             update_mtTitle();
                             print(Entry.code + Entry.times_num);
@@ -229,8 +230,8 @@ class _Main_inputState extends State<Main_input> {
                         onTap: () async {
                           bool result = await Navigator.push(this.context,
                               MaterialPageRoute(builder: (context) {
-                            return First_date();
-                          }));
+                                return First_date();
+                              }));
                           if (result == true) {
                             update_Firstdate();
                             print(Entry.first_clock + Entry.first_date);
@@ -264,8 +265,8 @@ class _Main_inputState extends State<Main_input> {
                         onTap: () async {
                           bool result = await Navigator.push(this.context,
                               MaterialPageRoute(builder: (context) {
-                            return Process_time();
-                          }));
+                                return Process_time();
+                              }));
                           if (result == true) {
                             updateteartTime();
                             print(Entry.teratment_days);
@@ -305,8 +306,8 @@ class _Main_inputState extends State<Main_input> {
                           onTap: () async {
                             bool result = await Navigator.push(this.context,
                                 MaterialPageRoute(builder: (context) {
-                              return Instruction();
-                            }));
+                                  return Instruction();
+                                }));
                             if (result == true) {
                               updateInstruction();
                               debugPrint(Entry.instruc);
@@ -340,8 +341,8 @@ class _Main_inputState extends State<Main_input> {
                           onTap: () async {
                             bool result = await Navigator.push(this.context,
                                 MaterialPageRoute(builder: (context) {
-                              return Diagonsis();
-                            }));
+                                  return Diagonsis();
+                                }));
                             if (result == true) {
                               update_diagon();
                               print(Entry.pain + Entry.doct_name);
@@ -375,8 +376,8 @@ class _Main_inputState extends State<Main_input> {
                           onTap: () async {
                             bool result = await Navigator.push(this.context,
                                 MaterialPageRoute(builder: (context) {
-                              return ImageSave();
-                            }));
+                                  return ImageSave();
+                                }));
                           }, // button pressed
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -400,7 +401,7 @@ class _Main_inputState extends State<Main_input> {
           ),
           Padding(
               padding:
-                  EdgeInsets.only(right: 15.0, left: 15, bottom: 0, top: 15),
+              EdgeInsets.only(right: 15.0, left: 15, bottom: 0, top: 15),
               child: TextField(
                 controller: _noticeController,
                 style: style2,
@@ -576,15 +577,24 @@ class _Main_inputState extends State<Main_input> {
     _patient.patName = _patnameController.text;
     _diagonObject.notice = _noticeController.text;
     _diagonObject.img_direct = Entry.imgPath;
+    _diagonObject.patId = await _patientController.insertPatient(_patient);
+    if (_diagonObject.patId  == 0) {
+      // Success
+      _showAlertDialog('لايمكن اضافة مريض', 'عدد المرضى تجاوز:$limitUser ');
+      print('عدد المرضى تجاوز:$limitUser ');
+
+      return;
+    }
+    else{
     _diagonObject.medId = await _medicineController.insert(_medicin);
-    _diagonObject.patId = await _patientController.insertPatient(_patient); //id
+    //id
     _diagonId = await _diagonController.insertDiagon(_diagonObject);
     _dateList = List<Medicine_Date>();
     _clockList = List<Medicine_clocl>();
     if (Entry.code == 'Manual_entry') {
       for (var i = 0; i < Entry.info.length; i++) {
         String forma2 =
-            Entry.info[i].date.split('')[0].replaceAll(new RegExp(r'/'), '');
+        Entry.info[i].date.split('')[0].replaceAll(new RegExp(r'/'), '');
         int dayId = await _medicineDayController.insertDayes(MedicineDays(Entry.info[i].date, int.parse(forma2)));
         _timesDayesController.insert_DayTimes(
             MedicineTimes(dayId, Entry.info[i].time, 1, _diagonId));
@@ -598,16 +608,7 @@ class _Main_inputState extends State<Main_input> {
           _dateList.length != 0 &&
           int.parse(Entry.times_num) != 0) _cancel(_diagonId);
     }
-    int z = _diagonObject.patId;
-    moveToLastScreen();
-    if (_diagonId != 0) {
-      // Success
-      _showAlertDialog('Status', 'diagon:$_diagonId Saved Successfully');
-    } else {
-      // Failure
-      _showAlertDialog('Status', 'daiagon Saving Note');
-    }
-    //moveToLastScreen();
+    moveToLastScreen();}
   }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -672,7 +673,7 @@ class _Main_inputState extends State<Main_input> {
     }
     //print('  طول المصفوفة ${Alarmmm.alarmList.length}');
     for (var b = 0; b < Alarmmm.alarmList.length; b++)
-      onSaveAlarm(Alarmmm.alarmList[b]);
+      onSaveAlarm(Alarmmm.alarmList[b],_diagonId);
     // print('${Alarmmm.alarmList[b]}');
   }
 
@@ -719,7 +720,6 @@ class _Main_inputState extends State<Main_input> {
       Alarmmm.alarmList.add(_alarmTime);
       //String forma2 = selectedDate.toLocal().toString().split(' ')[0].replaceAll(new RegExp(r'-'), '');
       _timesDayesController.insert_DayTimes(MedicineTimes(dateDayId, ss, 1, _diagonId));
-      //  onSaveAlarm(a );
     }
 
     //Alarmmm.alarmList = new List<int>();
@@ -843,48 +843,21 @@ class _Main_inputState extends State<Main_input> {
     j = 1;
   }
 
-  void scheduleAlarm(
-    DateTime scheduledNotificationDateTime, AlarmInfo alarmInfo) async {
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'alarm_notif',
-      'alarm_notif',
-      'Channel for Alarm notification',
-      icon: 'codex_logo',
-      sound: RawResourceAndroidNotificationSound('a_long_cold_sting'),
-      largeIcon: DrawableResourceAndroidBitmap('codex_logo'),
-    );
 
-    var iOSPlatformChannelSpecifics = IOSNotificationDetails(
-        sound: 'a_long_cold_sting.wav',
-        presentAlert: true,
-        presentBadge: true,
-        presentSound: true);
-    var platformChannelSpecifics = NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-
-    flutterLocalNotificationsPlugin.schedule(
-        alarmInfo.id,
-        'تناول دوائك',
-        alarmInfo.title,
-        scheduledNotificationDateTime,
-        platformChannelSpecifics);
-    print(' رقم المنبه${alarmInfo.id}');
-  }
-
-  void onSaveAlarm(DateTime dt) async {
+  void onSaveAlarm(DateTime dt,int diag) async {
     DateTime scheduleAlarmDateTime;
     _alarmTime = dt;
     if (_alarmTime.isAfter(DateTime.now()))
       scheduleAlarmDateTime = _alarmTime;
     else
-      scheduleAlarmDateTime = _alarmTime.add(Duration(days: 1));
+      return;
     var alarmInfo = AlarmInfo(
-      alarmDateTime: scheduleAlarmDateTime,
-      title: 'alarm',
+        alarmDateTime: scheduleAlarmDateTime,
+        title: 'alarm',diag: diag
     );
     int a = await _alarmHelper.insertAlarm(alarmInfo);
     alarmInfo.id = a;
-    scheduleAlarm(scheduleAlarmDateTime, alarmInfo);
+    Ass.scheduleAlarm(scheduleAlarmDateTime,alarmInfo);
     print('${alarmInfo.alarmDateTime}');
 
     //Navigator.pop(this.context);
@@ -911,5 +884,6 @@ class _Main_inputState extends State<Main_input> {
 }
 
 class Alarmmm {
+  static int notid;
   static List<DateTime> alarmList;
 }

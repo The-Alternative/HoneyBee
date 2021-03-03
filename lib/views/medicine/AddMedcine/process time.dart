@@ -1,4 +1,5 @@
-import 'package:bassel/constants/const_data.dart';
+import '../../../Config/general.dart';
+import '../../../Config/insert_data.dart';
 import 'package:flutter/material.dart';
 
 class Process_time extends StatefulWidget {
@@ -9,7 +10,7 @@ class Process_time extends StatefulWidget {
 class _Process_timeState extends State<Process_time> {
 
   int _radioValue = 0;
-  String _selectedDay = types_list[0];
+  String _selectedDay = limitedPeriodList[0];
   var style1 = TextStyle(fontSize: 23, fontWeight: FontWeight.bold, fontFamily: 'Times');
   var style2 = TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.normal, fontFamily: 'Times');
   TextEditingController teratControl = TextEditingController();
@@ -65,7 +66,7 @@ class _Process_timeState extends State<Process_time> {
                               _selectedDay = newValue;
                             });
                           },
-                          items: types_list.map((location) {
+                          items: limitedPeriodList.map((location) {
                             return DropdownMenuItem(
                               child: new Text(location),
                               value: location,

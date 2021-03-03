@@ -1,5 +1,6 @@
-import 'package:bassel/utils/databaseconfig.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
+
+import '../../models/medicine/MedicineInfo.dart';
+import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CardinfoService{
@@ -37,8 +38,8 @@ class CardinfoService{
   String day_time_state = 'd_t_state';
   DatabaseConfig _medicineDatabase = DatabaseConfig();
   static Database _database;
-
-  //init database
+  //
+  // //init database
   // Future<Database> get database async{
   //   if(_database != null) return _database;
   //   _database = await _medicineDatabase.setDatabase();
@@ -62,7 +63,7 @@ class CardinfoService{
               'AND $dayTimesTable.$timesId = $id  order By $sortNum ASC');
     else
       result = await db.rawQuery(
-          'SELECT $patname,$medTitle,$img_direct,$diagon,,$first_date,$doctname,$notice,$diagonTable.$diagid as dgid,$medAmount,'
+          'SELECT $patname,$medTitle,$img_direct,$diagon,$first_date,$doctname,$notice,$diagonTable.$diagid as dgid,$medAmount,'
               ' $midDayesTable.$dayesId as dayid,$dayTimesTable.$timesId as tmid,$day_time'
               ',$day_time_state,$day_date,$sortNum'
               ' FROM $patientTable,$medicinTable,$diagonTable,$dayTimesTable,$midDayesTable'
@@ -103,5 +104,5 @@ class CardinfoService{
     }
     return cardList;
   }
-  //////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 }

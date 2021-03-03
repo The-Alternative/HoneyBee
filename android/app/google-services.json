@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "130495442076",
+    "project_id": "honeybee-c9685",
+    "storage_bucket": "honeybee-c9685.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130495442076:android:3e4e494020cb38b02e9159",
+        "android_client_info": {
+          "package_name": "com.example.bassel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130495442076-rkhmk0nt41j5o1appiphurevnerssaeo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bassel",
+            "certificate_hash": "7e75169e708445844dba916dc569772f68bc0adb"
+          }
+        },
+        {
+          "client_id": "130495442076-b3j87f9avua5vcbog1lnsl8b8af9nm5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_MQfvufdTFe2OS3ExxqAf7BXrjOZuT6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130495442076-b3j87f9avua5vcbog1lnsl8b8af9nm5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
