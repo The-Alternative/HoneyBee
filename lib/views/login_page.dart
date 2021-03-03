@@ -34,8 +34,8 @@ class _LoginPageState extends State<LoginPage> {
       splashColor: Colors.grey,
       onPressed: () {
         signInWithGoogle().whenComplete(() async {
-          String x = await signInWithGoogle();
-          if(!(x == "false")){
+          // String x = await signInWithGoogle();
+          // if(!(x == "false")){
 
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -44,9 +44,9 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
             );
-          }else{
-            _showMaterialDialog();
-          }
+          // }else{
+          //   _showMaterialDialog();
+          // }
 
         });
       },
