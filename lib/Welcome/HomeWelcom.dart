@@ -21,7 +21,7 @@ class HomeWelcom extends StatelessWidget {
       body: Padding(padding: EdgeInsets.all(100.1),
           child: Container(
             child:  Center(
-                child: Column(
+                child: ListView(
                   children: [
                     ElevatedButton(
                       child: Text('الدراسة'),
