@@ -1,5 +1,5 @@
-import 'package:bassel/views/study/repet.dart';
-import 'package:bassel/views/study/startdate.dart';
+import '../../views/study/repet.dart';
+import '../../views/study/startdate.dart';
 import 'package:flutter/material.dart';
 import '../../views/study/lactuarappointments.dart';
 

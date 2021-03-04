@@ -1,8 +1,8 @@
-import 'package:bassel/controllers/study/coursecontroller.dart';
+import '../../controllers/study/coursecontroller.dart';
 import '../../models/study/course.dart';
 import '../../views/study/assignments.dart';
-import 'package:bassel/views/study/newcourse.dart';
-import 'package:bassel/views/study/viewcourse/home.course.dart';
+import '../../views/study/newcourse.dart';
+import '../../views/study/viewcourse/home.course.dart';
 import '../../controllers/study/coursecontroller.dart';
 import '../../models/study/course.dart';
 import '../../views/study/assignments.dart';

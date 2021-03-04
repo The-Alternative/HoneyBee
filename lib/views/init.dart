@@ -1,10 +1,7 @@
 import '../views/login_page.dart';
 import 'package:flutter/material.dart';
 
-// Import the firebase_core plugin
 import 'package:firebase_core/firebase_core.dart';
-
-
 
 class App extends StatefulWidget {
   _AppState createState() => _AppState();
@@ -23,7 +20,7 @@ class _AppState extends State<App> {
       setState(() {
         _initialized = true;
       });
-    } catch(e) {
+    } catch (e) {
       // Set `_error` state to true if Firebase initialization fails
       setState(() {
         _error = true;
@@ -40,7 +37,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     // Show error message if initialization failed
-    if(_error) {
+    if (_error) {
       return SomethingWentWrong();
     }
 
@@ -61,7 +58,7 @@ class SomethingWentWrong extends StatefulWidget {
   }
 }
 
-class Loading extends StatefulWidget{
+class Loading extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState

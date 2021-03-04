@@ -1,5 +1,6 @@
-import 'package:bassel/models/study/course.dart';
-import 'package:bassel/services/study/courseservice.dart';
+import 'package:honeyBee/models/study/course.dart';
+import 'package:honeyBee/services/study/courseservice.dart';
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:ui';

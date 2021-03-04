@@ -1,4 +1,4 @@
-import 'package:bassel/views/study/repet.dart';
+import '../../views/study/repet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

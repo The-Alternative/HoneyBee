@@ -1,5 +1,6 @@
-import 'package:bassel/models/study/course.dart';
-import 'package:bassel/views/study/viewcourse/cardcourse.dart';
+import 'package:honeyBee/models/study/course.dart';
+import 'package:honeyBee/views/study/viewcourse/cardcourse.dart';
+
 import 'package:flutter/material.dart';
 
 class ListCourse extends StatelessWidget {

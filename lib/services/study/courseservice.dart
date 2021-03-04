@@ -1,5 +1,5 @@
-import 'package:bassel/models/study/course.dart';
-import 'package:bassel/utils/databaseconfig.dart';
+import '../../models/study/course.dart';
+import '../../utils/databaseconfig.dart';
 
 import 'dart:async';
 import '../../models/study/course.dart';

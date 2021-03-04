@@ -1,7 +1,8 @@
-import 'package:bassel/controllers/study/coursecontroller.dart';
-import 'package:bassel/models/study/course.dart';
-import 'package:bassel/views/study/viewcourse/listcourse.dart';
+import 'package:honeyBee/controllers/study/coursecontroller.dart';
+import 'package:honeyBee/models/study/course.dart';
+
 import 'package:flutter/material.dart';
+import 'package:honeyBee/views/study/viewcourse/listcourse.dart';
 
 class HomeCourse extends StatefulWidget {
   @override

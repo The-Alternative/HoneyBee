@@ -1,6 +1,6 @@
-import 'package:bassel/views/study/exam.dart';
-import 'package:bassel/views/study/homework.dart';
-import 'package:bassel/views/study/programstudy.dart';
+import '../../views/study/exam.dart';
+import '../../views/study/homework.dart';
+import '../../views/study/programstudy.dart';
 import 'package:flutter/material.dart';
 import '../../views/study/lactuardate.dart';
 

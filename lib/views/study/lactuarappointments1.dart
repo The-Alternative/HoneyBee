@@ -1,5 +1,5 @@
-import 'package:bassel/views/medicine/ViewMedecineRecord/home.dart';
-import 'package:bassel/views/study/home.dart';
+import '../../views/medicine/ViewMedecineRecord/home.dart';
+import '../../views/study/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
