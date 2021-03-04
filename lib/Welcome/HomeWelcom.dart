@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 
 import 'home.dart';
 class HomeWelcom extends StatelessWidget {
+  final bool isSignIn ;
+  HomeWelcom(this.isSignIn);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,14 +61,36 @@ class HomeWelcom extends StatelessWidget {
                         );
                       },
                     ),
+                    (this.isSignIn == true)?
                     ElevatedButton(
                       child: Text('signOut'),
                       onPressed: () {
                         signOutGoogle();
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => App()),
+                          MaterialPageRoute(builder: (context) => HomeWelcom(false)),
                         );
+                      },
+                    ):
+                    ElevatedButton(
+                      child: Text('signIn'),
+                      onPressed: () {
+                        signInWithGoogle().whenComplete(() async {
+                          // String x = await signInWithGoogle();
+                          // if(!(x == "false")){
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomeWelcom(true);
+                              },
+                            ),
+                          );
+                          // }else{
+                          //   _showMaterialDialog();
+                          // }
+
+                        });
                       },
                     ),
                     ElevatedButton(
