@@ -1,10 +1,10 @@
 
-import '../views/medicine/AddMedcine/main_input.dart';
-import '../views/medicine/View%20Medicine/medicineView.dart';
-import '../views/medicine/ViewMedecineRecord/home.dart';
-import '../views/medicine/ViewTimes/timeHome.dart';
-import '../views/medicine/ViewTimes/times_list.dart';
-import '../views/medicine/attachmentsMedicine.dart';
+import '../Moduls/medicine/screen/AddMedcine/main_input.dart';
+import '../Moduls/medicine/screen/View%20Medicine/medicineView.dart';
+import '../Moduls/medicine/screen/ViewMedecineRecord/home.dart';
+import '../Moduls/medicine/screen/ViewTimes/timeHome.dart';
+import '../Moduls/medicine/screen/ViewTimes/times_list.dart';
+import '../Moduls/medicine/screen/attachmentsMedicine.dart';
 import 'package:flutter/material.dart';
 
 

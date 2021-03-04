@@ -1,4 +1,4 @@
-import '../models/medicine/alarm_info.dart';
+import '../Moduls/medicine/model/alarm_info.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 

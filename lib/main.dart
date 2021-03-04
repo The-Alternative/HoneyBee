@@ -1,13 +1,6 @@
-import 'dart:isolate';
-
-import 'Welcome/HomeWelcom.dart';
-import 'Welcome/home.dart';
 import 'utils/notifiers.dart';
 import 'utils/notifiredb.dart';
-import 'views/BMI/bmi1.dart';
-import 'views/children/Home.dart';
-import 'views/init.dart';
-import 'views/study/home.dart';
+import 'Moduls/sign_in/sign_in_with_google/screen/init.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';

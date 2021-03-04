@@ -1,15 +1,16 @@
-import '../views/medicine/google/upload.dart';
+import '../Moduls/medicine/screen//google/upload.dart';
 
-import '../services/sign_in.dart';
-import '../views/BMI/bmi1.dart';
-import '../views/children/Home.dart';
-import '../views/init.dart';
-import '../views/login_page.dart';
-import '../views/study/home.dart';
+import '../Moduls/sign_in/sign_in_with_google/service/sign_in.dart';
+import '../Moduls/bmi/screen/bmi1.dart';
+import '../Moduls/children/screen/Home.dart';
+import '../Moduls/study/screen/home.dart';
 import 'package:flutter/material.dart';
 
 import 'home.dart';
+import 'home.dart';
 class HomeWelcom extends StatelessWidget {
+  final bool isSignIn ;
+  HomeWelcom(this.isSignIn);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,7 @@ class HomeWelcom extends StatelessWidget {
       body: Padding(padding: EdgeInsets.all(100.1),
           child: Container(
             child:  Center(
-                child: Column(
+                child: ListView(
                   children: [
                     ElevatedButton(
                       child: Text('الدراسة'),
@@ -59,14 +60,36 @@ class HomeWelcom extends StatelessWidget {
                         );
                       },
                     ),
+                    (this.isSignIn == true)?
                     ElevatedButton(
                       child: Text('signOut'),
                       onPressed: () {
                         signOutGoogle();
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => App()),
+                          MaterialPageRoute(builder: (context) => HomeWelcom(false)),
                         );
+                      },
+                    ):
+                    ElevatedButton(
+                      child: Text('signIn'),
+                      onPressed: () {
+                        signInWithGoogle().whenComplete(() async {
+                          // String x = await signInWithGoogle();
+                          // if(!(x == "false")){
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomeWelcom(true);
+                              },
+                            ),
+                          );
+                          // }else{
+                          //   _showMaterialDialog();
+                          // }
+
+                        });
                       },
                     ),
                     ElevatedButton(
