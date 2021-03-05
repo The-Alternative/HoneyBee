@@ -1,9 +1,9 @@
-import '../Moduls/medicine/screen//google/upload.dart';
+import '../Modules/medicine/screen//google/upload.dart';
 
-import '../Moduls/sign_in/sign_in_with_google/service/sign_in.dart';
-import '../Moduls/bmi/screen/bmi1.dart';
-import '../Moduls/children/screen/Home.dart';
-import '../Moduls/study/screen/home.dart';
+import '../Modules/sign_in/sign_in_with_google/service/sign_in.dart';
+import '../Modules/bmi/screen/bmi1.dart';
+import '../Modules/children/screen/Home.dart';
+import '../Modules/study/screen/home.dart';
 import 'package:flutter/material.dart';
 
 import 'home.dart';

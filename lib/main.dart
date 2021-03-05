@@ -1,9 +1,10 @@
 import 'utils/notifiers.dart';
 import 'utils/notifiredb.dart';
-import 'Moduls/sign_in/sign_in_with_google/screen/init.dart';
+import 'Modules/sign_in/sign_in_with_google/screen/init.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'utils/service_locator.dart';
 
 bool result =false;
 
@@ -11,6 +12,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 FlutterLocalNotificationsPlugin();
 
 void main() async {
+  setupServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
 
   var initializationSettingsAndroid =
