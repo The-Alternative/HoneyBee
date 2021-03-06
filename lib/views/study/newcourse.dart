@@ -222,8 +222,6 @@ class _NewcourseState extends State<Newcourse> {
                               course.teacharnumber = teacharnumber;
                               course.image = _imageFile.path;
 
-                              helper.saveCourse(course);
-
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                   '/StudyHome',
                                   (Route<dynamic> route) => false);
