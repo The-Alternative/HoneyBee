@@ -222,9 +222,8 @@ class _NewcourseState extends State<Newcourse> {
                               course.teacharnumber = teacharnumber;
                               course.image = _imageFile.path;
 
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  '/StudyHome',
-                                  (Route<dynamic> route) => false);
+                              Navigator.pop(context);
+                              print('$namecourse');
                             },
                           ),
                           SizedBox(

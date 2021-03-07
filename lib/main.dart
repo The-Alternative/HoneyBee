@@ -54,17 +54,15 @@ class FirstRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-            primarySwatch: Colors.amber,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            primaryColor: Colors.amber,
-            primaryColorDark: Colors.amber,
-            fontFamily: 'Times'),
-        home: App(),
-        routes: <String, WidgetBuilder>{
-          '/StudyHome': (BuildContext context) => new StudyHome()
-        });
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+          primarySwatch: Colors.amber,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          primaryColor: Colors.amber,
+          primaryColorDark: Colors.amber,
+          fontFamily: 'Times'),
+      home: App(),
+    );
   }
 }
