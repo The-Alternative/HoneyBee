@@ -220,10 +220,12 @@ class _NewcourseState extends State<Newcourse> {
                               course.nameteachar = nameteachar;
                               course.email = email;
                               course.teacharnumber = teacharnumber;
-                              course.image = _imageFile.path;
 
-                              Navigator.pop(context);
-                              print('$namecourse');
+                              setState(() {
+                                helper.saveCourse(course);
+                              });
+
+                              Navigator.of(context).pop();
                             },
                           ),
                           SizedBox(

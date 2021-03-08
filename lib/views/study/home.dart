@@ -1,3 +1,5 @@
+import 'package:honeyBee/views/study/viewexam/home.exam.dart';
+
 import '../../controllers/study/coursecontroller.dart';
 import '../../models/study/course.dart';
 import '../../views/study/assignments.dart';
@@ -87,16 +89,7 @@ class _StudyHomeState extends State<StudyHome> {
             body: TabBarView(
               children: [
                 HomeCourse(),
-                new Center(
-                  child: Image(
-                    width: 280,
-                    height: 280,
-                    image: AssetImage(
-                      "assets/center.png",
-                    ),
-                    alignment: Alignment.center,
-                  ),
-                ),
+                HomeExam(),
               ],
             ),
             floatingActionButton: SpeedDial(

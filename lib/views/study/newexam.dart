@@ -1,17 +1,28 @@
-import '../../views/study/repet.dart';
-import '../../views/study/startdate.dart';
+import 'package:honeyBee/controllers/study/examcontroller.dart';
+import 'package:honeyBee/models/study/exam.dart';
+
+import 'repet.dart';
+import 'startdate.dart';
 import 'package:flutter/material.dart';
-import '../../views/study/lactuarappointments.dart';
+import 'lactuarappointments.dart';
 import 'package:intl/intl.dart';
 
-class Exam extends StatefulWidget {
+class NewExam extends StatefulWidget {
   @override
-  _ExamState createState() => _ExamState();
+  _NewExamState createState() => _NewExamState();
 }
 
-class _ExamState extends State<Exam> {
+class _NewExamState extends State<NewExam> {
   String date;
   String time;
+
+  ExamController helper;
+
+  @override
+  void initState() {
+    super.initState();
+    helper = ExamController();
+  }
 
   TimeOfDay timeOfDay = TimeOfDay.now();
   selectedTodotime(BuildContext context) async {
@@ -302,6 +313,13 @@ class _ExamState extends State<Exam> {
                               style:
                                   TextStyle(color: Colors.black, fontSize: 16)),
                           onPressed: () {
+                            Exam exam = Exam();
+                            exam.dateexam = date;
+                            exam.timeexam = time;
+                            print('$Exam');
+
+                            helper.saveexam(exam);
+
                             Navigator.of(context).pop();
                           },
                         ),

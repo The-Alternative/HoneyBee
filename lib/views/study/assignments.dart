@@ -1,4 +1,4 @@
-import '../../views/study/exam.dart';
+import 'newexam.dart';
 import '../../views/study/homework.dart';
 import '../../views/study/programstudy.dart';
 import 'package:flutter/material.dart';
@@ -173,7 +173,7 @@ class _AssignmentsState extends State<Assignments> {
                             child: null,
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => Exam()));
+                                  builder: (context) => NewExam()));
                             },
                           ),
                         ),

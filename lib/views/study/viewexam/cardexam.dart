@@ -2,28 +2,31 @@ import 'package:googleapis/androidpublisher/v3.dart';
 import 'package:googleapis/digitalassetlinks/v1.dart';
 import 'package:googleapis/games/v1.dart';
 import 'package:honeyBee/models/study/course.dart';
+import 'package:honeyBee/models/study/exam.dart';
 import 'package:honeyBee/services/study/courseservice.dart';
 
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:ui';
 
-class CardCourse extends StatefulWidget {
-  final Course course;
+import 'package:honeyBee/services/study/examservice.dart';
+
+class CardExam extends StatefulWidget {
+  final Exam exam;
   final Function setData;
 
-  CardCourse(this.course, this.setData);
+  CardExam(this.exam, this.setData);
   @override
   State<StatefulWidget> createState() {
-    return _CardCourse(this.course, this.setData);
+    return _CardExam(this.exam, this.setData);
   }
 }
 
-class _CardCourse extends State<CardCourse> {
-  CourseService helper = new CourseService();
-  Course course;
+class _CardExam extends State<CardExam> {
+  ExamService helper = new ExamService();
+  Exam exam;
   Function setData;
-  _CardCourse(this.course, this.setData);
+  _CardExam(this.exam, this.setData);
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +45,13 @@ class _CardCourse extends State<CardCourse> {
               SizedBox(
                 width: 10,
               ),
-              Text('${course.namecourse}'),
+              Text('${exam.dateexam}'),
             ],
           ),
           trailing: IconButton(
             icon: Icon(Icons.delete),
             onPressed: () {
-              helper.deleteCourse(course);
+              helper.deleteexam(exam);
             },
           ),
         ),

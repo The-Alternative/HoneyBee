@@ -14,6 +14,12 @@ class DatabaseConfig {
   final String columnemail = 'email';
   final String columnteacharnumber = 'teacharnumber';
   final String columnimage = 'image';
+  ////////(2)
+  final String exams = 'exams';
+  final String examid = 'id';
+  final String columnexamcourse = 'examcourse';
+  final String columndateexam = 'dateexam';
+  final String columntimeexam = 'timeexam';
   /////////////////////////////BMI////////////////////////////////////////////
   final String cloumnId = 'id';
   final String cloumnHeight = 'height';
@@ -102,14 +108,18 @@ class DatabaseConfig {
   }
 
   void _oncreate(Database db, int newVersion) async {
-    var coursesql =
-        "CREATE TABLE $courses($columnid INTEGER PRIMARY KEY,"
-        " $columnnamecourse TEXT ,"
+    var coursesql = "CREATE TABLE $courses($columnid INTEGER PRIMARY KEY,"
+        " $columnexamcourse TEXT ,"
         "$columnnameteachar TEXT , "
         "$columnemail TEXT ,"
         " $columnteacharnumber TEXT , "
         "$columnimage TEXT)";
     await db.execute(coursesql);
+
+    var examsql = "CREATE TABLE $exams($examid INTEGER PRIMARY KEY ,"
+        "$columndateexam TEXT,$columnexamcourse TEXT,$columntimeexam TEXT)";
+    await db.execute(examsql);
+
     var descsql = "CREATE TABLE $descTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnHeight TEXT,$cloumnWeight TEXT,$cloumnBmi TEXT,$cloumnDate TEXT,$columnComment TEXT)";
     await db.execute(descsql);
@@ -126,7 +136,8 @@ class DatabaseConfig {
         "$cloumnTempreture INTEGER , $cloumnIsActive INTEGER , $cloumnCreatedDate TEXT , $cloumnChildId INTEGER ,"
         "FOREIGN KEY ($cloumnChildId) REFERENCES $childTable ($cloumnId))";
     await db.execute(eventSql);
-    var developmentSql = "CREATE TABLE $developmentTable ($cloumnId INTEGER PRIMARY KEY ,"
+    var developmentSql =
+        "CREATE TABLE $developmentTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnName TEXT , $cloumnNote TEXT , $cloumnTall INTEGER , $cloumnWeight INTEGER ,"
         "$cloumnTempreture INTEGER , $cloumnIsActive INTEGER , $cloumnCreatedDate TEXT , $cloumnChildId INTEGER ,"
         "FOREIGN KEY ($cloumnChildId) REFERENCES $childTable ($cloumnId))";
@@ -136,9 +147,11 @@ class DatabaseConfig {
         " $cloumnIsActive INTEGER , $cloumnCreatedDate TEXT , $cloumnTypeId INTEGER ,"
         "FOREIGN KEY ($cloumnTypeId) REFERENCES $habitTypeTable ($cloumnId))";
     await db.execute(habitSql);
-    var habitTypeSql = "CREATE TABLE $habitTypeTable ($cloumnId INTEGER PRIMARY KEY ,$cloumnName TEXT )";
+    var habitTypeSql =
+        "CREATE TABLE $habitTypeTable ($cloumnId INTEGER PRIMARY KEY ,$cloumnName TEXT )";
     await db.execute(habitTypeSql);
-    var childHabitSql = "CREATE TABLE $childHabitTable ($cloumnId INTEGER PRIMARY KEY ,"
+    var childHabitSql =
+        "CREATE TABLE $childHabitTable ($cloumnId INTEGER PRIMARY KEY ,"
         " $cloumnIsActive INTEGER , $cloumnCreatedDate TEXT , $cloumnHabitId INTEGER ,$cloumnChildId INTEGER )";
     await db.execute(childHabitSql);
     var mediaSql = "CREATE TABLE $mediaTable ($cloumnId INTEGER PRIMARY KEY ,"

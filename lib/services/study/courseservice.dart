@@ -2,8 +2,6 @@ import '../../models/study/course.dart';
 import '../../utils/databaseconfig.dart';
 
 import 'dart:async';
-import '../../models/study/course.dart';
-import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CourseService {
@@ -20,11 +18,7 @@ class CourseService {
   Future<int> saveCourse(Course course) async {
     var dbClient = await db.honeyBee;
     int result = await dbClient.insert("$courses", course.toMap());
-
-    print(result);
-
     print('basel:$result');
-
     return result;
   }
 
