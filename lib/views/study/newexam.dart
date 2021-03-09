@@ -1,6 +1,5 @@
 import 'package:honeyBee/controllers/study/examcontroller.dart';
 import 'package:honeyBee/models/study/exam.dart';
-
 import 'repet.dart';
 import 'startdate.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +14,8 @@ class NewExam extends StatefulWidget {
 class _NewExamState extends State<NewExam> {
   String date;
   String time;
+  int id;
+  String namecourse;
 
   ExamController helper;
 
@@ -314,6 +315,7 @@ class _NewExamState extends State<NewExam> {
                                   TextStyle(color: Colors.black, fontSize: 16)),
                           onPressed: () {
                             Exam exam = Exam();
+
                             exam.dateexam = date;
                             exam.timeexam = time;
                             print('$Exam');

@@ -18,28 +18,28 @@ class ExamService {
   final DatabaseConfig db = new DatabaseConfig();
 
   Future<int> saveexam(Exam exam) async {
-    var dbClient = await db.honeyBee;
-    int result = await dbClient.insert("$exams", exam.toMap());
+    var dbExam = await db.honeyBee;
+    int result = await dbExam.insert("$exams", exam.toMap());
     print('baseeeeeeeeeeeeeeeeeeeeel:$result');
     return result;
   }
 
   Future<List> getAllexam() async {
-    var dbClient = await db.honeyBee;
+    var dbExam = await db.honeyBee;
     var sql = "SELECT * FROM $exams";
-    List result = await dbClient.rawQuery(sql);
+    List result = await dbExam.rawQuery(sql);
     return result.toList();
   }
 
   Future<int> updateExam(Exam exam) async {
-    var dbClient = await db.honeyBee;
-    return await dbClient
+    var dbExam = await db.honeyBee;
+    return await dbExam
         .update(exams, exam.toMap(), where: "$examid", whereArgs: [exam.id]);
   }
 
   Future<int> deleteexam(Exam exam) async {
-    var dbClient = await db.honeyBee;
-    return await dbClient.delete(exams, where: "$examid = ${exam.id}");
+    var dbExam = await db.honeyBee;
+    return await dbExam.delete(exams, where: "$examid = ${exam.id}");
   }
 
   Future<List<Map<String, dynamic>>> getInfo(table) async {
@@ -50,7 +50,7 @@ class ExamService {
   }
 
   close() async {
-    var dbClient = await db.honeyBee;
-    return await dbClient.close();
+    var dbExam = await db.honeyBee;
+    return await dbExam.close();
   }
 }

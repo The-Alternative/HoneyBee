@@ -220,6 +220,7 @@ class _NewcourseState extends State<Newcourse> {
                               course.nameteachar = nameteachar;
                               course.email = email;
                               course.teacharnumber = teacharnumber;
+                              course.image = _imageFile.path;
 
                               setState(() {
                                 helper.saveCourse(course);

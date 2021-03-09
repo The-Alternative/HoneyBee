@@ -37,8 +37,8 @@ class _CardCourse extends State<CardCourse> {
           title: Row(
             children: [
               CircleAvatar(
-                  // backgroundImage: AssetImage('${course.image}'),
-                  ),
+                backgroundImage: AssetImage('${course.image}'),
+              ),
               SizedBox(
                 width: 10,
               ),
