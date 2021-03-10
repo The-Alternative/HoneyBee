@@ -13,6 +13,7 @@ factory Diary.fromMap(Map<String, dynamic> json) => Diary(
   description:json["description"],
   date:json["date"],
   image:json["image"],
+
 );
 
 Map<String, dynamic> toMap() => {

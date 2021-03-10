@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:video_player/video_player.dart';
 
 
 class Diaries extends StatefulWidget {
@@ -26,9 +27,16 @@ class _DiariesState extends State<Diaries> {
   DatabaseConfig dbs = new DatabaseConfig();
   _DiariesState(this.diary,this.appTitle);
 
+  File gallery;
   String _imagePath;
   File _image;
   final picker = ImagePicker();
+
+  VideoPlayerController _controller;
+  Future<void> _initializeVideoPlayerFuture;
+  File videoFile;
+  String _videoPath;
+
 
   DiaryController db = new DiaryController();
 
@@ -36,6 +44,7 @@ class _DiariesState extends State<Diaries> {
 
   TextEditingController _addressController;
   TextEditingController _descriptionController ;
+
 
   @override
   void initState(){
@@ -45,15 +54,23 @@ class _DiariesState extends State<Diaries> {
     _descriptionController = new TextEditingController(text: "");
     _imagePath = "";
     _image = File(_imagePath);
+    _videoPath ="";
+    videoFile = File(_videoPath);
 
   }
+  @override
+  void dispose() {
+    _controller.play();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    
+
     _addressController.text = diary.address;
     _descriptionController.text =diary.description;
-    
+
     return  MaterialApp(
         debugShowCheckedModeBanner: false,
         home:
@@ -87,7 +104,47 @@ class _DiariesState extends State<Diaries> {
                   ],
                 ),
               ),
-              body: Padding(
+              body:
+    // Column(
+              //   children: <Widget>[
+              //     Visibility(
+              //       visible: _controller != null,
+              //       child: FutureBuilder(
+              //         future: _initializeVideoPlayerFuture,
+              //         builder: (context, snapshot) {
+              //           if (snapshot.connectionState == ConnectionState.done) {
+              //             return AspectRatio(
+              //               aspectRatio: _controller.value.aspectRatio,
+              //               child: VideoPlayer(_controller),
+              //             );
+              //           } else {
+              //             return Center(child: CircularProgressIndicator());
+              //           }
+              //           },),),
+              //     RaisedButton(
+              //       child: Text("Video"),
+              //       onPressed: () {
+              //         getVideo();},),],
+              // ),
+              // floatingActionButton: _controller == null
+              //     ? null
+              //     : FloatingActionButton(
+              //   onPressed: () {
+              //     setState(() {
+              //       if (_controller.value.isPlaying) {
+              //         _controller.pause();
+              //       } else {
+              //         _controller.play();
+              //       }
+              //     });
+              //     },
+              //   child: Icon(
+              //     _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+              //   ),
+              // ), // This trailing comma makes auto-formatting nicer for build methods.
+
+
+              Padding(
                 padding: EdgeInsets.all(0),
                 child: ListView(
                   children: [
@@ -190,33 +247,59 @@ class _DiariesState extends State<Diaries> {
 
                     Row(
                         children: [
+                          // Container(
+                          //   height: 300,
+                          //   width: MediaQuery.of(context).size.width,
+                          //   child: gallery == null
+                          //     ?Center(child: new Text("sorry"),):
+                          //       Center(child: new Image.file(gallery),),)
+                          //   Visibility(
+                          //           visible: _controller != null,
+                          //           child: FutureBuilder(
+                          //             future: _initializeVideoPlayerFuture,
+                          //             builder: (context, snapshot) {
+                          //               if (snapshot.connectionState == ConnectionState.done) {
+                          //                 return AspectRatio(
+                          //                   aspectRatio: _controller.value.aspectRatio,
+                          //                   child: VideoPlayer(_controller),
+                          //                 );
+                          //               } else {
+                          //                 return Center(child: CircularProgressIndicator());
+                          //               }
+                          //               },),),
+                          // ),
+
                           Container(
                            // margin: const EdgeInsets.only(top:10),
-                            height: 230,
+                            height: 300,
                             width:MediaQuery.of(context).size.width,
-                            child:_imagePath == ''
+                            child:
+                            _imagePath == ''
                                 ? Text('')
                                 : Container(
-                              child:Image.file(_image,fit: BoxFit.cover,) ,
+                              child:Image.file(
+                                _image,
+                                width: 400,
+                                height: 400,
+                                fit: BoxFit.cover,) ,
                             ),
                           )
                         ]
                     ),
-                    //Padding(padding: EdgeInsets.only(top: 1,bottom: 1)),
                     Divider(color: Colors.grey,),
                     Container(height: 30,
                         margin:const EdgeInsets.only(top: 0,left: 0,right: 0,bottom: 0),
-                     // padding: EdgeInsets.all(1),
                       child: FlatButton(
                         child: Row(
                           children: [
                             Icon(Icons.camera_alt_outlined,color: Colors.blue[300],),
                             SizedBox(width: 20,),
-                            Text("التقاط صورة"),
+                            Text("التقاط صورة/فيديو"),
                           ],
                         ),
                         onPressed: (){
                           getImageFromCamera();
+                         // getVideoFromCamera();
                         },
                       ),
                     ),
@@ -230,16 +313,33 @@ class _DiariesState extends State<Diaries> {
                           children: [
                             Icon(Icons.photo_library_outlined,color: Colors.blue[300],),
                             SizedBox(width: 20,),
-                            Text("تحميل صور"),
+                            Text("تحميل صورة/فيديو"),
                           ],
                         ),
                         onPressed: (){
                           getImageFromGallery();
+                         // getVideo();
                         },
                       ),
                     ),
                     Divider(color: Colors.grey,),
                   ],
+                ),
+              ),
+              floatingActionButton: _controller == null
+                  ? null
+                  : FloatingActionButton(
+                onPressed: () {
+                  setState(() {
+                    if (_controller.value.isPlaying) {
+                      _controller.pause();
+                    } else {
+                      _controller.play();
+                    }
+                  });
+                },
+                child: Icon(
+                  _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
                 ),
               ),
               bottomNavigationBar: new Icon(Icons.home,color: Colors.black12,size: 50.2,),
@@ -248,7 +348,17 @@ class _DiariesState extends State<Diaries> {
     );
 
   }
+  Future getVideoFromCamera()async{
+  final pickedFile = await picker.getVideo(source: ImageSource.camera);
+  setState(() {
+    if (pickedFile != null) {
+      videoFile = File(pickedFile.path);
+      _videoPath = pickedFile.path;
+    } else {
+      print('No image selected.');
+    }});
 
+}
   Future getImageFromCamera() async {
 
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -264,7 +374,7 @@ class _DiariesState extends State<Diaries> {
   }
   Future getImageFromGallery() async {
 
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.getImage(source: ImageSource.gallery,imageQuality: 50);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
@@ -277,7 +387,6 @@ class _DiariesState extends State<Diaries> {
 
   void save() async{
     int result;
-
     if(diary.id == null) {
       int a = await db.saveDiary(Diary(
         address:_addressController.text,
@@ -301,6 +410,18 @@ class _DiariesState extends State<Diaries> {
       content: Text(msg),
     );
     showDialog(context: context,builder: (_) => alertDialog );
+  }
+  Future getVideo() async {
+    Future<File> _videoFile =
+    ImagePicker.pickVideo(source: ImageSource.gallery);
+    _videoFile.then((file) async {
+      setState(() {
+        videoFile = file;
+        _controller = VideoPlayerController.file(videoFile);
+        _initializeVideoPlayerFuture = _controller.initialize();
+        _controller.setLooping(true);
+      });
+    });
   }
 }
 

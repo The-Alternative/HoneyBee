@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:diary/models/diary.dart';
+// import 'package:diary/models/diary.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -14,6 +14,7 @@ class DatabaseConfig {
   final String columnDescription = 'description';
   final String columnDate = 'date';
   final String columnImage = 'image';
+
 
   static DatabaseConfig databaseConfig;
 
@@ -33,36 +34,8 @@ class DatabaseConfig {
   }
 
   void _oncreate(Database db, int newVersion) async {
-    var sql =
-        "CREATE TABLE $diaryTable("
-        "$columnId INTEGER PRIMARY KEY, $columnAddress TEXT , $columnDescription TEXT , $columnDate TEXT , $columnImage TEXT)";
-    await db.execute(sql);
-
+    var descsql = "CREATE TABLE $diaryTable ($columnId INTEGER PRIMARY KEY ,"
+        "$columnAddress TEXT,$columnDescription TEXT,$columnDate TEXT,$columnImage TEXT)";
+    await db.execute(descsql);
   }
-
-
-
-  // Future<List<Diary>> getAll() async {
-  //   List<Diary> _cardlist = [];
-  //   var dbClient = await this.honeyBee;
-  //   var result = await dbClient.query(diaryTable);
-  //   result.forEach((element) {
-  //     var diary = Diary.fromMap(element);
-  //     _cardlist.add(diary);
-  //   });
-  //
-  //   return _cardlist;
-  // }
-
-
-
-  // Future<List<Diary>> getAllWords() async {
-  //   final db = await _honeyBee;
-  //   var response = await db.query(diaryTable);
-  //   List<Diary> list = response.map((c) => Diary.fromMap(c)).toList();
-  //   return list;
-  // }
-
-//getting search results
-
 }

@@ -13,6 +13,7 @@ class DiaryService{
   final String columnDescription = 'description';
   final String columnDate = 'date';
   final String columnImage = 'image';
+  // final String columnVideo = 'video';
 
   final DatabaseConfig db = new DatabaseConfig();
 
@@ -21,6 +22,14 @@ class DiaryService{
     int result = await dbClient.insert("$diaryTable", diary.toMap());
     return result;
   }
+
+  Future<List> searchDiary(int id,String text) async{
+    var dbClient = await db.honeyBee;
+    var sql ="SELECT * FROM $diaryTable Where $columnId = $id AND ($columnAddress LIKE '%$text%')";
+    List result = await dbClient.rawQuery(sql);
+    return result.toList();
+  }
+
   Future<List<Diary>> getAll() async {
     List<Diary> _cardlist = [];
     var dbClient = await db.honeyBee;
@@ -43,6 +52,13 @@ class DiaryService{
     return diarys;
   }
 
+
+  Future<List<Map<String, dynamic>>> getDiaryMapList() async{
+    var dbClient = await db.honeyBee;
+    var result = await dbClient.query(diaryTable,orderBy: "$columnId ASC");
+    return result;
+  }
+
   Future<List> getAllDiary() async{
     var dbClient = await db.honeyBee;
     var sql ="SELECT * FROM $diaryTable";
@@ -61,18 +77,6 @@ class DiaryService{
     // );
   }
 
-  Future<List> searchDiary(int id,String text) async{
-    var dbClient = await db.honeyBee;
-    var sql ="SELECT * FROM $diaryTable Where $columnId = $id AND ($columnAddress LIKE '%$text%')";
-    List result = await dbClient.rawQuery(sql);
-    return result.toList();
-  }
-
-  Future<List<Map<String, dynamic>>> getDiaryMapList() async{
-    var dbClient = await db.honeyBee;
-    var result = await dbClient.query(diaryTable,orderBy: "$columnId ASC");
-    return result;
-  }
 
   Future<int> deleteobj(int id) async {
     var dbClient = await db.honeyBee;

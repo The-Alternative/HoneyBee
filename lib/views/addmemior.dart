@@ -25,20 +25,7 @@ class _FirstPageState extends State<FirstPage> {
   List<Diary> diaryL =new List();
 
   bool widgetVisible = true ;
-  // bool textvisible = true;
-  //
-  //
-  // void showText(){
-  //   setState(() {
-  //     textvisible = true ;
-  //   });
-  // }
-  // void hideText(){
-  //   setState(() {
-  //
-  //     textvisible = false ;
-  //   });
-  // }
+  bool address;
 
 
   void showWidget(){
@@ -60,32 +47,18 @@ class _FirstPageState extends State<FirstPage> {
 
   Future<List<Diary>> _futureCardList;
   List<Diary> _cardList= new List();
-  Diary list;
+
+  // Diary list;
   String imagePath = '';
   List<String> diaryImages = [];
-
+  // List<Diary> diarylist =new List();
+  TextEditingController addressCoontroller;
 
   @override
   void initState() {
 
     super.initState();
-    db.searchDiary(widget.diary.id,widget.text).then((allChildren) {
-      setState(() {
-        allChildren.forEach((diary1) {
-          diaryL.add(Diary.fromMap(diary1));
-        });
-        // for(int j = 0 ; j < diaryL.length ; j ++){
-        //   // healthMedia.add(List());
-        //   mediaDb.getItemMedias(1, childHealths[j].id).then((hmedia) {
-        //     setState(() {
-        //       hmedia.forEach((hemedia) {
-        //         healthMedia[j].add(Media.fromeMap(hemedia));
-        //       });
-        //     });
-        //   });
-        // }
-      });
-    });
+
     db.getAllDiary().then((getall) {
       setState(() {
         getall.forEach((diary) {
@@ -96,6 +69,8 @@ class _FirstPageState extends State<FirstPage> {
         diaryImages.add(_cardList[i].image);
       }
     });
+    address =false;
+    addressCoontroller = new TextEditingController(text: "");
   }
 
   @override
@@ -159,24 +134,45 @@ class _FirstPageState extends State<FirstPage> {
               ),
             Container(
                   height: 470,
-                  margin: EdgeInsets.only(top: 10),
                   child: getListview()
             ),
 
-             Container(
-              margin:const EdgeInsets.only(top: 0,left: 30,right: 30,bottom: 0),
-              child: RaisedButton(
-                onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectIcons()));
-                },
-                child: Text("إنشاء منشور",style: TextStyle(fontSize: 20,color: Colors.white),),
-                color: Colors.blue[300],
-              ),
-            ),
+             // Container(
+             //  margin:const EdgeInsets.only(top: 0,left: 30,right: 30,bottom: 0),
+             //
+             //  child:  FloatingActionButton(
+             //      onPressed: () {
+             //        setState(() {
+             //        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectIcons()));
+             //        });
+             //      },
+             //      child: Center(
+             //        child: Icon(Icons.add,size: 40,
+             //        ),
+             //      ),
+             //    ),
+             //  )
+              // RaisedButton(
+              //   onPressed: (){
+              //     Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectIcons()));
+              //   },
+              //   child: Text("إنشاء منشور",style: TextStyle(fontSize: 20,color: Colors.white),),
+              //   color: Colors.blue[300],
+              // ),
+
           ],
         ),
       ),
-    ))
+          floatingActionButton: new FloatingActionButton(
+
+            onPressed:() {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectIcons()));
+            },
+            child: new Icon(Icons.add,size: 50.0,),
+            backgroundColor: Colors.blue[400],
+          ),
+    )
+        )
     );
   }
 
@@ -190,9 +186,11 @@ Widget getListview(){
           else
             if(_cardList.length != 0)
             return Container(
-              color: Colors.grey[200],
+              color: Colors.grey[300],
+
                child:
               ListView.builder(
+
                 reverse: true,
                   itemCount: _cardList.length,
                   itemBuilder: (BuildContext context, int position) {
@@ -208,11 +206,12 @@ Widget getListview(){
                            :
                        Column(
                          children: <Widget>[
+                           Padding(padding: EdgeInsets.only(top: 10,)),
                            Row(
                     children: [
-                      Padding(padding: EdgeInsets.only(right: 240,)),
+                      Padding(padding: EdgeInsets.only(right: 230,)),
                       Expanded(child: Text(_cardList[position].date.substring(0,16),
-                        style: TextStyle(color: Colors.grey[500], fontWeight: FontWeight.bold,fontSize: 12),)),
+                        style: TextStyle(color: Colors.grey[500], fontWeight: FontWeight.bold,fontSize: 13),)),
                     ],
                   ),
                   Container(
@@ -296,9 +295,10 @@ Widget getListview(){
                                 child: _cardList[position].image == ""
                                     ? Container(height:1,color: Colors.white,)
                                     : Container(
-                                    height: 250,
+                                    height: 300,
                                     width:MediaQuery.of(context).size.width,
-                                    child: Image.file(File(_cardList[position].image),fit: BoxFit.cover,)),
+                                    child: Image.file(File(_cardList[position].image),
+                                      fit: BoxFit.cover,),),
                           ),
                     ],
                   ),
@@ -332,7 +332,7 @@ Widget getListview(){
   }
 
   void updatelistview(){
-   final Future<Database> dbb = dbs.intDb();
+   final  dbb = dbs.intDb();
    dbb.then((database){
      Future<List<Diary>> diarys = db. getdiaryList();
      diarys.then((thelist) {
