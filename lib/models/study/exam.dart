@@ -1,26 +1,26 @@
 class Exam {
   int id;
-  String namecourse, dateexam, timeexam;
+  String examcourse, dateexam, timeexam;
 
-  Exam({this.id, this.namecourse, this.dateexam, this.timeexam});
+  Exam({this.id, this.examcourse, this.dateexam, this.timeexam});
 
   factory Exam.fromMap(Map<String, dynamic> json) => Exam(
         id: json["id"],
-        namecourse: json["namecourse"],
+        examcourse: json["examcourse"],
         dateexam: json["dateexam"],
         timeexam: json["timeexam"],
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "namecourse": namecourse,
+        "examcourse": examcourse,
         "dateexam": dateexam,
         "timeexam": timeexam,
       };
 
   Exam courseMapToObject(Map<String, dynamic> json) => Exam(
         id: json["id"],
-        namecourse: json["namecourse"],
+        examcourse: json["examcourse"],
         dateexam: json["dateexam"],
         timeexam: json["timeexam"],
       );

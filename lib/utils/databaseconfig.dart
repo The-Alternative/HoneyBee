@@ -109,7 +109,7 @@ class DatabaseConfig {
 
   void _oncreate(Database db, int newVersion) async {
     var coursesql = "CREATE TABLE $courses($columnid INTEGER PRIMARY KEY,"
-        " $columnexamcourse TEXT ,"
+        " $columnnamecourse TEXT ,"
         "$columnnameteachar TEXT , "
         "$columnemail TEXT ,"
         " $columnteacharnumber TEXT , "

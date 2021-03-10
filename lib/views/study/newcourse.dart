@@ -221,6 +221,7 @@ class _NewcourseState extends State<Newcourse> {
                               course.email = email;
                               course.teacharnumber = teacharnumber;
                               course.image = _imageFile.path;
+                              print("$_imageFile");
 
                               setState(() {
                                 helper.saveCourse(course);

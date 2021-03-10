@@ -15,7 +15,7 @@ class _NewExamState extends State<NewExam> {
   String date;
   String time;
   int id;
-  String namecourse;
+  String examcourse;
 
   ExamController helper;
 
@@ -129,15 +129,19 @@ class _NewExamState extends State<NewExam> {
                       height: 15,
                     ),
                     TextFormField(
-                      cursorColor: Colors.amber[400],
-                      cursorHeight: 25,
-                      textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                          hintText: 'اسم المقرر',
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.amber[400]))),
-                    ),
+                        cursorColor: Colors.amber[400],
+                        cursorHeight: 25,
+                        textAlign: TextAlign.right,
+                        decoration: InputDecoration(
+                            hintText: 'اسم المقرر',
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber[400]))),
+                        onChanged: (value) {
+                          setState(() {
+                            examcourse = value;
+                          });
+                        }),
                     SizedBox(
                       height: 60,
                     ),
@@ -318,6 +322,7 @@ class _NewExamState extends State<NewExam> {
 
                             exam.dateexam = date;
                             exam.timeexam = time;
+                            exam.examcourse = examcourse;
                             print('$Exam');
 
                             helper.saveexam(exam);
