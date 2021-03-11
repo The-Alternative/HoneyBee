@@ -1,7 +1,7 @@
-import 'package:bassel/controllers/study/coursecontroller.dart';
-import 'package:bassel/models/study/course.dart';
-import 'package:bassel/views/study/assignments.dart';
-import 'package:bassel/views/study/newcourse.dart';
+import 'package:HoneyBee/controllers/study/coursecontroller.dart';
+import 'package:HoneyBee/models/study/course.dart';
+import 'package:HoneyBee/views/study/assignments.dart';
+import 'package:HoneyBee/views/study/newcourse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 

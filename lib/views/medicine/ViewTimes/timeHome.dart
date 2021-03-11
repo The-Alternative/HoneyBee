@@ -1,13 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:bassel/controllers/medicine/cardinfoController.dart';
-import 'package:bassel/controllers/medicine/medicineDayController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/controllers/medicine/timesDayesController.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/Patient.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/views/medicine/ViewTimes/timeList.dart';
-import 'package:bassel/views/medicine/ViewTimes/times_list.dart';
+import 'package:HoneyBee/controllers/medicine/cardinfoController.dart';
+import 'package:HoneyBee/controllers/medicine/medicineDayController.dart';
+import 'package:HoneyBee/controllers/medicine/patientController.dart';
+import 'package:HoneyBee/controllers/medicine/timesDayesController.dart';
+import 'package:HoneyBee/models/medicine/MedicineInfo.dart';
+import 'package:HoneyBee/models/medicine/Patient.dart';
+import 'package:HoneyBee/models/medicine/medicineDays.dart';
+import 'package:HoneyBee/views/medicine/ViewTimes/timeList.dart';
+import 'package:HoneyBee/views/medicine/ViewTimes/times_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

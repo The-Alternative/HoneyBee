@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bassel/views/study/lactuardate.dart';
+import 'package:HoneyBee/views/study/lactuardate.dart';
 
 class Assignments extends StatefulWidget {
   @override

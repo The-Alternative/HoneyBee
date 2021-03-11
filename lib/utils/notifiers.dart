@@ -1,5 +1,5 @@
 
-import 'package:bassel/Config/general.dart';
+import 'package:HoneyBee/Config/general.dart';
 import 'package:flutter/material.dart';
 
 class SingleNotifier extends ChangeNotifier {

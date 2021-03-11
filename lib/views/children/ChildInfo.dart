@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:bassel/views/children/AddChild.dart';
-import 'package:bassel/controllers/children/childController.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/views/children/Search.dart';
-import 'package:bassel/views/children/SearchResults.dart';
+import 'package:HoneyBee/views/children/AddChild.dart';
+import 'package:HoneyBee/controllers/children/childController.dart';
+import 'package:HoneyBee/models/children/child.dart';
+import 'package:HoneyBee/views/children/Search.dart';
+import 'package:HoneyBee/views/children/SearchResults.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

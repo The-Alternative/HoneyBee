@@ -1,4 +1,4 @@
-import 'package:bassel/models/medicine/alarm_info.dart';
+import 'package:HoneyBee/models/medicine/alarm_info.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../main.dart';

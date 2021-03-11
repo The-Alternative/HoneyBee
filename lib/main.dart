@@ -1,13 +1,6 @@
-import 'dart:isolate';
-
-import 'package:bassel/Welcome/HomeWelcom.dart';
-import 'package:bassel/Welcome/home.dart';
-import 'package:bassel/utils/notifiers.dart';
-import 'package:bassel/utils/notifiredb.dart';
-import 'package:bassel/views/BMI/bmi1.dart';
-import 'package:bassel/views/children/Home.dart';
-import 'package:bassel/views/init.dart';
-import 'package:bassel/views/study/home.dart';
+import 'package:HoneyBee/utils/notifiers.dart';
+import 'package:HoneyBee/utils/notifiredb.dart';
+import 'package:HoneyBee/views/init.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';

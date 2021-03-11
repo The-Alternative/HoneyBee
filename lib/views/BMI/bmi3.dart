@@ -1,6 +1,6 @@
 
-import 'package:bassel/controllers/bmi/desccontroller.dart';
-import 'package:bassel/models/bmi/bmimodels.dart';
+import 'package:HoneyBee/controllers/bmi/desccontroller.dart';
+import 'package:HoneyBee/models/bmi/bmimodels.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';

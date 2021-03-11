@@ -1,12 +1,12 @@
 import 'dart:io';
-import 'package:bassel/controllers/medicine/medicineDayController.dart';
-import 'package:bassel/controllers/medicine/medicineViewController.dart';
-import 'package:bassel/controllers/medicine/timesDayesController.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
-import 'package:bassel/notifications/notifications.dart';
-import 'package:bassel/utils/alarm_helper.dart';
+import 'package:HoneyBee/controllers/medicine/medicineDayController.dart';
+import 'package:HoneyBee/controllers/medicine/medicineViewController.dart';
+import 'package:HoneyBee/controllers/medicine/timesDayesController.dart';
+import 'package:HoneyBee/models/medicine/MedicineInfo.dart';
+import 'package:HoneyBee/models/medicine/MedicineTimes.dart';
+import 'package:HoneyBee/models/medicine/medicineDays.dart';
+import 'package:HoneyBee/notifications/notifications.dart';
+import 'package:HoneyBee/utils/alarm_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

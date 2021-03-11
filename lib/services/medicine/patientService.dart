@@ -1,6 +1,6 @@
-import 'package:bassel/Config/general.dart';
-import 'package:bassel/utils/databaseconfig.dart';
-import 'package:bassel/models/medicine/Patient.dart';
+import 'package:HoneyBee/Config/general.dart';
+import 'package:HoneyBee/utils/databaseconfig.dart';
+import 'package:HoneyBee/models/medicine/Patient.dart';
 import 'package:sqflite/sqflite.dart';
 
 class PatientService{
@@ -24,18 +24,23 @@ class PatientService{
 
 
   Future<int> insertPatient(Patient patient) async {
+    int id =    await getIdPatient(patient.patName);
     bool test = await testPatientNumber();
+    if(id ==0)
+      {
     if( test)
     {
     Database db = await this._medicineDatabase.honeyBee;
     try {
-      var result = await db.insert(patientTable, patient.toMap());
-      return result;
+       id = await db.insert(patientTable, patient.toMap());
+      return id;
     } catch (e) {
       return getIdPatient(patient.patName);
     }
     }
-    else return 0;
+    return 0;
+      }
+    else return id;
 
   }
 

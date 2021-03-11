@@ -1,16 +1,12 @@
-import 'package:bassel/views/children/AddChild.dart';
-import 'package:bassel/controllers/children/childController.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/views/children/ChildDevelopment.dart';
-import 'package:bassel/views/children/ChildEvents.dart';
-import 'package:bassel/views/children/ChildHealth.dart';
-import 'package:bassel/views/children/ChildInfo.dart';
+import 'package:HoneyBee/models/children/child.dart';
+import 'package:HoneyBee/views/children/ChildDevelopment.dart';
+import 'package:HoneyBee/views/children/ChildEvents.dart';
+import 'package:HoneyBee/views/children/ChildHealth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'ChildHabits.dart';
-import 'Habits.dart';
 
 
 class Search extends StatefulWidget{

@@ -1,10 +1,10 @@
 
-import 'package:bassel/controllers/medicine/medicineController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/Patient.dart';
-import 'package:bassel/views/medicine/AddMedcine/main_update.dart';
-import 'package:bassel/views/medicine/ViewTimes/times_list.dart';
+import 'package:HoneyBee/controllers/medicine/medicineController.dart';
+import 'package:HoneyBee/controllers/medicine/patientController.dart';
+import 'package:HoneyBee/models/medicine/MedicineInfo.dart';
+import 'package:HoneyBee/models/medicine/Patient.dart';
+import 'package:HoneyBee/views/medicine/AddMedcine/main_update.dart';
+import 'package:HoneyBee/views/medicine/ViewTimes/times_list.dart';
 import 'package:flutter/material.dart';
 
 class MedicineView extends StatefulWidget {

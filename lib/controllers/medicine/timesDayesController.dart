@@ -1,8 +1,8 @@
 
 import 'dart:async';
 
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/services/medicine/timesDayesService.dart';
+import 'package:HoneyBee/models/medicine/MedicineTimes.dart';
+import 'package:HoneyBee/services/medicine/timesDayesService.dart';
 
 class TimesDayesController {
 

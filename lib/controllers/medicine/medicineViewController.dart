@@ -1,7 +1,6 @@
 
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/services/medicine/medicineViewService.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:HoneyBee/models/medicine/MedicineInfo.dart';
+import 'package:HoneyBee/services/medicine/medicineViewService.dart';
 import 'dart:async';
 
 class MedicineViewController {

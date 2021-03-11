@@ -1,7 +1,7 @@
 
 import 'dart:async';
 
-import 'package:bassel/services/medicine/diagonService.dart';
+import 'package:HoneyBee/services/medicine/diagonService.dart';
 
 class DiagonController {
 

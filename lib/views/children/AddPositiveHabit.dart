@@ -1,10 +1,5 @@
-import 'package:bassel/controllers/children/eventController.dart';
-import 'package:bassel/controllers/children/habitController.dart';
-import 'package:bassel/controllers/children/healthController.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/models/children/event.dart';
-import 'package:bassel/models/children/habit.dart';
-import 'package:bassel/models/children/health.dart';
+import 'package:HoneyBee/controllers/children/habitController.dart';
+import 'package:HoneyBee/models/children/habit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

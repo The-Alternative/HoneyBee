@@ -1,4 +1,4 @@
-import 'package:bassel/views/login_page.dart';
+import 'package:HoneyBee/views/login_page.dart';
 import 'package:flutter/material.dart';
 
 // Import the firebase_core plugin

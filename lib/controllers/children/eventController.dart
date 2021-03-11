@@ -1,5 +1,5 @@
-import 'package:bassel/models/children/event.dart';
-import 'package:bassel/services/children/eventService.dart';
+import 'package:HoneyBee/models/children/event.dart';
+import 'package:HoneyBee/services/children/eventService.dart';
 import 'dart:async';
 
 class EventController {

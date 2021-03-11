@@ -1,17 +1,15 @@
 import 'dart:io';
 
-import 'package:bassel/controllers/children/developmentController.dart';
-import 'package:bassel/controllers/children/eventController.dart';
-import 'package:bassel/controllers/children/healthController.dart';
-import 'package:bassel/controllers/children/mediaController.dart';
-import 'package:bassel/models/children/development.dart';
-import 'package:bassel/models/children/event.dart';
-import 'package:bassel/models/children/health.dart';
-import 'package:bassel/models/children/media.dart';
-import 'package:bassel/views/children/AddChild.dart';
-import 'package:bassel/controllers/children/childController.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/views/children/ChildInfo.dart';
+import 'package:HoneyBee/controllers/children/developmentController.dart';
+import 'package:HoneyBee/controllers/children/eventController.dart';
+import 'package:HoneyBee/controllers/children/healthController.dart';
+import 'package:HoneyBee/controllers/children/mediaController.dart';
+import 'package:HoneyBee/models/children/development.dart';
+import 'package:HoneyBee/models/children/event.dart';
+import 'package:HoneyBee/models/children/health.dart';
+import 'package:HoneyBee/models/children/media.dart';
+import 'package:HoneyBee/models/children/child.dart';
+import 'package:HoneyBee/views/children/ChildInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

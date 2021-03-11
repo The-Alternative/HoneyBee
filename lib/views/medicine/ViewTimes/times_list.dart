@@ -1,13 +1,13 @@
 
-import 'package:bassel/controllers/medicine/medicineController.dart';
-import 'package:bassel/controllers/medicine/medicineDayController.dart';
-import 'package:bassel/controllers/medicine/medicineViewController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/controllers/medicine/timesDayesController.dart';
-import 'package:bassel/models/medicine/MedicineInfo.dart';
-import 'package:bassel/models/medicine/MedicineTimes.dart';
-import 'package:bassel/models/medicine/Patient.dart';
-import 'package:bassel/models/medicine/medicineDays.dart';
+import 'package:HoneyBee/controllers/medicine/medicineController.dart';
+import 'package:HoneyBee/controllers/medicine/medicineDayController.dart';
+import 'package:HoneyBee/controllers/medicine/medicineViewController.dart';
+import 'package:HoneyBee/controllers/medicine/patientController.dart';
+import 'package:HoneyBee/controllers/medicine/timesDayesController.dart';
+import 'package:HoneyBee/models/medicine/MedicineInfo.dart';
+import 'package:HoneyBee/models/medicine/MedicineTimes.dart';
+import 'package:HoneyBee/models/medicine/Patient.dart';
+import 'package:HoneyBee/models/medicine/medicineDays.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';

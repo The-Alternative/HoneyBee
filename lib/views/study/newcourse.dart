@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
-import 'package:bassel/controllers/study/coursecontroller.dart';
-import 'package:bassel/models/study/course.dart';
+import 'package:HoneyBee/controllers/study/coursecontroller.dart';
+import 'package:HoneyBee/models/study/course.dart';
 import 'package:flutter/material.dart';
 
 import 'package:image_picker/image_picker.dart';

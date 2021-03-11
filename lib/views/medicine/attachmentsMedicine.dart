@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:bassel/controllers/medicine/diagonController.dart';
-import 'package:bassel/controllers/medicine/medicineController.dart';
-import 'package:bassel/controllers/medicine/patientController.dart';
-import 'package:bassel/models/medicine/Diagon.dart';
-import 'package:bassel/models/medicine/Medicine.dart';
-import 'package:bassel/models/medicine/Patient.dart';
+import 'package:HoneyBee/controllers/medicine/diagonController.dart';
+import 'package:HoneyBee/controllers/medicine/medicineController.dart';
+import 'package:HoneyBee/controllers/medicine/patientController.dart';
+import 'package:HoneyBee/models/medicine/Diagon.dart';
+import 'package:HoneyBee/models/medicine/Medicine.dart';
+import 'package:HoneyBee/models/medicine/Patient.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'ViewTimes/times_list.dart';

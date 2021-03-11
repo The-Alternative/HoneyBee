@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:bassel/controllers/children/developmentController.dart';
-import 'package:bassel/controllers/children/mediaController.dart';
-import 'package:bassel/models/children/child.dart';
-import 'package:bassel/models/children/development.dart';
-import 'package:bassel/models/children/media.dart';
+import 'package:HoneyBee/controllers/children/developmentController.dart';
+import 'package:HoneyBee/controllers/children/mediaController.dart';
+import 'package:HoneyBee/models/children/child.dart';
+import 'package:HoneyBee/models/children/development.dart';
+import 'package:HoneyBee/models/children/media.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

@@ -1,20 +1,15 @@
-import 'package:bassel/services/sign_in.dart';
-import 'package:bassel/views/BMI/bmi1.dart';
-import 'package:bassel/views/children/Home.dart';
-import 'package:bassel/views/medicine/google/upload.dart';
-import 'package:bassel/views/init.dart';
-import 'package:bassel/views/login_page.dart';
-import 'package:bassel/views/study/home.dart';
+import 'package:HoneyBee/services/sign_in.dart';
+import 'package:HoneyBee/views/BMI/bmi1.dart';
+import 'package:HoneyBee/views/children/Home.dart';
+import 'package:HoneyBee/views/medicine/google/upload.dart';
+import 'package:HoneyBee/views/init.dart';
+import 'package:HoneyBee/views/study/home.dart';
 import 'package:flutter/material.dart';
 
 import 'home.dart';
 class HomeWelcom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    return
-      Container(child:  Center(
-        child: Column(
     return Scaffold(
       appBar: AppBar(
         title: Text('HoneyBee'),
