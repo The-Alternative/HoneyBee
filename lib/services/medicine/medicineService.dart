@@ -1,8 +1,8 @@
 
-import 'package:HoneyBee/models/medicine/Medicine.dart';
-import 'package:HoneyBee/models/medicine/MedicineInfo.dart';
-import 'package:HoneyBee/models/medicine/MedicineTimes.dart';
-import 'package:HoneyBee/utils/databaseconfig.dart';
+import '../../models/medicine/Medicine.dart';
+import '../../models/medicine/MedicineInfo.dart';
+import '../../models/medicine/MedicineTimes.dart';
+import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineService {

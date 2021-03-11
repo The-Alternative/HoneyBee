@@ -1,9 +1,11 @@
-import 'package:HoneyBee/controllers/children/childHabitController.dart';
-import 'package:HoneyBee/controllers/children/habitController.dart';
-import 'package:HoneyBee/models/children/childHabit.dart';
-import 'package:HoneyBee/models/children/habit.dart';
-import 'package:HoneyBee/models/children/child.dart';
-import 'package:HoneyBee/views/children/ChildInfo.dart';
+import '../../controllers/children/childHabitController.dart';
+import '../../controllers/children/habitController.dart';
+import '../../models/children/childHabit.dart';
+import '../../models/children/habit.dart';
+import '../../views/children/AddChild.dart';
+import '../../controllers/children/childController.dart';
+import '../../models/children/child.dart';
+import '../../views/children/ChildInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

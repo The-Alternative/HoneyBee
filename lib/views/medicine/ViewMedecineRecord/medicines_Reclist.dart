@@ -1,4 +1,4 @@
-import 'package:HoneyBee/models/medicine/MedicineInfo.dart';
+import '../../../models/medicine/MedicineInfo.dart';
 import 'package:flutter/material.dart';
 
 import 'medicine_card.dart';

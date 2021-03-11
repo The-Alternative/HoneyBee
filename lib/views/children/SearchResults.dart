@@ -1,15 +1,17 @@
 import 'dart:io';
 
-import 'package:HoneyBee/controllers/children/developmentController.dart';
-import 'package:HoneyBee/controllers/children/eventController.dart';
-import 'package:HoneyBee/controllers/children/healthController.dart';
-import 'package:HoneyBee/controllers/children/mediaController.dart';
-import 'package:HoneyBee/models/children/development.dart';
-import 'package:HoneyBee/models/children/event.dart';
-import 'package:HoneyBee/models/children/health.dart';
-import 'package:HoneyBee/models/children/media.dart';
-import 'package:HoneyBee/models/children/child.dart';
-import 'package:HoneyBee/views/children/ChildInfo.dart';
+import '../../controllers/children/developmentController.dart';
+import '../../controllers/children/eventController.dart';
+import '../../controllers/children/healthController.dart';
+import '../../controllers/children/mediaController.dart';
+import '../../models/children/development.dart';
+import '../../models/children/event.dart';
+import '../../models/children/health.dart';
+import '../../models/children/media.dart';
+import '../../views/children/AddChild.dart';
+import '../../controllers/children/childController.dart';
+import '../../models/children/child.dart';
+import '../../views/children/ChildInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

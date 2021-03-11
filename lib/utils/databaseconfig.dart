@@ -110,9 +110,18 @@ class DatabaseConfig {
         " $columnteacharnumber TEXT , "
         "$columnimage TEXT)";
     await db.execute(coursesql);
-    var descsql = "CREATE TABLE $descTable ($cloumnId INTEGER PRIMARY KEY ,"
-        "$cloumnHeight TEXT,$cloumnWeight TEXT,$cloumnBmi TEXT,$cloumnDate TEXT,$columnComment TEXT)";
+    //============================================================================================
+    var descsql = "CREATE TABLE "
+        "$descTable ("
+        "$cloumnId INTEGER PRIMARY KEY ,"
+        "$cloumnHeight TEXT,"
+        "$cloumnWeight TEXT,"
+        "$cloumnBmi TEXT,"
+        "$cloumnDate TEXT,"
+        "$columnComment TEXT)";
     await db.execute(descsql);
+    //============================================================================================
+
     var childSql = "CREATE TABLE $childTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnName TEXT,$cloumnSex TEXT,$cloumnBirthDate TEXT,$cloumnImage TEXT,$cloumnIsActive INTEGER)";
     await db.execute(childSql);

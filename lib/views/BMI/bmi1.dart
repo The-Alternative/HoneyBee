@@ -1,15 +1,16 @@
 
 
 
-import 'package:HoneyBee/controllers/bmi/desccontroller.dart';
-import 'package:HoneyBee/models/bmi/bmimodels.dart';
-import 'package:HoneyBee/views/BMI/bmi2.dart';
-import 'package:HoneyBee/views/BMI/bmi3.dart';
+import 'package:floor/floor.dart';
+import 'package:honeyBee/dao/bmidao.dart';
+import 'package:honeyBee/database/bmiDatabase.dart';
+import 'package:honeyBee/entity/bmi.dart';
+import '../../models/bmi/bmimodels.dart';
+import '../../views/BMI/bmi2.dart';
+import '../../views/BMI/bmi3.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:form_validator/form_validator.dart';
 
 
 
@@ -19,34 +20,10 @@ class Bmi1 extends StatefulWidget  {
   _Bmi1State createState() => _Bmi1State();
 
 }
-class _Bmi1State extends State<Bmi1> {
+class _Bmi1State extends State<Bmi1>  {
+  BmiDAO bmiDAO ;
 
   var _formKey = GlobalKey<FormState>();
-  // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
- // void validate(){
- //   if(_formKey.currentState.validate()){
- //     print("validate");
- //   }else{
- //     print("not validate");
- //   }
- // }
- // String validateheight(value){
- //     if(value.isEmpty){
- //       return "أدخل الطول";
- //     }else{
- //       return null;
- //     }
- // }
- // String validateweight(value){
- //   if(value.isEmpty){
- //     return "أدخل الوزن";
- //   }else{
- //     return null;
- //   }
- // }
-
-
-  DescController db = new DescController();
 
   int count =0;
   String value;//weight
@@ -61,23 +38,25 @@ class _Bmi1State extends State<Bmi1> {
   TextEditingController _heightController;
   TextEditingController _weightController ;
 
-  DateTime now = DateTime.now();
 
   @override
   void initState(){
     // TODO: implement initState
     super.initState();
+    setDb();
     _heightController = new TextEditingController(text: "");
     _weightController = new TextEditingController(text: "");
   }
-
+setDb() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final database =await $FloorAppDatabase.databaseBuilder('mosabmi.db').build();
+  bmiDAO = database.bmiDAO;
+}
 
   @override
   Widget build(BuildContext context) {
 
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:
+    return
       Directionality(textDirection: TextDirection.rtl,
         child: Scaffold(
             appBar: AppBar(
@@ -97,11 +76,7 @@ class _Bmi1State extends State<Bmi1> {
 
             ),
 
-            body:    Container(
-    // height: MediaQuery.of(context).size.height,
-    color: Colors.grey[200],
-            child:
-            ListView(
+            body:    ListView(
               children: <Widget>[
               // Container(
               //  // height: MediaQuery.of(context).size.height,
@@ -110,14 +85,14 @@ class _Bmi1State extends State<Bmi1> {
 
                Center(
                   child: Container(
-                    height: 350,
+                    height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
 
                     child: Card(
                       margin: EdgeInsets.all(15),
                       child: Column(
                         children: [
-                          SizedBox(height: 20,),
+                          SizedBox(height: 50,),
                           Form(
                             key: _formKey,
                             child: Column(
@@ -203,48 +178,50 @@ class _Bmi1State extends State<Bmi1> {
                                 ),
 
                                 Container(
-                                  margin: EdgeInsets.only(top:60,left: 60,right: 50),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      FlatButton(
-                                          child: Text("احسب",style: TextStyle(fontSize: 15,color: Colors.black87,fontWeight: FontWeight.bold),),
-                                          onPressed: () async {
-                                            print("111");
-                                            final isValid = _formKey.currentState.validate();
-                                            print("222 $isValid");
-                                            if (!isValid) {
-                                              print("3333");
-                                              return;
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        FlatButton(
+                                            child: Text("احسب",style: TextStyle(fontSize: 15,color: Colors.black87,fontWeight: FontWeight.bold),),
+                                            onPressed: () async {
+                                              final isValid = _formKey.currentState.validate();
+                                              print("$isValid");
+                                              if (!isValid) {
+                                                return;
+                                              }
+                                              _formKey.currentState.save();
+                                              calculateBMI();
+                                              result = await Navigator.push(context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) {
+                                                            return Bmi2(bmiModel: _bmiModel,bmiDAO:bmiDAO);
+                                                          })
+
+                                                          );
+
                                             }
-                                            print("4444");
-                                            _formKey.currentState.save();
-                                            print("55555");
-                                            calculateBMI();
-                                            print("66666");
+                                        ),
+                                        SizedBox(width: 30,),
+                                        FlatButton(
+                                          child: Text("السجل",style: TextStyle(color: Colors.black87,fontWeight: FontWeight.bold),),
+                                          color: Colors.white,
+
+                                          onPressed: () async {
                                             result = await Navigator.push(context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                          return Bmi2(bmiModel: _bmiModel);
-                                                        })
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                                      return Bmi3(bmiModel: _bmiModel,bmiDAO:bmiDAO);
+                                                    })
 
-                                                        );
-
-                                          }
-                                      ),
-                                      SizedBox(width: 30,),
-                                      FlatButton(
-                                        child: Text("السجل",style: TextStyle(color: Colors.black87,fontWeight: FontWeight.bold),),
-                                        color: Colors.white,
-
-                                        onPressed: (){
-                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Bmi3(bmiModel: _bmiModel)));
-                                          
-                                        },
-                                      ),
+                                            );
+                                          },
+                                        ),
 
 
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
 
@@ -259,8 +236,8 @@ class _Bmi1State extends State<Bmi1> {
                     ),
                   ),
                 ),
-            ],)),),
-    ));
+            ],),),
+    );
   }
   void calculateBMI() async {
 
@@ -295,14 +272,5 @@ class _Bmi1State extends State<Bmi1> {
      sbmi = result.toStringAsFixed(2);
     });
 
-    int a =await db.saveDesc(
-        CardInfo(
-          length:_bmiModel.length ,
-          wight:_bmiModel.wight ,
-          bmi:sbmi,
-          datt:now.toString().substring(0,19),
-          comment:_bmiModel.comment,
-        ));
-        print(a);
        }
 }

@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:HoneyBee/models/study/course.dart';
-import 'package:HoneyBee/utils/databaseconfig.dart';
+import '../../models/study/course.dart';
+import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CourseService {

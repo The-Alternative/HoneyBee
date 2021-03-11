@@ -1,5 +1,5 @@
-import 'package:HoneyBee/models/children/child.dart';
-import 'package:HoneyBee/utils/databaseconfig.dart';
+import '../../models/children/child.dart';
+import '../../utils/databaseConfig.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 

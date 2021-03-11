@@ -1,5 +1,5 @@
-import 'package:HoneyBee/models/children/child.dart';
-import 'package:HoneyBee/services/children/childService.dart';
+import '../../models/children/child.dart';
+import '../../services/children/childService.dart';
 import 'dart:async';
 
 class ChildController {

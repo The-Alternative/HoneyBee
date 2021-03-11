@@ -1,8 +1,8 @@
 
 import 'dart:async';
 
-import 'package:HoneyBee/models/medicine/medicineDays.dart';
-import 'package:HoneyBee/services/medicine/medicineDayService.dart';
+import '../../models/medicine/medicineDays.dart';
+import '../../services/medicine/medicineDayService.dart';
 
 class MedicineDayController {
   final MedicineDayService _medicineDayinfoService =  MedicineDayService();

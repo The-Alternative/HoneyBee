@@ -1,7 +1,7 @@
-import 'package:HoneyBee/models/children/media.dart';
-import 'package:HoneyBee/utils/databaseconfig.dart';
+import '../../models/children/media.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
+import '../../utils/databaseConfig.dart';
 
 class MediaService {
   final String mediaTable = 'mediaTable';

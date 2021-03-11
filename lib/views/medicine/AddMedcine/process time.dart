@@ -1,5 +1,5 @@
-import 'package:HoneyBee/Config/general.dart';
-import 'package:HoneyBee/Config/insert_data.dart';
+import '../../../Config/general.dart';
+import '../../../Config/insert_data.dart';
 import 'package:flutter/material.dart';
 
 class Process_time extends StatefulWidget {

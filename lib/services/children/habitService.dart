@@ -1,7 +1,7 @@
-import 'package:HoneyBee/models/children/habit.dart';
-import 'package:HoneyBee/utils/databaseconfig.dart';
+import '../../models/children/habit.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
+import '../../utils/databaseConfig.dart';
 
 class HabitService {
 

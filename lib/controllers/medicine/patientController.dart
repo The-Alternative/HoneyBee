@@ -1,8 +1,8 @@
 
 import 'dart:async';
 
-import 'package:HoneyBee/models/medicine/Patient.dart';
-import 'package:HoneyBee/services/medicine/patientService.dart';
+import '../../models/medicine/Patient.dart';
+import '../../services/medicine/patientService.dart';
 
 class PatientController {
 

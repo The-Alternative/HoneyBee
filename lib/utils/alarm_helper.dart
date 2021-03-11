@@ -1,4 +1,4 @@
-import 'package:HoneyBee/models/medicine/alarm_info.dart';
+import '../models/medicine/alarm_info.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 

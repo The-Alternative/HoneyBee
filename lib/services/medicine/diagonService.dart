@@ -1,5 +1,5 @@
-import 'package:HoneyBee/utils/databaseconfig.dart';
-import 'package:HoneyBee/models/medicine/Diagon.dart';
+import '../../utils/databaseconfig.dart';
+import '../../models/medicine/Diagon.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DiagonService{

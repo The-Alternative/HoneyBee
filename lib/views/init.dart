@@ -1,4 +1,6 @@
-import 'package:HoneyBee/views/login_page.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+
+import '../views/login_page.dart';
 import 'package:flutter/material.dart';
 
 // Import the firebase_core plugin
@@ -65,6 +67,28 @@ class Loading extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    throw UnimplementedError();
+    return loadingState();
   }
+}
+class loadingState extends State<Loading>{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return SizedBox(
+      width: double.infinity,
+      height: 200,
+      child: WavyAnimatedTextKit(
+        textStyle: TextStyle(
+            fontSize: 32.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.black),
+        text: [
+          "Waiting..."
+        ],
+        isRepeatingAnimation: false,
+        speed: Duration(milliseconds: 50),
+      ),
+    );
+  }
+
 }

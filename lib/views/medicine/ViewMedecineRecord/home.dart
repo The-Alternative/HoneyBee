@@ -1,8 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:HoneyBee/controllers/medicine/medicineViewController.dart';
-import 'package:HoneyBee/controllers/medicine/patientController.dart';
-import 'package:HoneyBee/models/medicine/MedicineInfo.dart';
-import 'package:HoneyBee/models/medicine/Patient.dart';
+import '../../../controllers/medicine/medicineViewController.dart';
+import '../../../controllers/medicine/patientController.dart';
+import '../../../models/medicine/MedicineInfo.dart';
+import '../../../models/medicine/Patient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';

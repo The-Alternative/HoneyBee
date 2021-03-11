@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:HoneyBee/Config/insert_data.dart';
+import '../../../Config/insert_data.dart';
 
 class IM {
   String name;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:HoneyBee/views/study/lactuarappointments1.dart';
-import 'package:HoneyBee/views/study/lactuarappointments2.dart';
+import '../../views/study/lactuarappointments1.dart';
+import '../../views/study/lactuarappointments2.dart';
 
 class LactuarAppointments extends StatefulWidget {
   @override

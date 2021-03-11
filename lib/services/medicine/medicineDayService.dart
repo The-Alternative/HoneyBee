@@ -1,6 +1,6 @@
-import 'package:HoneyBee/models/medicine/MedicineTimes.dart';
-import 'package:HoneyBee/models/medicine/medicineDays.dart';
-import 'package:HoneyBee/utils/databaseconfig.dart';
+import '../../models/medicine/MedicineTimes.dart';
+import '../../models/medicine/medicineDays.dart';
+import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineDayService{

@@ -16,7 +16,7 @@ Future<String> signInWithGoogle() async {
   print('1');
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   print('2//$googleSignInAccount');
-  if(!(googleSignInAccount == null)){
+  // if(!(googleSignInAccount == null)){
     final GoogleSignInAuthentication googleSignInAuthentication =
     await googleSignInAccount.authentication;
     print('3//$googleSignInAuthentication');
@@ -43,9 +43,9 @@ Future<String> signInWithGoogle() async {
     print('signInWithGoogle succeeded: $user');
 
     return 'signInWithGoogle succeeded: $user';
-  }else{
-    return "false";
-  }
+  // }else{
+  //   return "false";
+  // }
 
 
 

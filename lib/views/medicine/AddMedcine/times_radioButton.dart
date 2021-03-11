@@ -1,6 +1,6 @@
-import 'package:HoneyBee/Config/general.dart';
-import 'package:HoneyBee/Config/insert_data.dart';
-import 'package:HoneyBee/utils/notifiers.dart';
+import '../../../Config/general.dart';
+import '../../../Config/insert_data.dart';
+import '../../../utils/notifiers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'manual_entry.dart';

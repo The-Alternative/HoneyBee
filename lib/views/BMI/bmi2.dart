@@ -1,8 +1,11 @@
 import 'dart:ui';
 
-import 'package:HoneyBee/models/bmi/bmimodels.dart';
-import 'package:HoneyBee/views/BMI/bmi1.dart';
-import 'package:HoneyBee/views/BMI/bmi3.dart';
+import 'package:honeyBee/dao/bmidao.dart';
+import 'package:honeyBee/entity/bmi.dart';
+
+import '../../models/bmi/bmimodels.dart';
+import '../../views/BMI/bmi1.dart';
+import '../../views/BMI/bmi3.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -11,17 +14,18 @@ import 'package:flutter/widgets.dart';
 class Bmi2 extends StatefulWidget{
 
   BmiModel bmiModel;
-  Bmi2( {this.bmiModel});
+  BmiDAO bmiDAO;
+  Bmi2( {this.bmiModel,this.bmiDAO});
 
 
   @override
-  _Bmi2State createState() => _Bmi2State(bmiModel: bmiModel);
+  _Bmi2State createState() => _Bmi2State(bmiModel: bmiModel,bmiDAO:bmiDAO);
 }
 
 class _Bmi2State extends State<Bmi2> {
   BmiModel bmiModel;
-
-  _Bmi2State({this.bmiModel});
+  BmiDAO bmiDAO;
+  _Bmi2State({this.bmiModel, this.bmiDAO});
 
 
   void _onItemTapped(int index) {
@@ -32,9 +36,7 @@ class _Bmi2State extends State<Bmi2> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home:
+    return
         Directionality(
           textDirection: TextDirection.rtl,
           child:
@@ -254,8 +256,16 @@ class _Bmi2State extends State<Bmi2> {
                         FlatButton(
                           child: Text("موافق",style: TextStyle(color: Colors.black),),
                           // color: Colors.blue[700],
-                          onPressed: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Bmi3(bmiModel: bmiModel)));
+                          onPressed: () async {
+                            Bmi bmi= new Bmi(
+                                height:bmiModel.length,
+                                weight:bmiModel.wight,
+                                bmi:bmiModel.result.toStringAsFixed(2),
+                                date:DateTime.now().toString().substring(0,19),
+                               comment:bmiModel.comment);
+                             int b = await bmiDAO.insertBmi(bmi);
+                            print (b);
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Bmi3(bmiModel: bmiModel,bmiDAO:bmiDAO)));
                           },
                         ),
 
@@ -268,21 +278,10 @@ class _Bmi2State extends State<Bmi2> {
                 ),
 
               ),
-                // BottomNavigationBar(
-                //   items:  <BottomNavigationBarItem>[
-                //     BottomNavigationBarItem(
-                //         icon: Center(
-                //             child: Image(image: AssetImage('assets/hom.png'),)),
-                //         label: "home"
-                //     ),
-                //   ],
-                //   onTap: (_onItemTapped),
-                // ),
               ],
               )
           ),
-        )
-    );
+        );
   }
   Color color(){
     if(widget.bmiModel.result >=18.5 && widget.bmiModel.result <=25){

@@ -1,7 +1,7 @@
-import 'package:HoneyBee/models/children/development.dart';
-import 'package:HoneyBee/utils/databaseconfig.dart';
+import '../../models/children/development.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
+import '../../utils/databaseConfig.dart';
 
 class DevelopmentService {
 

@@ -1,6 +1,6 @@
-import 'package:HoneyBee/controllers/children/childController.dart';
-import 'package:HoneyBee/models/children/child.dart';
-import 'package:HoneyBee/views/children/Home.dart';
+import '../../controllers/children/childController.dart';
+import '../../models/children/child.dart';
+import '../../views/children/Home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
