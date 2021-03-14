@@ -1,7 +1,7 @@
 import 'dart:io';
-import '../../../controllers/medicine/medicineDayController.dart';
-import '../../../controllers/medicine/medicineViewController.dart';
-import '../../../controllers/medicine/timesDayesController.dart';
+import '../../../Controller/medicine/medicineDayController.dart';
+import '../../../Controller/medicine/medicineViewController.dart';
+import '../../../Controller/medicine/timesDayesController.dart';
 import '../../../models/medicine/MedicineInfo.dart';
 import '../../../models/medicine/MedicineTimes.dart';
 import '../../../models/medicine/medicineDays.dart';

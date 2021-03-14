@@ -3,7 +3,7 @@ import '../../utils/databaseconfig.dart';
 import '../../models/medicine/Patient.dart';
 import 'package:sqflite/sqflite.dart';
 
-class PatientService{
+class PatientController{
 
   String patientTable = 'patent_table';
   String patname = 'p_name';

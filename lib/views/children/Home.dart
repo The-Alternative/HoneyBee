@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import '../../views/children/AddChild.dart';
-import '../../controllers/children/childController.dart';
+import '../../Controller/children/childController.dart';
 import '../../models/children/child.dart';
 import '../../views/children/ChildInfo.dart';
 import 'package:flutter/cupertino.dart';

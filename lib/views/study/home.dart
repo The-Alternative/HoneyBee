@@ -1,4 +1,4 @@
-import '../../controllers/study/coursecontroller.dart';
+import '../../Controller/study/coursecontroller.dart';
 import '../../models/study/course.dart';
 import '../../views/study/assignments.dart';
 import '../../views/study/newcourse.dart';

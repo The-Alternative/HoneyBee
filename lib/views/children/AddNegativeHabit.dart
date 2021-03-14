@@ -1,6 +1,6 @@
-import '../../controllers/children/eventController.dart';
-import '../../controllers/children/habitController.dart';
-import '../../controllers/children/healthController.dart';
+import '../../Controller/children/eventController.dart';
+import '../../Controller/children/habitController.dart';
+import '../../Controller/children/healthController.dart';
 import '../../models/children/child.dart';
 import '../../models/children/event.dart';
 import '../../models/children/habit.dart';

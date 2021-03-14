@@ -1,6 +1,6 @@
 
-import '../../../controllers/medicine/medicineController.dart';
-import '../../../controllers/medicine/patientController.dart';
+import '../../../Controller/medicine/medicineController.dart';
+import '../../../Controller/medicine/patientController.dart';
 import '../../../models/medicine/MedicineInfo.dart';
 import '../../../models/medicine/Patient.dart';
 import '../../../views/medicine/AddMedcine/main_update.dart';

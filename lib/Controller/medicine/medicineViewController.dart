@@ -2,7 +2,7 @@ import '../../models/medicine/MedicineInfo.dart';
 import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
-class MedicineView{
+class MedicineViewController{
   String medicinView = 'med_view';
   String medId = 'id'; //primry/forign..key
   String medTitle = 'title';

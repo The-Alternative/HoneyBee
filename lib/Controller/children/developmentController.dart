@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import '../../utils/databaseConfig.dart';
 
-class DevelopmentService {
+class DevelopmentController {
 
   final String developmentTable = 'developmentTable';
   final String cloumnId = 'id';

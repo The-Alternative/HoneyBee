@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import '../../controllers/children/eventController.dart';
-import '../../controllers/children/mediaController.dart';
+import '../../Controller/children/eventController.dart';
+import '../../Controller/children/mediaController.dart';
 import '../../models/children/event.dart';
 import '../../models/children/child.dart';
 import '../../models/children/media.dart';

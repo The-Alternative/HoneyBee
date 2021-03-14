@@ -1,11 +1,10 @@
-import '../../models/children/event.dart';
+import '../../models/children/health.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import '../../utils/databaseConfig.dart';
 
-class EventService {
-
-  final String eventTable = 'eventTable';
+class HealthController {
+  final String healthTable = 'healthTable';
   final String cloumnId = 'id';
   final String cloumnName = 'name';
   final String cloumnNote = 'note';
@@ -17,10 +16,11 @@ class EventService {
   final String cloumnChildId = 'childId';
   final DatabaseConfig db = new DatabaseConfig();
 
-  Future<int> saveEvent(Event event) async{
+
+  Future<int> saveHealth(Health health) async{
     try{
       var dbClient = await db.honeyBee;
-      int result = await dbClient.insert("$eventTable", event.toMap());
+      int result = await dbClient.insert("$healthTable", health.toMap());
       return result;
     }catch(e){
       return -1;
@@ -28,10 +28,10 @@ class EventService {
 
   }
 
-  Future<List> getAllEvents() async{
+  Future<List> getAllHealth() async{
     try{
       var dbClient = await db.honeyBee;
-      var sql ="SELECT * FROM $eventTable";
+      var sql ="SELECT * FROM $healthTable";
       List result = await dbClient.rawQuery(sql);
       return result.toList();
     }catch(e){
@@ -42,10 +42,10 @@ class EventService {
 
   }
 
-  Future<List> getChildEvents(int id) async{
+  Future<List> getChildHealths(int id) async{
     try{
       var dbClient = await db.honeyBee;
-      var sql ="SELECT * FROM $eventTable WHERE $cloumnChildId = $id";
+      var sql ="SELECT * FROM $healthTable Where $cloumnChildId = $id";
       List result = await dbClient.rawQuery(sql);
       return result.toList();
     }catch(e){
@@ -56,10 +56,10 @@ class EventService {
 
   }
 
-  Future<List> searchChildEvents(int id,String text) async{
+  Future<List> searchChildHealths(int id,String text) async{
     try{
       var dbClient = await db.honeyBee;
-      var sql ="SELECT * FROM $eventTable WHERE $cloumnChildId = $id AND ($cloumnName LIKE '%$text%' OR $cloumnNote LIKE '%$text%')";
+      var sql ="SELECT * FROM $healthTable Where $cloumnChildId = $id AND ($cloumnName LIKE '%$text%' OR $cloumnNote LIKE '%$text%')";
       List result = await dbClient.rawQuery(sql);
       return result.toList();
     }catch(e){
@@ -70,10 +70,10 @@ class EventService {
 
   }
 
-  Future<List> getChildEvent(int id,int eventId) async{
+  Future<List> getChildHealth(int id,int healthId) async{
     try{
       var dbClient = await db.honeyBee;
-      var sql ="SELECT * FROM $eventTable WHERE $cloumnChildId = $id AND $cloumnId = $eventId";
+      var sql ="SELECT * FROM $healthTable Where $cloumnChildId = $id AND $cloumnId = $healthId";
       List result = await dbClient.rawQuery(sql);
       return result.toList();
     }catch(e){
@@ -84,10 +84,10 @@ class EventService {
 
   }
 
-  Future<int> getEventsCount () async{
+  Future<int> getHealthCount () async{
     try{
       var dbClient = await db.honeyBee;
-      var sql ="SELECT COUNT(*) FROM $eventTable";
+      var sql ="SELECT COUNT(*) FROM $healthTable";
       return Sqflite.firstIntValue(
           await dbClient.rawQuery(sql)
       );
@@ -97,25 +97,24 @@ class EventService {
 
   }
 
-  Future<Event> getEvent (int id) async{
+  Future<Health> getHealth (int id) async{
     try{
       var dbClient = await db.honeyBee;
-      var sql ="SELECT * FROM $eventTable WHERE $cloumnId = $id";
+      var sql ="SELECT * FROM $healthTable WHERE $cloumnId = $id";
       var result = await dbClient.rawQuery(sql);
       if(result.length == 0) return null;
-      return new Event.fromeMap(result.first);
+      return new Health.fromeMap(result.first);
     }catch(e){
-      Event err = new Event(e,e,e,e,e,e,e,e);
-      return err;
+      Health err = new Health(e,e,e,e,e,e,e,e);
     }
 
   }
 
-  Future<int> updateEvent(Event event) async{
+  Future<int> updateHealth(Health health) async{
     try{
       var dbClient = await db.honeyBee;
       return await dbClient.update(
-          eventTable, event.toMap(),where: "$cloumnId",whereArgs: [event.id]
+          healthTable, health.toMap(),where: "$cloumnId",whereArgs: [health.id]
       );
     }catch(e){
       return -1;
@@ -123,13 +122,13 @@ class EventService {
 
   }
 
-  Future<int> deleteEvent(Event event) async{
+  Future<int> deleteHealth(Health health) async{
     try{
       var dbClient = await db.honeyBee;
-      Event devent = new Event(event.name, event.note, event.tall, event.weight, event.tempreture,
-          0, event.childId, event.createdDate);
+      Health dHealth = new Health(health.name, health.note, health.tall, health.weight, health.tempreture,
+          0, health.childId, health.createdDate);
       return await dbClient.update(
-          eventTable, devent.toMap(),where: "$cloumnId",whereArgs: [event.id]
+          healthTable, dHealth.toMap(),where: "$cloumnId",whereArgs: [health.id]
       );
     }catch(e){
       return -1;

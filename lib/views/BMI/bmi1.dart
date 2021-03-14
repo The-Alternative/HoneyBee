@@ -2,9 +2,8 @@
 
 
 import 'package:floor/floor.dart';
-import 'package:honeyBee/dao/bmidao.dart';
+import 'package:honeyBee/Controller/dao/bmidao.dart';
 import 'package:honeyBee/database/bmiDatabase.dart';
-import 'package:honeyBee/entity/bmi.dart';
 import '../../models/bmi/bmimodels.dart';
 import '../../views/BMI/bmi2.dart';
 import '../../views/BMI/bmi3.dart';

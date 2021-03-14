@@ -1,10 +1,10 @@
 import 'dart:io';
 import '../../../Config/insert_data.dart';
-import '../../../controllers/medicine/diagonController.dart';
-import '../../../controllers/medicine/medicineController.dart';
-import '../../../controllers/medicine/medicineDayController.dart';
-import '../../../controllers/medicine/patientController.dart';
-import '../../../controllers/medicine/timesDayesController.dart';
+import '../../../Controller/medicine/diagonController.dart';
+import '../../../Controller/medicine/medicineController.dart';
+import '../../../Controller/medicine/medicineDayController.dart';
+import '../../../Controller/medicine/patientController.dart';
+import '../../../Controller/medicine/timesDayesController.dart';
 import '../../../models/medicine/Diagon.dart';
 import '../../../models/medicine/Medicine.dart';
 import '../../../models/medicine/MedicineInfo.dart';

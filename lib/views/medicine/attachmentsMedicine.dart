@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import '../../controllers/medicine/diagonController.dart';
-import '../../controllers/medicine/medicineController.dart';
-import '../../controllers/medicine/patientController.dart';
+import '../../Controller/medicine/diagonController.dart';
+import '../../Controller/medicine/medicineController.dart';
+import '../../Controller/medicine/patientController.dart';
 import '../../models/medicine/Diagon.dart';
 import '../../models/medicine/Medicine.dart';
 import '../../models/medicine/Patient.dart';
@@ -194,7 +194,7 @@ class _AttachmentsMedicineState extends State<AttachmentsMedicine> {
     _medicin.medform = "كبسولة";
     _patient.patName = _patnameController.text;
     _diagonObject.notice = _noticeController.text;
-    _diagonObject.medId = await _medicineController.insert(_medicin);
+    _diagonObject.medId = await _medicineController.insert_medicine(_medicin);
     _diagonObject.patId = await _patientController.insertPatient(_patient); //id
     _diagonId = await _diagonController.insertDiagon(_diagonObject);
 

@@ -1,5 +1,5 @@
 import '../../views/children/AddChild.dart';
-import '../../controllers/children/childController.dart';
+import '../../Controller/children/childController.dart';
 import '../../models/children/child.dart';
 import '../../views/children/ChildDevelopment.dart';
 import '../../views/children/ChildEvents.dart';

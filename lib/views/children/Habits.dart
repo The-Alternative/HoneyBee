@@ -1,10 +1,10 @@
-import '../../controllers/children/childHabitController.dart';
-import '../../controllers/children/habitController.dart';
-import '../../controllers/children/habitTypeController.dart';
+import '../../Controller/children/childHabitController.dart';
+import '../../Controller/children/habitController.dart';
+import '../../Controller/children/habitTypeController.dart';
 import '../../models/children/childHabit.dart';
 import '../../models/children/habit.dart';
 import '../../views/children/AddChild.dart';
-import '../../controllers/children/childController.dart';
+import '../../Controller/children/childController.dart';
 import '../../models/children/child.dart';
 import '../../views/children/AddNegativeHabit.dart';
 import '../../views/children/ChildInfo.dart';

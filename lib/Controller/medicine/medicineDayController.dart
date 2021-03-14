@@ -3,7 +3,7 @@ import '../../models/medicine/medicineDays.dart';
 import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
-class MedicineDayService{
+class MedicineDayController{
   String midDayesTable = 'mDayes_table';
   String dayesId = 'day_id';
   String day_date = 'd_date';

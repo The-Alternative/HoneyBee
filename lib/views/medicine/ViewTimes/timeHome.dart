@@ -1,8 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import '../../../controllers/medicine/cardinfoController.dart';
-import '../../../controllers/medicine/medicineDayController.dart';
-import '../../../controllers/medicine/patientController.dart';
-import '../../../controllers/medicine/timesDayesController.dart';
+import '../../../Controller/medicine/cardinfoController.dart';
+import '../../../Controller/medicine/medicineDayController.dart';
+import '../../../Controller/medicine/patientController.dart';
+import '../../../Controller/medicine/timesDayesController.dart';
 import '../../../models/medicine/MedicineInfo.dart';
 import '../../../models/medicine/Patient.dart';
 import '../../../models/medicine/medicineDays.dart';
@@ -70,7 +70,7 @@ class _TimesHomeState extends State<TimesHome> {
   setTimesData(String name) async {
 
     cardList.clear();
-    (await _cardinfoController.getSelectCards(name)).forEach((timeMap) {
+    (await _cardinfoController.getAllTimes(name)).forEach((timeMap) {
       setState(() {
         cardList.add(timeMap);
 

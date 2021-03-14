@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:honeyBee/dao/bmidao.dart';
-import 'package:honeyBee/entity/bmi.dart';
+import 'package:honeyBee/Controller/dao/bmidao.dart';
+import 'package:honeyBee/models/entity/bmi.dart';
 
 import '../../models/bmi/bmimodels.dart';
 import '../../views/BMI/bmi1.dart';

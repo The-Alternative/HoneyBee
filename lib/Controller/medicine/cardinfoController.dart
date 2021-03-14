@@ -3,7 +3,7 @@ import '../../models/medicine/MedicineInfo.dart';
 import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
-class CardinfoService{
+class CardinfoController{
   String medicinTable = 'med_table';
   String medId = 'id'; //primry/forign..key
   String medTitle = 'title';

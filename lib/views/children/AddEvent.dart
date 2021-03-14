@@ -1,11 +1,9 @@
 import 'dart:io';
 
-import '../../controllers/children/eventController.dart';
-import '../../controllers/children/healthController.dart';
-import '../../controllers/children/mediaController.dart';
+import '../../Controller/children/eventController.dart';
+import '../../controller/children/mediaController.dart';
 import '../../models/children/child.dart';
 import '../../models/children/event.dart';
-import '../../models/children/health.dart';
 import '../../models/children/media.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

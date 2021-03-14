@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:honeyBee/entity/bmi.dart';
+import 'package:honeyBee/models/entity/bmi.dart';
 @dao
 abstract class BmiDAO{
   @Query ('SELECT * FROM Bmi')

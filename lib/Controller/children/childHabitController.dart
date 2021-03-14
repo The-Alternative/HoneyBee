@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import '../../utils/databaseConfig.dart';
 
-class ChildHabitService {
+class ChildHabitController {
 
   final String childHabitTable = 'childHabitTable';
   final String cloumnId = 'id';

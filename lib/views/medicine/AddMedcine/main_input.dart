@@ -1,11 +1,12 @@
 import 'dart:io';
+import 'package:honeyBee/Controller/medicine/diagonController.dart';
+
 import '../../../Config/general.dart';
 import '../../../Config/insert_data.dart';
-import '../../../controllers/medicine/diagonController.dart';
-import '../../../controllers/medicine/medicineController.dart';
-import '../../../controllers/medicine/medicineDayController.dart';
-import '../../../controllers/medicine/patientController.dart';
-import '../../../controllers/medicine/timesDayesController.dart';
+import '../../../Controller/medicine/medicineController.dart';
+import '../../../Controller/medicine/medicineDayController.dart';
+import '../../../Controller/medicine/patientController.dart';
+import '../../../Controller/medicine/timesDayesController.dart';
 import '../../../models/medicine/Diagon.dart';
 import '../../../models/medicine/Medicine.dart';
 import '../../../models/medicine/MedicineTimes.dart';
@@ -586,7 +587,7 @@ class _Main_inputState extends State<Main_input> {
       return;
     }
     else{
-    _diagonObject.medId = await _medicineController.insert(_medicin);
+    _diagonObject.medId = await _medicineController.insert_medicine(_medicin);
     //id
     _diagonId = await _diagonController.insertDiagon(_diagonObject);
     _dateList = List<Medicine_Date>();

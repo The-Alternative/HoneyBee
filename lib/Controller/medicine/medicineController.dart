@@ -5,7 +5,7 @@ import '../../models/medicine/MedicineTimes.dart';
 import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
-class MedicineService {
+class MedicineController {
   String medicinTable = 'med_table';
   String medId = 'id'; //primry/forign..key
   String medTitle = 'title';

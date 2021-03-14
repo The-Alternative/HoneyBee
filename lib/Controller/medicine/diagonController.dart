@@ -2,7 +2,7 @@ import '../../utils/databaseconfig.dart';
 import '../../models/medicine/Diagon.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DiagonService{
+class DiagonController{
   String diagonTable = 'diagon_table';
   String diagid = 'd_id'; //primry/forign..key
 

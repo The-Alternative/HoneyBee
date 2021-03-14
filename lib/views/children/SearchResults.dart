@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import '../../controllers/children/developmentController.dart';
-import '../../controllers/children/eventController.dart';
-import '../../controllers/children/healthController.dart';
-import '../../controllers/children/mediaController.dart';
+import '../../Controller/children/developmentController.dart';
+import '../../Controller/children/eventController.dart';
+import '../../Controller/children/healthController.dart';
+import '../../Controller/children/mediaController.dart';
 import '../../models/children/development.dart';
 import '../../models/children/event.dart';
 import '../../models/children/health.dart';
 import '../../models/children/media.dart';
 import '../../views/children/AddChild.dart';
-import '../../controllers/children/childController.dart';
+import '../../Controller/children/childController.dart';
 import '../../models/children/child.dart';
 import '../../views/children/ChildInfo.dart';
 import 'package:flutter/cupertino.dart';

@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:honeyBee/dao/bmidao.dart';
-import 'package:honeyBee/entity/bmi.dart';
+import 'package:honeyBee/Controller/dao/bmidao.dart';
+import 'package:honeyBee/models/entity/bmi.dart';
 import '../../models/bmi/bmimodels.dart';
 
 class Bmi3 extends StatefulWidget {

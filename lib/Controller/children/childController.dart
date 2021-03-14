@@ -3,7 +3,7 @@ import '../../utils/databaseConfig.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 
-class ChildService {
+class ChildController {
   static Database _honeyBee ;
   final String childTable = 'childTable';
   final String cloumnId = 'id';

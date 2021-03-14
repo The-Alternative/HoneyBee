@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import '../../utils/databaseConfig.dart';
 
-class MediaService {
+class MediaController {
   final String mediaTable = 'mediaTable';
   final String cloumnId = 'id';
   final String cloumnMediaUrl = 'mediaUrl';

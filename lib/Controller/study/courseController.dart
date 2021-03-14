@@ -3,7 +3,7 @@ import '../../models/study/course.dart';
 import '../../utils/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
-class CourseService {
+class CourseController {
   static Database _honeyBee;
   final String courses = 'courses';
   final String columnid = 'id';

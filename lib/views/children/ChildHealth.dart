@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import '../../controllers/children/healthController.dart';
-import '../../controllers/children/mediaController.dart';
+import '../../Controller/children/healthController.dart';
+import '../../Controller/children/mediaController.dart';
 import '../../models/children/health.dart';
 import '../../models/children/child.dart';
 import '../../models/children/media.dart';
