@@ -45,7 +45,7 @@ class _CardExam extends State<CardExam> {
               SizedBox(
                 width: 10,
               ),
-              Text('${exam.dateexam}'),
+              Text('${exam.dateexam}${exam.examcourse}'),
             ],
           ),
           trailing: IconButton(

@@ -1,14 +1,11 @@
 import 'package:honeyBee/views/study/viewexam/home.exam.dart';
 
 import '../../controllers/study/coursecontroller.dart';
-import '../../models/study/course.dart';
+
 import '../../views/study/assignments.dart';
 import '../../views/study/newcourse.dart';
 import '../../views/study/viewcourse/home.course.dart';
-import '../../controllers/study/coursecontroller.dart';
-import '../../models/study/course.dart';
-import '../../views/study/assignments.dart';
-import '../../views/study/newcourse.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
