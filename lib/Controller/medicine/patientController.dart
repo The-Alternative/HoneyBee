@@ -1,5 +1,5 @@
 import '../../Config/general.dart';
-import '../../utils/databaseconfig.dart';
+import '../../database/databaseconfig.dart';
 import '../../models/medicine/Patient.dart';
 import 'package:sqflite/sqflite.dart';
 

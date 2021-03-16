@@ -1,4 +1,4 @@
-import '../../utils/databaseconfig.dart';
+import '../../database/databaseconfig.dart';
 import '../../models/medicine/Diagon.dart';
 import 'package:sqflite/sqflite.dart';
 

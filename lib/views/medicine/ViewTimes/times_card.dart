@@ -5,7 +5,7 @@ import '../../../Controller/medicine/timesDayesController.dart';
 import '../../../models/medicine/MedicineInfo.dart';
 import '../../../models/medicine/MedicineTimes.dart';
 import '../../../models/medicine/medicineDays.dart';
-import '../../../notifications/notifications.dart';
+import '../../../utils/notifications.dart';
 import '../../../utils/alarm_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -61,10 +61,13 @@ class _TimesCard extends State<TimesCard> {
   @override
   Widget build(BuildContext context) {
     //check if the medicine time is lower than actual
-    return Card(
-        color: Colors.white,
-        elevation: 5.0,
-        shadowColor: Colors.amber,
+    return    Container(margin: EdgeInsets.only(bottom: 15),
+        decoration: BoxDecoration(
+          border: Border.all(width: 0.5,color: Colors.amber),
+          boxShadow:[BoxShadow(color: Colors.amber,spreadRadius: .1,blurRadius: 1,)],
+          borderRadius:BorderRadius.circular(5),
+          color: Colors.white,
+        ),
         child: Column(children: <Widget>[
           Container(
             color: Colors.amber,
@@ -94,7 +97,7 @@ class _TimesCard extends State<TimesCard> {
               '${medicine.medTitle}',
             ),
             subtitle: Text('${medicine.personName}'),
-            trailing: Text(""),
+            trailing: Text("${medicine.amount}"),
             onTap: () {
               debugPrint("ListTile Tapped");
               // navigateToDetail(this.noteList[position],'Edit ');
@@ -148,7 +151,7 @@ class _TimesCard extends State<TimesCard> {
   //============================================================================================
   //-----------------------|getImg|-------------------------------------
   Widget getImg(String img_direct) {
-    if (img_direct != '') {
+    if (img_direct != ''||img_direct != null) {
       var file = new File(img_direct);
       img_direct = '';
 
@@ -201,7 +204,7 @@ class _TimesCard extends State<TimesCard> {
                         title: Padding(
                           padding: const EdgeInsets.only(right: 75),
                           child: Text(
-                            'تناول عدد 1 كبسولة',
+                            'تناول عدد ${medicine.amount}',
                             textAlign: TextAlign.right,
                           ),
                         ),

@@ -1,5 +1,5 @@
 import '../../models/medicine/MedicineInfo.dart';
-import '../../utils/databaseconfig.dart';
+import '../../database/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineViewController{

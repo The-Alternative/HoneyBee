@@ -1,6 +1,6 @@
 import 'dart:async';
 import '../../models/study/course.dart';
-import '../../utils/databaseconfig.dart';
+import '../../database/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CourseController {

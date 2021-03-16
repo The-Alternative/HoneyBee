@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:honeyBee/Controller/medicine/diagonController.dart';
+import 'package:honeyBee/views/medicine/AddMedcine/form_input.dart';
 
 import '../../../Config/general.dart';
 import '../../../Config/insert_data.dart';
@@ -15,7 +16,7 @@ import '../../../models/medicine/Medicine_clocl.dart';
 import '../../../models/medicine/Patient.dart';
 import '../../../models/medicine/alarm_info.dart';
 import '../../../models/medicine/medicineDays.dart';
-import '../../../notifications/notifications.dart';
+import '../../../utils/notifications.dart';
 import '../../../utils/alarm_helper.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -40,7 +41,6 @@ class _Main_inputState extends State<Main_input> {
   File _image;
   File _savedImage;
   final picker = ImagePicker();
-  TextEditingController _nameController = TextEditingController();
   DiagonController _diagonController =DiagonController();
   MedicineController _medicineController = MedicineController();
   MedicineDayController _medicineDayController =MedicineDayController();
@@ -51,11 +51,6 @@ class _Main_inputState extends State<Main_input> {
   Medicine _medicin = Medicine();
   Patient _patient = new Patient.Without();
   Diagon _diagonObject = Diagon();
-  //MedicineTimes _timesObject = MedicineTimes.WithId();
-  TextEditingController _patnameController = TextEditingController();
-  TextEditingController _noticeController = TextEditingController();
-  TextEditingController _medTitleController = TextEditingController();
-  TextEditingController _medAmountController = TextEditingController();
   TextEditingController _imgDirectController = TextEditingController();
   int _day, _month, _year;
   int _lastDay, _diagonId;
@@ -118,22 +113,6 @@ class _Main_inputState extends State<Main_input> {
       ),
       body: ListView(
         children: <Widget>[
-          Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-            Expanded(
-              child: Padding(
-                  padding:
-                  EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
-                  child: Text("17:35")),
-              flex: 1,
-            ),
-            Expanded(
-              child: Padding(
-                  padding:
-                  EdgeInsets.only(right: 15, left: 15, top: 15, bottom: 5),
-                  child: Text("20/12/2020")),
-              flex: 0,
-            )
-          ]),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -146,311 +125,9 @@ class _Main_inputState extends State<Main_input> {
               GestureDetector(onTap: _getImage, child: Icon(Icons.camera_alt))
             ],
           ),
-          Padding(
-              padding:
-              EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 50),
-              child: TextField(
-                controller: _patnameController,
-                onSubmitted: (value) {},
-                style: style2,
-                decoration: InputDecoration(
-                    labelText: 'اسم المريض',
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.amber),
-                      borderRadius: BorderRadius.circular(15),
-                    )),
-              )),
-          Padding(
-              padding:
-              EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 5),
-              child: TextField(
-                controller: _medTitleController,
-                style: style2,
-                decoration: InputDecoration(
-                    labelText: 'اسم الدواء',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15))),
-              )),
-          Padding(
-              padding:
-              EdgeInsets.only(right: 15.0, left: 15, bottom: 15, top: 5),
-              child: TextField(
-                controller: _medAmountController,
-                style: style2,
-                decoration: InputDecoration(
-                    labelText: 'الجرعة',
-                    hintText: "1 كبسولة",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15))),
-              )),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox.fromSize(
-                  size: Size(100, 100), // button width and height
-                  child: ClipOval(
-                    child: Material(
-                      color: Colors.black12, // button color
-                      child: InkWell(
-                        splashColor: Colors.green, // splash color
-                        onTap: () async {
-                          bool result = await Navigator.push(this.context,
-                              MaterialPageRoute(builder: (context) {
-                                return Radiooo();
-                              }));
-                          if (result == true) {
-                            update_mtTitle();
-                            print(Entry.code + Entry.times_num);
-                          }
-                        }, // button pressed
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.asset(
-                              "assets/calendar2.png",
-                              width: 50,
-                              height: 50,
-                            ), // icon
-                            Text(
-                              "المواعيد",
-                              style: style2,
-                            ), // text
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox.fromSize(
-                  size: Size(100, 100), // button width and height
-                  child: ClipOval(
-                    child: Material(
-                      color: Colors.black12, // button color
-                      child: InkWell(
-                        splashColor: Colors.green, // splash color
-                        onTap: () async {
-                          bool result = await Navigator.push(this.context,
-                              MaterialPageRoute(builder: (context) {
-                                return First_date();
-                              }));
-                          if (result == true) {
-                            update_Firstdate();
-                            print(Entry.first_clock + Entry.first_date);
-                          }
-                        }, // button pressed
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.asset(
-                              "assets/sogatsu.png",
-                              width: 50,
-                              height: 50,
-                            ), // icon
-                            Text(
-                              "تاريخ البدء",
-                              style: style2,
-                            ), // text
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox.fromSize(
-                  size: Size(100, 100), // button width and height
-                  child: ClipOval(
-                    child: Material(
-                      color: Colors.black12, // button color
-                      child: InkWell(
-                        splashColor: Colors.green, // splash color
-                        onTap: () async {
-                          bool result = await Navigator.push(this.context,
-                              MaterialPageRoute(builder: (context) {
-                                return Process_time();
-                              }));
-                          if (result == true) {
-                            updateteartTime();
-                            print(Entry.teratment_days);
-                          }
-                        }, // button pressed
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.asset(
-                              "assets/future.png",
-                              width: 50,
-                              height: 50,
-                            ), // icon
-                            Text(
-                              "مدة العلاج",
-                              style: style2,
-                            ), // text
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ]),
-          Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  SizedBox.fromSize(
-                    size: Size(100, 100), // button width and height
-                    child: ClipOval(
-                      child: Material(
-                        color: Colors.black12, // button color
-                        child: InkWell(
-                          splashColor: Colors.green, // splash color
-                          onTap: () async {
-                            bool result = await Navigator.push(this.context,
-                                MaterialPageRoute(builder: (context) {
-                                  return Instruction();
-                                }));
-                            if (result == true) {
-                              updateInstruction();
-                              debugPrint(Entry.instruc);
-                            }
-                          }, // button pressed
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset(
-                                "assets/medical-book.png",
-                                width: 50,
-                                height: 50,
-                              ), // icon
-                              Text(
-                                "التعليمات",
-                                style: style2,
-                              ), // text
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox.fromSize(
-                    size: Size(100, 100), // button width and height
-                    child: ClipOval(
-                      child: Material(
-                        color: Colors.black12, // button color
-                        child: InkWell(
-                          splashColor: Colors.green, // splash color
-                          onTap: () async {
-                            bool result = await Navigator.push(this.context,
-                                MaterialPageRoute(builder: (context) {
-                                  return Diagonsis();
-                                }));
-                            if (result == true) {
-                              update_diagon();
-                              print(Entry.pain + Entry.doct_name);
-                            }
-                          }, // button pressed
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset(
-                                "assets/doctor.png",
-                                width: 50,
-                                height: 50,
-                              ), // icon
-                              Text(
-                                "التشخيص",
-                                style: style2,
-                              ), // text
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox.fromSize(
-                    size: Size(100, 100), // button width and height
-                    child: ClipOval(
-                      child: Material(
-                        color: Colors.black12, // button color
-                        child: InkWell(
-                          splashColor: Colors.green, // splash color
-                          onTap: () async {
-                            bool result = await Navigator.push(this.context,
-                                MaterialPageRoute(builder: (context) {
-                                  return ImageSave();
-                                }));
-                          }, // button pressed
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset(
-                                "assets/Path105.png",
-                                width: 50,
-                                height: 50,
-                              ), // icon
-                              Text(
-                                "مرفقات",
-                                style: style2,
-                              ), // text
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ]),
-          ),
-          Padding(
-              padding:
-              EdgeInsets.only(right: 15.0, left: 15, bottom: 0, top: 15),
-              child: TextField(
-                controller: _noticeController,
-                style: style2,
-                decoration: InputDecoration(
-                    labelText: 'ملاحظات',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15))),
-              )),
-          Divider(
-            color: Colors.amber,
-          ),
-          ListTile(
-            title: Text(
-              "إظهار المواعيد",
-              style: style1,
-            ),
-            subtitle: Text(
-              "إظهار مواعيد هذا الدواء في قائمة المهام في الصفحة الرئيسية للتطبيق",
-              style: style2,
-            ),
-            trailing: Switch(
-              value: true,
-              onChanged: (value) {
-                setState(() {});
-              },
-              activeTrackColor: Colors.lightGreenAccent,
-              activeColor: Colors.green,
-            ),
-          ),
-          Divider(
-            color: Colors.amber,
-          ),
-          ListTile(
-            leading: Icon(Icons.music_note, size: 50, color: Colors.black),
-            title: Text(
-              "نغمة الرنين",
-              style: style1,
-            ),
-            trailing: DropdownButton(),
-          ),
-          Divider(
-            color: Colors.amber,
-          ),
-          ListTile(
-            leading: Icon(Icons.palette, size: 50, color: Colors.black),
-            title: Text("اللون", style: style1),
-            trailing: DropdownButton(),
-          ),
+
+          FormInput(this.context,_patient,_medicin,_diagonObject ,
+              _day, _month, _year,_teartmentClock,_hour,_menuts),
           Divider(
             color: Colors.amber,
           ),
@@ -490,94 +167,16 @@ class _Main_inputState extends State<Main_input> {
       ),
     );
   }
-
-  void pickImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    if (image == null) return;
-
-    setState(() {
-      _image = image;
-    });
-  }
-
-  void update_patname() {
-    _patient.patName = _patnameController.text;
-  }
-
-  void update_medTitle() {
-    _medicin.medTitle = _medTitleController.text;
-  }
-
-  void update_medAmount() {
-    _diagonObject.medAmount = _medAmountController.text;
-  }
-
-  void update_mtTitle() {
-    _diagonObject.times = Entry.times_num;
-    if (Entry.code == 'يوميا') {
-      _teartmentClock = 24;
-    } else if (Entry.code == 'أسبوعيا') {
-      _teartmentClock = 7 * 24;
-    } else if (Entry.code == 'شهريا') {
-      _teartmentClock = 28 * 24;
-    } else if (Entry.code == 'سنوي') {
-      _teartmentClock = 28 * 12 * 24;
-    } else if (Entry.code == 'every') {
-      _teartmentClock = Entry.incAmount;
-    }
-
-    print('mosa here :$_teartmentClock');
-  }
-
-  void updateteartTime() {
-    _diagonObject.dayes = Entry.teratment_days;
-  }
-
-  void updateInstruction() {
-    _diagonObject.instruction = Entry.instruc;
-  }
-
-  void update_Firstdate() {
-    _diagonObject.firstClock = Entry.first_clock;
-    _diagonObject.firstDate = Entry.first_date;
-    var arr = List(3);
-
-    arr = Entry.first_date.split('/');
-    _day = int.parse(arr[2]);
-    _month = int.parse(arr[1]);
-    _year = int.parse(arr[0]);
-    print(_month);
-    arr = Entry.first_clock.split(':');
-    _hour = int.parse(arr[0]);
-    _menuts = int.parse(arr[1]);
-    print(_hour);
-  }
-
-  void update_diagon() {
-    _diagonObject.doctName = Entry.doct_name;
-    _diagonObject.diagon = Entry.pain;
-  }
-
-  void update_relatedMed() {
-    //.description = relatedMedTitleController.text;
-  }
-  void update_doctname() {
-    // diagon.doctName = doctnameController.text;
-  }
-  void update_img_direct() {
-    // _diagonObject.img_direct = _imgDirectController.text;
-  }
-
 ////////////////////////////////////////////////////////////////////////////
   void _save() async {
     Timesupdate.res2 = true;
     Timesupdate.res = true;
-    _medicin.medTitle = _medTitleController.text;
-    _medicin.medform = _medAmountController.text;
-    //_diagonObject.medAmount=_medAmountController.text;
-    _patient.patName = _patnameController.text;
-    _diagonObject.notice = _noticeController.text;
-    _diagonObject.img_direct = Entry.imgPath;
+    // _medicin.medTitle = _medTitleController.text;
+    // _medicin.medform = _medAmountController.text;
+    // //_diagonObject.medAmount=_medAmountController.text;
+    // _patient.patName = _patnameController.text;
+    // _diagonObject.notice = _noticeController.text;
+      _diagonObject.img_direct = Entry.imgPath;
     _diagonObject.patId = await _patientController.insertPatient(_patient);
     if (_diagonObject.patId  == 0) {
       // Success
@@ -625,17 +224,6 @@ class _Main_inputState extends State<Main_input> {
 
     _calcDaylist(int.parse(Entry.teratment_days));
     _calcTimeList();
-
-    int l = _clockList.length;
-
-    // print('_clockList :$l');
-
-    // for(int i=0;i<_clockList.length;i++)
-    //   {
-    //     int a= _clockList[i].dayDate;
-    //
-    //     print('$a :'+_clockList[i].clock);
-    //   }
   }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -688,7 +276,8 @@ class _Main_inputState extends State<Main_input> {
     double times_num = _teartmentClock / int.parse(Entry.times_num);
 
     double w = times_num;
-    if (_teartmentClock % int.parse(Entry.times_num) == 0) {
+    if (
+    _teartmentClock % int.parse(Entry.times_num) == 0) {
       while (_hour < 24) {
         String s = formal(_hour) + ':' + formal(_menuts);
         //add to list

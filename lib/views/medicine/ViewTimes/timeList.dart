@@ -44,30 +44,30 @@ class TimesList extends StatelessWidget {
           itemCount: daysList.length,
           itemBuilder: (BuildContext context, int index) {
             MedicineDays day = daysList[index];
-            return InkWell(
-                onTap: () {},
-                child: Card(
-                    color: Colors.white,
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: new InkWell(
-                        child: new Column(
-                          children: <Widget>[
-                            Container(
-                              color: Colors.black12,
-                              child: ListTile(
-                                  leading: Text(getDayName(day.dayDate)),
-                                  title: Row(
-                                    children: <Widget>[
-                                      Text(
-                                        ' ${day.dayDate}',
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                    ],
-                                  )),
-                            ),
-                            getdaytime(day.dayesId),
-                          ],
-                        ))));
+            return Card(
+                color: Colors.white,
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: new Column(
+                  children: <Widget>[
+                    Container(
+                      color: Colors.black12,
+                      child: ListTile(
+                          leading: Text(getDayName(day.dayDate)),
+                          title: Row(
+                            children: <Widget>[
+                              Text(
+                                ' ${day.dayDate}',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: getdaytime(day.dayesId),
+                    ),
+                  ],
+                ));
           });
   }
   String getDayName(String s) {

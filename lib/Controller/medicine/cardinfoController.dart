@@ -1,6 +1,6 @@
 
 import '../../models/medicine/MedicineInfo.dart';
-import '../../utils/databaseconfig.dart';
+import '../../database/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CardinfoController{
@@ -45,7 +45,12 @@ class CardinfoController{
   //   _database = await _medicineDatabase.setDatabase();
   //   return _database;
   // }
+CardinfoController(){
+  initDatabase();
+}
 
+  Future initDatabase() async =>
+      _database =await this._medicineDatabase.honeyBee;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
   Future<List<Map<String, dynamic>>> getptname(int id, String name) async {
     Database db = await this._medicineDatabase.honeyBee;

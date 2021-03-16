@@ -2,7 +2,7 @@
 import '../../models/medicine/Medicine.dart';
 import '../../models/medicine/MedicineInfo.dart';
 import '../../models/medicine/MedicineTimes.dart';
-import '../../utils/databaseconfig.dart';
+import '../../database/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineController {

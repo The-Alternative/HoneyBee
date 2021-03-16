@@ -1,5 +1,5 @@
 import '../../models/children/child.dart';
-import '../../utils/databaseConfig.dart';
+import '../../database/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 

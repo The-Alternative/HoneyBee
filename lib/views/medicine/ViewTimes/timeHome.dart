@@ -117,14 +117,14 @@ class _TimesHomeState extends State<TimesHome> {
             child: Column(
               children: [
                 SizedBox(
-                  height: deviceHeight * 0.02,
+                  height: deviceHeight * 0.01,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 0.0),
                   child: Container(
                     alignment: Alignment.topCenter,
-                    height: deviceHeight * 0.1,
-                    child:  Row(
+                    height: deviceHeight * 0.2,
+                    child:Column(children: [  Row(
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
@@ -132,7 +132,7 @@ class _TimesHomeState extends State<TimesHome> {
                         Expanded(
                           flex: 1,
                           child: InkWell(
-                            child: Text('الاسم'),
+                            child: Text('الاسم',style: style10,),
                           ),
                         ),
 
@@ -143,11 +143,15 @@ class _TimesHomeState extends State<TimesHome> {
                               child: getDrop(),
                             )),
                       ],
-                    ),
+                    ),  Divider(
+                        color: Colors.amber,
+                        thickness: 2,
+                      ),
+                    ],)
                   ),
                 ),
 
-                SizedBox(height: deviceHeight * 0.03),
+
                 cardList.isEmpty
                     ? SizedBox(
                   width: double.infinity,

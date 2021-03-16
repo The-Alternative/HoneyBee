@@ -1,6 +1,6 @@
 import '../../models/medicine/MedicineTimes.dart';
 import '../../models/medicine/medicineDays.dart';
-import '../../utils/databaseconfig.dart';
+import '../../database/databaseconfig.dart';
 import 'package:sqflite/sqflite.dart';
 
 class MedicineDayController{

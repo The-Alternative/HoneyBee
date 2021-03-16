@@ -1,7 +1,7 @@
 import '../../models/children/habit.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
-import '../../utils/databaseConfig.dart';
+import '../../database/databaseconfig.dart';
 
 class HabitController {
 

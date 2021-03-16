@@ -1,8 +1,8 @@
+import '../../database/databaseconfig.dart';
+
 import '../../models/children/event.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
-import '../../utils/databaseConfig.dart';
-
 class EventController {
 
   final String eventTable = 'eventTable';
