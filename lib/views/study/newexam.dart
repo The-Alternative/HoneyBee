@@ -1,4 +1,6 @@
+import 'package:honeyBee/controllers/study/coursecontroller.dart';
 import 'package:honeyBee/controllers/study/examcontroller.dart';
+import 'package:honeyBee/models/study/course.dart';
 import 'package:honeyBee/models/study/exam.dart';
 import 'repet.dart';
 import 'startdate.dart';
@@ -18,11 +20,14 @@ class _NewExamState extends State<NewExam> {
   String examcourse;
 
   ExamController helper;
+  CourseController db = new CourseController();
 
   @override
   void initState() {
     super.initState();
     helper = ExamController();
+    var result = db.getAllcourse();
+    print("$result");
   }
 
   TimeOfDay timeOfDay = TimeOfDay.now();
@@ -128,22 +133,38 @@ class _NewExamState extends State<NewExam> {
                     SizedBox(
                       height: 15,
                     ),
-                    TextFormField(
-                        cursorColor: Colors.amber[400],
-                        cursorHeight: 25,
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                            hintText: 'اسم المقرر',
-                            enabledBorder: UnderlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.amber[400]))),
-                        onChanged: (value) {
-                          setState(() {
-                            examcourse = value;
-                          });
-                        }),
                     SizedBox(
                       height: 60,
+                    ),
+                    Container(
+                      height: 40,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Colors.amber[400], width: 1.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: DropdownButton(
+                        iconSize: 30,
+                        isExpanded: true,
+                        underline: SizedBox(),
+                        items: alerts.map((alerts) {
+                          return DropdownMenuItem(
+                            value: alerts,
+                            child: Center(
+                              child: Text(
+                                alerts,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectedalerts = value;
+                          });
+                        },
+                        value: selectedalerts,
+                      ),
                     ),
                     Row(
                       children: [
