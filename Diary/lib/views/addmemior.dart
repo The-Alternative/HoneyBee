@@ -63,6 +63,7 @@ class _FirstPageState extends State<FirstPage> {
       });
       for(int i =0 ; i < _cardList.length; i++){
         diaryImages.add(_cardList[i].image);
+
       }
     });
 

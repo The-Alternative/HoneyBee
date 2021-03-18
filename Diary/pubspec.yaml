@@ -23,11 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  image_picker: ^0.6.6+1
+  image_picker:
   sqflite: ^1.3.0
   path:
   video_player:
-  photo_manager:
   path_provider: ^1.3.0
 
 
