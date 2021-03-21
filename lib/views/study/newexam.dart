@@ -2,6 +2,8 @@ import 'package:honeyBee/controllers/study/coursecontroller.dart';
 import 'package:honeyBee/controllers/study/examcontroller.dart';
 import 'package:honeyBee/models/study/course.dart';
 import 'package:honeyBee/models/study/exam.dart';
+import 'package:honeyBee/views/study/viewcourse/home.course.dart';
+import 'package:honeyBee/views/study/viewexam/home.exam.dart';
 import 'repet.dart';
 import 'startdate.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,8 @@ class _NewExamState extends State<NewExam> {
   String time;
   int id;
   String examcourse;
+  List<Course> NamesList = List<Course>();
+  String _selectedName;
 
   ExamController helper;
   CourseController db = new CourseController();
@@ -25,9 +29,17 @@ class _NewExamState extends State<NewExam> {
   @override
   void initState() {
     super.initState();
+    setNames();
     helper = ExamController();
-    var result = db.getAllcourse();
-    print("$result");
+  }
+
+  Future setNames() async {
+    NamesList.clear();
+    (await db.getInfo('courses')).forEach((patientMap) {
+      setState(() {
+        NamesList.add(Course.Without().courseMapToObject(patientMap));
+      });
+    });
   }
 
   TimeOfDay timeOfDay = TimeOfDay.now();
@@ -133,21 +145,7 @@ class _NewExamState extends State<NewExam> {
                     SizedBox(
                       height: 15,
                     ),
-                    TextFormField(
-                      cursorColor: Colors.amber[400],
-                      cursorHeight: 25,
-                      textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                        hintText: 'اسم المقرر',
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.amber[400])),
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          examcourse = value;
-                        });
-                      },
-                    ),
+                    getDrop(),
                     SizedBox(
                       height: 60,
                     ),
@@ -328,7 +326,7 @@ class _NewExamState extends State<NewExam> {
 
                             exam.dateexam = date;
                             exam.timeexam = time;
-                            exam.examcourse = examcourse;
+                            exam.examcourse = _selectedName;
                             print('$Exam');
 
                             helper.saveexam(exam);
@@ -357,5 +355,44 @@ class _NewExamState extends State<NewExam> {
         ),
       ),
     );
+  }
+
+  Widget getDrop() {
+    return (NamesList.isEmpty
+        ? Text("لايوجد مقرر")
+        : DropdownButtonHideUnderline(
+            child: Container(
+              child: DropdownButton(
+                isExpanded: false,
+                // Not necessary for Option 1
+                value: _selectedName,
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedName = newValue;
+                    print(_selectedName);
+                  });
+                },
+                items: NamesList.map((name) {
+                  return DropdownMenuItem(
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 0),
+                        child: Column(
+                          children: [
+                            Text(
+                              name.namecourse,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            Divider(
+                              thickness: 1,
+                              height: 1,
+                            )
+                          ],
+                        )),
+                    value: name.namecourse,
+                  );
+                }).toList(),
+              ),
+            ),
+          ));
   }
 }

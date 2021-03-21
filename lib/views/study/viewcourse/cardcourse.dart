@@ -33,26 +33,39 @@ class _CardCourse extends State<CardCourse> {
 
       child: Card(
         margin: EdgeInsets.symmetric(vertical: 8),
-        child: ListTile(
-          title: Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('${course.image}'),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text('${course.namecourse}'),
-            ],
-          ),
-          trailing: IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: () {
-              helper.deleteCourse(course);
-            },
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(
+                width: 1,
+                color: Colors.amber[400],
+              )),
+          child: ListTile(
+            title: Column(
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('${course.image}'),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text('${course.namecourse}'),
+                  ],
+                ),
+              ],
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                helper.deleteCourse(course);
+              },
+            ),
           ),
         ),
       ),
+
       // child: Card(
       //     child: Column(children: [
       //   Container(

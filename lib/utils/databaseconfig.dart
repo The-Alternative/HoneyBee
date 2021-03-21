@@ -14,12 +14,19 @@ class DatabaseConfig {
   final String columnemail = 'email';
   final String columnteacharnumber = 'teacharnumber';
   final String columnimage = 'image';
-  ////////(2)
+  ////////(exam)
   final String exams = 'exams';
   final String examid = 'id';
   final String columnexamcourse = 'examcourse';
   final String columndateexam = 'dateexam';
   final String columntimeexam = 'timeexam';
+  ///////(homecourse)
+  final String homeworks = 'homeworks';
+  final String id = 'id';
+  final String columnhomeworkcourse = 'homeworkcourse';
+  final String columndatehomework = 'datehomework';
+  final String columntimehomework = 'timehomework';
+  final String columnnotehomework = 'notehomework';
   /////////////////////////////BMI////////////////////////////////////////////
   final String cloumnId = 'id';
   final String cloumnHeight = 'height';
@@ -119,6 +126,10 @@ class DatabaseConfig {
     var examsql = "CREATE TABLE $exams($examid INTEGER PRIMARY KEY ,"
         "$columndateexam TEXT,$columnexamcourse TEXT,$columntimeexam TEXT)";
     await db.execute(examsql);
+
+    var homeworksql = "CREATE TABLE $homeworks($examid INTEGER PRIMARY KEY ,"
+        "$columnhomeworkcourse TEXT,$columndatehomework TEXT,$columntimehomework TEXT,$columnnotehomework TEXT)";
+    await db.execute(homeworksql);
 
     var descsql = "CREATE TABLE $descTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnHeight TEXT,$cloumnWeight TEXT,$cloumnBmi TEXT,$cloumnDate TEXT,$columnComment TEXT)";

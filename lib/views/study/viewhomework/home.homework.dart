@@ -1,17 +1,19 @@
-import 'package:honeyBee/controllers/study/examcontroller.dart';
 import 'package:flutter/material.dart';
+import 'package:honeyBee/controllers/study/homeworkcontroller.dart';
 import 'package:honeyBee/models/study/exam.dart';
+import 'package:honeyBee/models/study/homework.dart';
 
 import 'package:honeyBee/views/study/viewexam/listexam.dart';
+import 'package:honeyBee/views/study/viewhomework/listhomework.dart';
 
-class HomeExam extends StatefulWidget {
+class HomeWorkhome extends StatefulWidget {
   @override
-  _HomeExamState createState() => _HomeExamState();
+  _HomeWorkhomeState createState() => _HomeWorkhomeState();
 }
 
-class _HomeExamState extends State<HomeExam> {
-  ExamController _examController = ExamController();
-  List<Exam> examlist = List<Exam>();
+class _HomeWorkhomeState extends State<HomeWorkhome> {
+  HomeWorkController _homeworkontroller = HomeWorkController();
+  List<HomeWork> homeworklist = List<HomeWork>();
   @override
   void initState() {
     super.initState();
@@ -21,10 +23,10 @@ class _HomeExamState extends State<HomeExam> {
   }
 
   Future setData() async {
-    examlist.clear();
-    (await _examController.getInfo('exams')).forEach((medMap) {
+    homeworklist.clear();
+    (await _homeworkontroller.getInfo('homeworks')).forEach((medMap) {
       setState(() {
-        examlist.add(Exam().courseMapToObject(medMap));
+        homeworklist.add(HomeWork().courseMapToObject(medMap));
       });
     });
   }
@@ -34,7 +36,7 @@ class _HomeExamState extends State<HomeExam> {
     return Scaffold(
       body: ListView(
         children: <Widget>[
-          examlist.isEmpty
+          homeworklist.isEmpty
               ? Center(
                   child: Column(
                     children: [
@@ -51,7 +53,7 @@ class _HomeExamState extends State<HomeExam> {
                     ],
                   ),
                 )
-              : ListExam(examlist, setData),
+              : ListHomeWork(homeworklist, setData),
         ],
       ),
     );

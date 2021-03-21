@@ -1,17 +1,43 @@
-import '../../views/study/repet.dart';
-import '../../views/study/startdate.dart';
+import 'package:honeyBee/controllers/study/homeworkcontroller.dart';
+
 import 'package:flutter/material.dart';
-import '../../views/study/lactuarappointments.dart';
+import 'package:honeyBee/models/study/course.dart';
+import 'package:honeyBee/models/study/homework.dart';
+
 import 'package:intl/intl.dart';
 
-class HomeWork extends StatefulWidget {
+class HomeWorkp extends StatefulWidget {
   @override
-  _HomeWorkState createState() => _HomeWorkState();
+  _HomeWorkpState createState() => _HomeWorkpState();
 }
 
-class _HomeWorkState extends State<HomeWork> {
+class _HomeWorkpState extends State<HomeWorkp> {
   String date;
   String time;
+  int id;
+  String examcourse;
+  List<Course> NamesList = List<Course>();
+  String _selectedName;
+
+  HomeWorkController helper;
+  HomeWorkController db = new HomeWorkController();
+
+  @override
+  void initState() {
+    super.initState();
+    setNames();
+    helper = HomeWorkController();
+  }
+
+  Future setNames() async {
+    NamesList.clear();
+    (await db.getInfo('homeworks')).forEach((patientMap) {
+      setState(() {
+        //NamesList.add(HomeWork.Without().courseMapToObject(patientMap));
+        NamesList.add(Course.Without().courseMapToObject(patientMap));
+      });
+    });
+  }
 
   TimeOfDay timeOfDay = TimeOfDay.now();
   selectedTodotime(BuildContext context) async {
@@ -116,16 +142,7 @@ class _HomeWorkState extends State<HomeWork> {
                     SizedBox(
                       height: 15,
                     ),
-                    TextFormField(
-                      cursorColor: Colors.amber[400],
-                      cursorHeight: 25,
-                      textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                          hintText: 'اسم المقرر',
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.amber[400]))),
-                    ),
+                    getDrop(),
                     SizedBox(
                       height: 60,
                     ),
@@ -326,5 +343,44 @@ class _HomeWorkState extends State<HomeWork> {
         ),
       ),
     );
+  }
+
+  Widget getDrop() {
+    return (NamesList.isEmpty
+        ? Text("لايوجد مقرر")
+        : DropdownButtonHideUnderline(
+            child: Container(
+              child: DropdownButton(
+                isExpanded: false,
+                // Not necessary for Option 1
+                value: _selectedName,
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedName = newValue;
+                    print(_selectedName);
+                  });
+                },
+                items: NamesList.map((name) {
+                  return DropdownMenuItem(
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 0),
+                        child: Column(
+                          children: [
+                            Text(
+                              name.namecourse,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            Divider(
+                              thickness: 1,
+                              height: 1,
+                            )
+                          ],
+                        )),
+                    value: name.namecourse,
+                  );
+                }).toList(),
+              ),
+            ),
+          ));
   }
 }
