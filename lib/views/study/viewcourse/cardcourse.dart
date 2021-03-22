@@ -30,7 +30,6 @@ class _CardCourse extends State<CardCourse> {
     //check if the medicine time is lower than actual
     return Padding(
       padding: const EdgeInsets.only(right: 15, left: 15),
-
       child: Card(
         margin: EdgeInsets.symmetric(vertical: 8),
         child: Container(
@@ -65,29 +64,6 @@ class _CardCourse extends State<CardCourse> {
           ),
         ),
       ),
-
-      // child: Card(
-      //     child: Column(children: [
-      //   Container(
-      //     width: 150,
-      //     height: 50,
-      //     child: Row(children: [
-      //       Text(
-      //         '${course.namecourse}',
-
-      //       ),
-      //       SizedBox(width: 20,),
-      //       IconButton(
-      //         icon: Icon(Icons.delete),
-      //         onPressed: () {
-      //           setState(() {
-      //             helper.deleteCourse(course);
-      //           });
-      //         },
-      //       )
-      //     ]),
-      //   ),
-      // ])),
     );
   }
 

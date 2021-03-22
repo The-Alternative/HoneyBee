@@ -1,13 +1,12 @@
 import 'package:honeyBee/views/study/viewcourse/HOMEC.dart';
 import 'package:honeyBee/views/study/viewexam/HOMEC.dart';
-import 'package:honeyBee/views/study/viewexam/home.exam.dart';
 import 'package:honeyBee/views/study/viewhomework/HOMEH.dart';
+import 'package:honeyBee/views/study/viewprogram/HOME.dart';
 
 import '../../controllers/study/coursecontroller.dart';
 
 import '../../views/study/assignments.dart';
 import '../../views/study/newcourse.dart';
-import '../../views/study/viewcourse/home.course.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -90,8 +89,8 @@ class _StudyHomeState extends State<StudyHome> {
                           child: FlatButton(
                             child: null,
                             onPressed: () {
-                              // Navigator.of(context).push(MaterialPageRoute(
-                              //     builder: (context) => ProgramStuday()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomeProgram()));
                             },
                           ),
                         ),

@@ -14,6 +14,7 @@ class HomeWorkp extends StatefulWidget {
 class _HomeWorkpState extends State<HomeWorkp> {
   String date;
   String time;
+  String note;
   int id;
   String examcourse;
   List<Course> NamesList = List<Course>();
@@ -31,9 +32,8 @@ class _HomeWorkpState extends State<HomeWorkp> {
 
   Future setNames() async {
     NamesList.clear();
-    (await db.getInfo('homeworks')).forEach((patientMap) {
+    (await db.getInfo('courses')).forEach((patientMap) {
       setState(() {
-        //NamesList.add(HomeWork.Without().courseMapToObject(patientMap));
         NamesList.add(Course.Without().courseMapToObject(patientMap));
       });
     });
@@ -237,15 +237,19 @@ class _HomeWorkpState extends State<HomeWorkp> {
                       height: 20,
                     ),
                     TextFormField(
-                      cursorColor: Colors.amber[400],
-                      cursorHeight: 25,
-                      textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                          hintText: 'ملاحظات',
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.amber[400]))),
-                    ),
+                        cursorColor: Colors.amber[400],
+                        cursorHeight: 25,
+                        textAlign: TextAlign.right,
+                        decoration: InputDecoration(
+                            hintText: 'ملاحظات',
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.amber[400]))),
+                        onChanged: (value) {
+                          setState(() {
+                            note = value;
+                          });
+                        }),
                     SizedBox(
                       height: 40,
                     ),
@@ -319,6 +323,15 @@ class _HomeWorkpState extends State<HomeWorkp> {
                               style:
                                   TextStyle(color: Colors.black, fontSize: 16)),
                           onPressed: () {
+                            HomeWork exam = HomeWork();
+
+                            exam.datehomework = date;
+                            exam.timehomework = time;
+                            exam.homeworkcourse = _selectedName;
+                            exam.notehomework = note;
+
+                            helper.savehomework(exam);
+
                             Navigator.of(context).pop();
                           },
                         ),

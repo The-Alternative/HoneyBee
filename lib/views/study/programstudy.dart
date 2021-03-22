@@ -1,3 +1,8 @@
+import 'package:honeyBee/controllers/study/coursecontroller.dart';
+import 'package:honeyBee/controllers/study/programcontroller.dart';
+import 'package:honeyBee/models/study/course.dart';
+import 'package:honeyBee/models/study/program.dart';
+
 import '../../views/study/repet.dart';
 import '../../views/study/startdate.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +16,30 @@ class ProgramStuday extends StatefulWidget {
 
 class _ProgramStudayState extends State<ProgramStuday> {
   String date;
-  String time;
+  String time, title, subtitle, note;
+  int id;
+  String examcourse;
+  List<Course> NamesList = List<Course>();
+  String _selectedName;
+
+  ProgramController helper;
+  CourseController db = new CourseController();
+
+  @override
+  void initState() {
+    super.initState();
+    setNames();
+    helper = ProgramController();
+  }
+
+  Future setNames() async {
+    NamesList.clear();
+    (await db.getInfo('courses')).forEach((patientMap) {
+      setState(() {
+        NamesList.add(Course.Without().courseMapToObject(patientMap));
+      });
+    });
+  }
 
   TimeOfDay timeOfDay = TimeOfDay.now();
   selectedTodotime(BuildContext context) async {
@@ -116,15 +144,24 @@ class _ProgramStudayState extends State<ProgramStuday> {
                     SizedBox(
                       height: 15,
                     ),
+                    getDrop(),
+                    SizedBox(
+                      height: 10,
+                    ),
                     TextFormField(
                       cursorColor: Colors.amber[400],
                       cursorHeight: 25,
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(
-                          hintText: 'اسم المقرر',
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.amber[400]))),
+                        hintText: 'عنوان رئيسي',
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.amber[400])),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          title = value;
+                        });
+                      },
                     ),
                     SizedBox(
                       height: 10,
@@ -134,23 +171,15 @@ class _ProgramStudayState extends State<ProgramStuday> {
                       cursorHeight: 25,
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(
-                          hintText: 'عنوان رئيسي',
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.amber[400]))),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      cursorColor: Colors.amber[400],
-                      cursorHeight: 25,
-                      textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                          hintText: 'عنوان فرعي',
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.amber[400]))),
+                        hintText: 'عنوان فرعي',
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.amber[400])),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          subtitle = value;
+                        });
+                      },
                     ),
                     SizedBox(
                       height: 60,
@@ -250,10 +279,15 @@ class _ProgramStudayState extends State<ProgramStuday> {
                       cursorHeight: 25,
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(
-                          hintText: 'ملاحظات',
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.amber[400]))),
+                        hintText: 'ملاحظات',
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.amber[400])),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          note = value;
+                        });
+                      },
                     ),
                     SizedBox(
                       height: 40,
@@ -328,6 +362,18 @@ class _ProgramStudayState extends State<ProgramStuday> {
                               style:
                                   TextStyle(color: Colors.black, fontSize: 16)),
                           onPressed: () {
+                            Program exam = Program();
+
+                            exam.dateprogram = date;
+                            exam.timeprogram = time;
+                            exam.course = _selectedName;
+                            exam.title = title;
+                            exam.subtitle = subtitle;
+                            exam.noteprogram = note;
+                            print('$Program');
+
+                            helper.saveprogram(exam);
+
                             Navigator.of(context).pop();
                           },
                         ),
@@ -352,5 +398,44 @@ class _ProgramStudayState extends State<ProgramStuday> {
         ),
       ),
     );
+  }
+
+  Widget getDrop() {
+    return (NamesList.isEmpty
+        ? Text("لايوجد مقرر")
+        : DropdownButtonHideUnderline(
+            child: Container(
+              child: DropdownButton(
+                isExpanded: false,
+                // Not necessary for Option 1
+                value: _selectedName,
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedName = newValue;
+                    print(_selectedName);
+                  });
+                },
+                items: NamesList.map((name) {
+                  return DropdownMenuItem(
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 0),
+                        child: Column(
+                          children: [
+                            Text(
+                              name.namecourse,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            Divider(
+                              thickness: 1,
+                              height: 1,
+                            )
+                          ],
+                        )),
+                    value: name.namecourse,
+                  );
+                }).toList(),
+              ),
+            ),
+          ));
   }
 }

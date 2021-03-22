@@ -6,6 +6,7 @@ import 'dart:async';
 
 class DatabaseConfig {
   static Database _honeyBee;
+  ////////////// create course
   final String courses = 'courses';
   final String descTable = 'descTable';
   final String columnid = 'id';
@@ -27,6 +28,16 @@ class DatabaseConfig {
   final String columndatehomework = 'datehomework';
   final String columntimehomework = 'timehomework';
   final String columnnotehomework = 'notehomework';
+  ///////(program study)
+  final String programs = 'programs';
+  final String programid = 'id';
+  final String course = 'course';
+  final String dateprogram = 'dateprogram';
+  final String timeprogram = 'timeprogram';
+  final String noteprogram = 'noteprogram';
+  final String subtitle = 'subtitle';
+  final String title = 'title';
+
   /////////////////////////////BMI////////////////////////////////////////////
   final String cloumnId = 'id';
   final String cloumnHeight = 'height';
@@ -130,6 +141,10 @@ class DatabaseConfig {
     var homeworksql = "CREATE TABLE $homeworks($examid INTEGER PRIMARY KEY ,"
         "$columnhomeworkcourse TEXT,$columndatehomework TEXT,$columntimehomework TEXT,$columnnotehomework TEXT)";
     await db.execute(homeworksql);
+
+    var programsql = "CREATE TABLE $programs($programid INTEGER PRIMARY KEY ,"
+        "$course TEXT,$dateprogram TEXT,$timeprogram TEXT,$noteprogram TEXT,$subtitle TEXT ,$title TEXT)";
+    await db.execute(programsql);
 
     var descsql = "CREATE TABLE $descTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnHeight TEXT,$cloumnWeight TEXT,$cloumnBmi TEXT,$cloumnDate TEXT,$columnComment TEXT)";
