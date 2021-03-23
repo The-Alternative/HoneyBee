@@ -5,8 +5,8 @@ import 'package:honeyBee/views/study/viewprogram/HOME.dart';
 
 import '../../controllers/study/coursecontroller.dart';
 
-import '../../views/study/assignments.dart';
-import '../../views/study/newcourse.dart';
+import 'addassignments.dart';
+import 'viewcourse/newcourse.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';

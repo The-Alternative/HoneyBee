@@ -1,8 +1,8 @@
-import 'newexam.dart';
-import '../../views/study/homework.dart';
-import '../../views/study/programstudy.dart';
+import 'viewexam/newexam.dart';
+import 'viewhomework/newhomework.dart';
+import 'viewprogram/newprogram.dart';
 import 'package:flutter/material.dart';
-import '../../views/study/lactuardate.dart';
+import 'newlactuardate.dart';
 
 class Assignments extends StatefulWidget {
   @override
@@ -17,8 +17,6 @@ class _AssignmentsState extends State<Assignments> {
       home: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            leadingWidth: 60,
-            toolbarHeight: 65,
             title: Row(
               children: [
                 SizedBox(

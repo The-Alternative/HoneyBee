@@ -4,10 +4,10 @@ import 'package:honeyBee/models/study/course.dart';
 import 'package:honeyBee/models/study/exam.dart';
 import 'package:honeyBee/views/study/viewcourse/home.course.dart';
 import 'package:honeyBee/views/study/viewexam/home.exam.dart';
-import 'repet.dart';
-import 'startdate.dart';
+import '../repet.dart';
+import '../startdate.dart';
 import 'package:flutter/material.dart';
-import 'lactuarappointments.dart';
+import '../lactuarappointments.dart';
 import 'package:intl/intl.dart';
 
 class NewExam extends StatefulWidget {

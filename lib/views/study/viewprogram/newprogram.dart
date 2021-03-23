@@ -3,10 +3,10 @@ import 'package:honeyBee/controllers/study/programcontroller.dart';
 import 'package:honeyBee/models/study/course.dart';
 import 'package:honeyBee/models/study/program.dart';
 
-import '../../views/study/repet.dart';
-import '../../views/study/startdate.dart';
+import '../repet.dart';
+import '../startdate.dart';
 import 'package:flutter/material.dart';
-import '../../views/study/lactuarappointments.dart';
+import '../lactuarappointments.dart';
 import 'package:intl/intl.dart';
 
 class ProgramStuday extends StatefulWidget {
