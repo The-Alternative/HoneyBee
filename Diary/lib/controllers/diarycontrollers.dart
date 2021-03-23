@@ -1,5 +1,5 @@
-import 'package:diary/models/diary.dart';
-import 'package:diary/services/diaryservice.dart';
+import '../models/diary.dart';
+import '../services/diaryservice.dart';
 
 class DiaryController {
   final DiaryService diaryService = new DiaryService();
