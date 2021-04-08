@@ -1,5 +1,7 @@
+import 'repet.dart';
+import 'startdate.dart';
 import 'package:flutter/material.dart';
-import '../../views/study/lactuarappointments.dart';
+import 'lactuarappointments.dart';
 
 class LactuarDate extends StatefulWidget {
   @override
@@ -19,15 +21,9 @@ class _LactuarDateState extends State<LactuarDate> {
             leadingWidth: 60,
             toolbarHeight: 65,
             title: Row(
-              textDirection: TextDirection.rtl,
               children: [
-                Image.asset(
-                  "assets/logo.png",
-                  height: 52,
-                  width: 52,
-                ),
                 SizedBox(
-                  width: 10,
+                  width: 203,
                 ),
                 Text(
                   'الدراسة',
@@ -35,6 +31,17 @@ class _LactuarDateState extends State<LactuarDate> {
                     color: Colors.black,
                     fontSize: 20,
                   ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset(
+                  "assets/logo.png",
+                  height: 52,
+                  width: 52,
+                ),
+                SizedBox(
+                  width: 10,
                 ),
                 SizedBox(),
               ],
@@ -82,7 +89,7 @@ class _LactuarDateState extends State<LactuarDate> {
                           hintText: 'اسم المقرر',
                           enabledBorder: UnderlineInputBorder(
                               borderSide:
-                              BorderSide(color: Colors.amber[400]))),
+                                  BorderSide(color: Colors.amber[400]))),
                     ),
                     SizedBox(
                       height: 37,
@@ -97,7 +104,7 @@ class _LactuarDateState extends State<LactuarDate> {
                               border: Border.all(
                                   color: Colors.amber[400], width: 1.5),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(100)),
+                                  BorderRadius.all(Radius.circular(100)),
                               image: DecorationImage(
                                 image: AssetImage("assets/Ocloc.png"),
                                 scale: 2.0,
@@ -105,7 +112,10 @@ class _LactuarDateState extends State<LactuarDate> {
                             ),
                             child: FlatButton(
                               child: null,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Repeted()));
+                              },
                             ),
                           ),
                         ),
@@ -120,7 +130,7 @@ class _LactuarDateState extends State<LactuarDate> {
                               border: Border.all(
                                   color: Colors.amber[400], width: 1.5),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(100)),
+                                  BorderRadius.all(Radius.circular(100)),
                               image: DecorationImage(
                                 image: AssetImage("assets/date.png"),
                                 scale: 2.0,
@@ -128,7 +138,10 @@ class _LactuarDateState extends State<LactuarDate> {
                             ),
                             child: FlatButton(
                               child: null,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => StartDate()));
+                              },
                             ),
                           ),
                         ),
@@ -143,7 +156,7 @@ class _LactuarDateState extends State<LactuarDate> {
                               border: Border.all(
                                   color: Colors.amber[400], width: 1.5),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(100)),
+                                  BorderRadius.all(Radius.circular(100)),
                               image: DecorationImage(
                                 image: AssetImage("assets/calendar(1).png"),
                                 scale: 2.2,
@@ -260,7 +273,7 @@ class _LactuarDateState extends State<LactuarDate> {
                         FlatButton(
                           child: Text('موافق ',
                               style:
-                              TextStyle(color: Colors.black, fontSize: 16)),
+                                  TextStyle(color: Colors.black, fontSize: 16)),
                           onPressed: () {},
                         ),
                         SizedBox(
@@ -269,7 +282,7 @@ class _LactuarDateState extends State<LactuarDate> {
                         FlatButton(
                           child: Text('إلغاء الأمر',
                               style:
-                              TextStyle(color: Colors.black, fontSize: 16)),
+                                  TextStyle(color: Colors.black, fontSize: 16)),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },

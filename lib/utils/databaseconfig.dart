@@ -6,6 +6,7 @@ import 'dart:async';
 
 class DatabaseConfig {
   static Database _honeyBee;
+  ////////////// create course
   final String courses = 'courses';
   final String descTable = 'descTable';
   final String columnid = 'id';
@@ -14,6 +15,29 @@ class DatabaseConfig {
   final String columnemail = 'email';
   final String columnteacharnumber = 'teacharnumber';
   final String columnimage = 'image';
+  ////////(exam)
+  final String exams = 'exams';
+  final String examid = 'id';
+  final String columnexamcourse = 'examcourse';
+  final String columndateexam = 'dateexam';
+  final String columntimeexam = 'timeexam';
+  ///////(homecourse)
+  final String homeworks = 'homeworks';
+  final String id = 'id';
+  final String columnhomeworkcourse = 'homeworkcourse';
+  final String columndatehomework = 'datehomework';
+  final String columntimehomework = 'timehomework';
+  final String columnnotehomework = 'notehomework';
+  ///////(program study)
+  final String programs = 'programs';
+  final String programid = 'id';
+  final String course = 'course';
+  final String dateprogram = 'dateprogram';
+  final String timeprogram = 'timeprogram';
+  final String noteprogram = 'noteprogram';
+  final String subtitle = 'subtitle';
+  final String title = 'title';
+
   /////////////////////////////BMI////////////////////////////////////////////
   final String cloumnId = 'id';
   final String cloumnHeight = 'height';
@@ -102,14 +126,26 @@ class DatabaseConfig {
   }
 
   void _oncreate(Database db, int newVersion) async {
-    var coursesql =
-        "CREATE TABLE $courses($columnid INTEGER PRIMARY KEY,"
+    var coursesql = "CREATE TABLE $courses($columnid INTEGER PRIMARY KEY,"
         " $columnnamecourse TEXT ,"
         "$columnnameteachar TEXT , "
         "$columnemail TEXT ,"
         " $columnteacharnumber TEXT , "
         "$columnimage TEXT)";
     await db.execute(coursesql);
+
+    var examsql = "CREATE TABLE $exams($examid INTEGER PRIMARY KEY ,"
+        "$columndateexam TEXT,$columnexamcourse TEXT,$columntimeexam TEXT)";
+    await db.execute(examsql);
+
+    var homeworksql = "CREATE TABLE $homeworks($examid INTEGER PRIMARY KEY ,"
+        "$columnhomeworkcourse TEXT,$columndatehomework TEXT,$columntimehomework TEXT,$columnnotehomework TEXT)";
+    await db.execute(homeworksql);
+
+    var programsql = "CREATE TABLE $programs($programid INTEGER PRIMARY KEY ,"
+        "$course TEXT,$dateprogram TEXT,$timeprogram TEXT,$noteprogram TEXT,$subtitle TEXT ,$title TEXT)";
+    await db.execute(programsql);
+
     var descsql = "CREATE TABLE $descTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnHeight TEXT,$cloumnWeight TEXT,$cloumnBmi TEXT,$cloumnDate TEXT,$columnComment TEXT)";
     await db.execute(descsql);
@@ -126,7 +162,8 @@ class DatabaseConfig {
         "$cloumnTempreture INTEGER , $cloumnIsActive INTEGER , $cloumnCreatedDate TEXT , $cloumnChildId INTEGER ,"
         "FOREIGN KEY ($cloumnChildId) REFERENCES $childTable ($cloumnId))";
     await db.execute(eventSql);
-    var developmentSql = "CREATE TABLE $developmentTable ($cloumnId INTEGER PRIMARY KEY ,"
+    var developmentSql =
+        "CREATE TABLE $developmentTable ($cloumnId INTEGER PRIMARY KEY ,"
         "$cloumnName TEXT , $cloumnNote TEXT , $cloumnTall INTEGER , $cloumnWeight INTEGER ,"
         "$cloumnTempreture INTEGER , $cloumnIsActive INTEGER , $cloumnCreatedDate TEXT , $cloumnChildId INTEGER ,"
         "FOREIGN KEY ($cloumnChildId) REFERENCES $childTable ($cloumnId))";
@@ -136,9 +173,11 @@ class DatabaseConfig {
         " $cloumnIsActive INTEGER , $cloumnCreatedDate TEXT , $cloumnTypeId INTEGER ,"
         "FOREIGN KEY ($cloumnTypeId) REFERENCES $habitTypeTable ($cloumnId))";
     await db.execute(habitSql);
-    var habitTypeSql = "CREATE TABLE $habitTypeTable ($cloumnId INTEGER PRIMARY KEY ,$cloumnName TEXT )";
+    var habitTypeSql =
+        "CREATE TABLE $habitTypeTable ($cloumnId INTEGER PRIMARY KEY ,$cloumnName TEXT )";
     await db.execute(habitTypeSql);
-    var childHabitSql = "CREATE TABLE $childHabitTable ($cloumnId INTEGER PRIMARY KEY ,"
+    var childHabitSql =
+        "CREATE TABLE $childHabitTable ($cloumnId INTEGER PRIMARY KEY ,"
         " $cloumnIsActive INTEGER , $cloumnCreatedDate TEXT , $cloumnHabitId INTEGER ,$cloumnChildId INTEGER )";
     await db.execute(childHabitSql);
     var mediaSql = "CREATE TABLE $mediaTable ($cloumnId INTEGER PRIMARY KEY ,"

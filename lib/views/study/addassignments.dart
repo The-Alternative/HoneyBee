@@ -1,5 +1,8 @@
+import 'viewexam/newexam.dart';
+import 'viewhomework/newhomework.dart';
+import 'viewprogram/newprogram.dart';
 import 'package:flutter/material.dart';
-import '../../views/study/lactuardate.dart';
+import 'newlactuardate.dart';
 
 class Assignments extends StatefulWidget {
   @override
@@ -14,18 +17,10 @@ class _AssignmentsState extends State<Assignments> {
       home: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            leadingWidth: 60,
-            toolbarHeight: 65,
             title: Row(
-              textDirection: TextDirection.rtl,
               children: [
-                Image.asset(
-                  "assets/logo.png",
-                  height: 52,
-                  width: 52,
-                ),
                 SizedBox(
-                  width: 10,
+                  width: 203,
                 ),
                 Text(
                   'الدراسة',
@@ -33,6 +28,17 @@ class _AssignmentsState extends State<Assignments> {
                     color: Colors.black,
                     fontSize: 20,
                   ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset(
+                  "assets/logo.png",
+                  height: 52,
+                  width: 52,
+                ),
+                SizedBox(
+                  width: 10,
                 ),
                 SizedBox(),
               ],
@@ -52,9 +58,9 @@ class _AssignmentsState extends State<Assignments> {
                           width: 100,
                           decoration: BoxDecoration(
                             border:
-                            Border.all(color: Colors.amber[400], width: 2),
+                                Border.all(color: Colors.amber[400], width: 2),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(100)),
+                                BorderRadius.all(Radius.circular(100)),
                             image: DecorationImage(
                               image: AssetImage("assets/homework.png"),
                               scale: 4.0,
@@ -62,7 +68,10 @@ class _AssignmentsState extends State<Assignments> {
                           ),
                           child: FlatButton(
                             child: null,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => ProgramStuday()));
+                            },
                           ),
                         ),
                       ),
@@ -75,9 +84,9 @@ class _AssignmentsState extends State<Assignments> {
                           width: 100,
                           decoration: BoxDecoration(
                             border:
-                            Border.all(color: Colors.amber[400], width: 2),
+                                Border.all(color: Colors.amber[400], width: 2),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(100)),
+                                BorderRadius.all(Radius.circular(100)),
                             image: DecorationImage(
                               image: AssetImage("assets/presentation.png"),
                               scale: 4.0,
@@ -124,9 +133,9 @@ class _AssignmentsState extends State<Assignments> {
                           width: 100,
                           decoration: BoxDecoration(
                             border:
-                            Border.all(color: Colors.amber[400], width: 2),
+                                Border.all(color: Colors.amber[400], width: 2),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(100)),
+                                BorderRadius.all(Radius.circular(100)),
                             image: DecorationImage(
                               image: AssetImage("assets/surface1.png"),
                               scale: 4.0,
@@ -134,7 +143,10 @@ class _AssignmentsState extends State<Assignments> {
                           ),
                           child: FlatButton(
                             child: null,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomeWorkp()));
+                            },
                           ),
                         ),
                       ),
@@ -147,9 +159,9 @@ class _AssignmentsState extends State<Assignments> {
                           width: 100,
                           decoration: BoxDecoration(
                             border:
-                            Border.all(color: Colors.amber[400], width: 2),
+                                Border.all(color: Colors.amber[400], width: 2),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(100)),
+                                BorderRadius.all(Radius.circular(100)),
                             image: DecorationImage(
                               image: AssetImage("assets/exam.png"),
                               scale: 2.75,
@@ -157,7 +169,10 @@ class _AssignmentsState extends State<Assignments> {
                           ),
                           child: FlatButton(
                             child: null,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => NewExam()));
+                            },
                           ),
                         ),
                       ),

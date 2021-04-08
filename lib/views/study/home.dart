@@ -1,10 +1,15 @@
+import 'package:honeyBee/views/study/viewcourse/HOMEC.dart';
+import 'package:honeyBee/views/study/viewexam/HOMEC.dart';
+import 'package:honeyBee/views/study/viewhomework/HOMEH.dart';
+import 'package:honeyBee/views/study/viewprogram/HOME.dart';
+
 import '../../controllers/study/coursecontroller.dart';
-import '../../models/study/course.dart';
-import '../../views/study/assignments.dart';
-import '../../views/study/newcourse.dart';
+
+import 'addassignments.dart';
+import 'viewcourse/newcourse.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-
 
 class StudyHome extends StatefulWidget {
   @override
@@ -12,144 +17,272 @@ class StudyHome extends StatefulWidget {
 }
 
 class _StudyHomeState extends State<StudyHome> {
-  CourseController helper = new CourseController();
+  CourseController helper;
+
+  @override
+  void initState() {
+    super.initState();
+    helper = CourseController();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SafeArea(
-        child: DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            appBar: AppBar(
-              leadingWidth: 60,
-              toolbarHeight: 120,
-              title: Row(
-                textDirection: TextDirection.rtl,
-                children: [
-                  Image.asset(
-                    "assets/logo.png",
-                    height: 52,
-                    width: 52,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'الدراسة',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-              backgroundColor: Colors.amber[400],
-              bottom: TabBar(
-                tabs: [
-                  Tab(
-                    child: Text('مقررات',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        )),
-                  ),
-                  Tab(
-                    child: Text(
-                      'مواعيد ومهام',
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            body: TabBarView(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Column(
               children: [
-                FutureBuilder(
-                  future: helper.getAllcourse(),
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: Image(
-                          width: 280,
-                          height: 280,
-                          image: AssetImage(
-                            "assets/center.png",
-                          ),
-                          alignment: Alignment.center,
-                        ),
-                      );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: ListView.builder(
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, i) {
-                              Course course = Course.fromMap(snapshot.data[i]);
-                              return Card(
-                                margin: EdgeInsets.symmetric(vertical: 8),
-                                child: ListTile(
-                                  title: Text(course.namecourse),
-                                  trailing: IconButton(
-                                    icon: Icon(Icons.delete),
-                                    onPressed: () {
-                                      setState(() {
-                                        helper.deleteCourse(course);
-                                      });
-                                    },
-                                  ),
-                                ),
-                              );
-                            }),
-                      );
-                    }
-                  },
-                ),
-                new Center(
-                  child: Image(
-                    width: 280,
-                    height: 280,
-                    image: AssetImage(
-                      "assets/center.png",
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 203,
                     ),
-                    alignment: Alignment.center,
-                  ),
+                    Text(
+                      'الدراسة',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Image.asset(
+                      "assets/logo.png",
+                      height: 52,
+                      width: 52,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    SizedBox(),
+                  ],
                 ),
               ],
             ),
-            floatingActionButton: SpeedDial(
-              animatedIcon: AnimatedIcons.add_event,
-              backgroundColor: Colors.amber[400],
-              overlayColor: Colors.black,
-              overlayOpacity: 0.0,
-              animatedIconTheme: IconThemeData.fallback(),
-              marginBottom: 25,
-              shape: CircleBorder(),
-
-              children: [
-                SpeedDialChild(
-                  child: Icon(
-                    Icons.auto_stories,
-                    color: Colors.black,
+            backgroundColor: Colors.amber[400],
+          ),
+          body: Padding(
+            padding: EdgeInsets.all(20),
+            child: Center(
+              child: ListView(
+                children: [
+                  SizedBox(height: 70),
+                  Row(
+                    children: [
+                      ClipOval(
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.amber[400], width: 2),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100)),
+                            image: DecorationImage(
+                              image: AssetImage("assets/homework.png"),
+                              scale: 6.0,
+                            ),
+                          ),
+                          child: FlatButton(
+                            child: null,
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomeProgram()));
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      ClipOval(
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.amber[400], width: 2),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100)),
+                            image: DecorationImage(
+                              image: AssetImage("assets/presentation.png"),
+                              scale: 5.0,
+                            ),
+                          ),
+                          child: FlatButton(
+                            child: null,
+                            onPressed: () {
+                              // Navigator.of(context).push(MaterialPageRoute(
+                              //     builder: (context) => LactuarDate()));
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      ClipOval(
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.amber[400], width: 2),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100)),
+                            image: DecorationImage(
+                              image: AssetImage("assets/Bokk.png"),
+                              scale: 8.0,
+                            ),
+                          ),
+                          child: FlatButton(
+                            child: null,
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomeCourseP()));
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  backgroundColor: Colors.amber[400],
-                  label: "اضافة مقرر",
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Newcourse())),
-                ),
-                SpeedDialChild(
-                  child: Icon(
-                    Icons.article,
-                    color: Colors.black,
+                  SizedBox(
+                    height: 15,
                   ),
-                  backgroundColor: Colors.amber[400],
-                  label: " اضافة موعد أو مهمة",
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Assignments())),
-                ),
-              ], // This trailing
+                  Row(
+                    children: [
+                      SizedBox(width: 6),
+                      Text(
+                        'برنامج دراسي',
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                      SizedBox(
+                        width: 35,
+                      ),
+                      Text('مواعيد المحاضرات',
+                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                      SizedBox(
+                        width: 63,
+                      ),
+                      Text('مقررات',
+                          style: TextStyle(color: Colors.black, fontSize: 14)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      ClipOval(
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.amber[400], width: 2),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100)),
+                            image: DecorationImage(
+                              image: AssetImage("assets/surface1.png"),
+                              scale: 5.0,
+                            ),
+                          ),
+                          child: FlatButton(
+                            child: null,
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomeHomeworkP()));
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      ClipOval(
+                        child: Container(
+                          height: 80,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.amber[400], width: 2),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100)),
+                            image: DecorationImage(
+                              image: AssetImage("assets/exam.png"),
+                              scale: 3.5,
+                            ),
+                          ),
+                          child: FlatButton(
+                            child: null,
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomeExamP()));
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        'وظائف',
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                      SizedBox(
+                        width: 88,
+                      ),
+                      Text(
+                        'امتحان',
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
+          ),
+          floatingActionButton: SpeedDial(
+            animatedIcon: AnimatedIcons.add_event,
+            backgroundColor: Colors.amber[400],
+            overlayColor: Colors.black,
+            overlayOpacity: 0.0,
+            animatedIconTheme: IconThemeData.fallback(),
+            marginBottom: 25,
+            shape: CircleBorder(),
+
+            children: [
+              SpeedDialChild(
+                child: Icon(
+                  Icons.auto_stories,
+                  color: Colors.black,
+                ),
+                backgroundColor: Colors.amber[400],
+                label: "اضافة مقرر",
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Newcourse())),
+              ),
+              SpeedDialChild(
+                child: Icon(
+                  Icons.article,
+                  color: Colors.black,
+                ),
+                backgroundColor: Colors.amber[400],
+                label: " اضافة موعد أو مهمة",
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Assignments())),
+              ),
+            ], // This trailing
           ),
         ),
       ),

@@ -19,15 +19,9 @@ class _LactuarAppointmentsState extends State<LactuarAppointments> {
             leadingWidth: 60,
             toolbarHeight: 65,
             title: Row(
-              textDirection: TextDirection.rtl,
               children: [
-                Image.asset(
-                  "assets/logo.png",
-                  height: 52,
-                  width: 52,
-                ),
                 SizedBox(
-                  width: 10,
+                  width: 203,
                 ),
                 Text(
                   'الدراسة',
@@ -35,6 +29,17 @@ class _LactuarAppointmentsState extends State<LactuarAppointments> {
                     color: Colors.black,
                     fontSize: 20,
                   ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset(
+                  "assets/logo.png",
+                  height: 52,
+                  width: 52,
+                ),
+                SizedBox(
+                  width: 10,
                 ),
                 SizedBox(),
               ],
@@ -125,7 +130,7 @@ class _LactuarAppointmentsState extends State<LactuarAppointments> {
                     ],
                   ),
                   SizedBox(
-                    height: 150,
+                    height: 225,
                   ),
                   Row(
                     children: [
@@ -135,14 +140,62 @@ class _LactuarAppointmentsState extends State<LactuarAppointments> {
                       FlatButton(
                         child: Text('التالي ',
                             style:
-                            TextStyle(color: Colors.black, fontSize: 16)),
+                                TextStyle(color: Colors.black, fontSize: 16)),
                         onPressed: () {
                           if (val == 1) {
                             return Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => LactuarAppointments1()));
-                          } else {
+                          }
+                          if (val == 2) {
                             return Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => LactuarAppointments2()));
+                          } else {
+                            return showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                      title: Row(children: [
+                                        SizedBox(width: 169),
+                                        Text(
+                                          " ! تنبيه",
+                                          style: TextStyle(
+                                              color: Colors.amber[400]),
+                                        ),
+                                      ]),
+                                      content: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 37,
+                                          ),
+                                          Icon(Icons.select_all_sharp),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            "يرجى اختيار فئة المواعيد",
+                                          ),
+                                        ],
+                                      ),
+                                      actions: [
+                                        Row(
+                                          children: [
+                                            FlatButton(
+                                              child: Text(
+                                                "موافق",
+                                                style: TextStyle(fontSize: 16),
+                                              ),
+                                              textColor: Colors.black,
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            SizedBox(
+                                              width: 180,
+                                            ),
+                                          ],
+                                        ),
+                                      ]);
+                                });
                           }
                         },
                       ),
@@ -152,7 +205,7 @@ class _LactuarAppointmentsState extends State<LactuarAppointments> {
                       FlatButton(
                         child: Text(' السابق',
                             style:
-                            TextStyle(color: Colors.black, fontSize: 16)),
+                                TextStyle(color: Colors.black, fontSize: 16)),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },

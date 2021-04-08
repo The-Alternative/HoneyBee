@@ -1,5 +1,4 @@
 import 'dart:isolate';
-
 import 'Welcome/HomeWelcom.dart';
 import 'Welcome/home.dart';
 import 'utils/notifiers.dart';
@@ -12,16 +11,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
-bool result =false;
+bool result = false;
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   var initializationSettingsAndroid =
-  AndroidInitializationSettings('codex_logo');
+      AndroidInitializationSettings('codex_logo');
   var initializationSettingsIOS = IOSInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
@@ -32,10 +31,10 @@ void main() async {
       initializationSettingsAndroid, initializationSettingsIOS);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: (String payload) async {
-        if (payload != null) {
-          debugPrint('notification payload: ' + payload);
-        }
-      });
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+  });
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<SingleNotifier>(
@@ -64,8 +63,6 @@ class FirstRoute extends StatelessWidget {
           primaryColorDark: Colors.amber,
           fontFamily: 'Times'),
       home: App(),
-
     );
-
   }
 }

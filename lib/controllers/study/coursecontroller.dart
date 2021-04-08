@@ -20,6 +20,10 @@ class CourseController {
     return this.courseService.deleteCourse(course);
   }
 
+  Future<List<Map<String, dynamic>>> getInfo(table) async {
+    return this.courseService.getInfo(table);
+  }
+
   close() async {
     return await this.courseService.close();
   }

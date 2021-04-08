@@ -1,6 +1,7 @@
-import 'dart:async';
 import '../../models/study/course.dart';
 import '../../utils/databaseconfig.dart';
+
+import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 
 class CourseService {
@@ -11,6 +12,7 @@ class CourseService {
   final String columnnameteachar = 'nameteachar';
   final String columnemail = 'email';
   final String columnteacharnumber = 'teacharnumber';
+  final String columnimage = 'image';
   final DatabaseConfig db = new DatabaseConfig();
 
   Future<int> saveCourse(Course course) async {
@@ -36,6 +38,13 @@ class CourseService {
   Future<int> deleteCourse(Course course) async {
     var dbClient = await db.honeyBee;
     return await dbClient.delete(courses, where: "$columnid = ${course.id}");
+  }
+
+  Future<List<Map<String, dynamic>>> getInfo(table) async {
+    var db = await this.db.honeyBee;
+    var result = await db.query(table);
+
+    return result;
   }
 
   close() async {

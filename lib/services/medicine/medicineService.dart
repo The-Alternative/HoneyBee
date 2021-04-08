@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:core';
 
 import '../../models/medicine/Medicine.dart';
 import '../../models/medicine/MedicineInfo.dart';
@@ -106,7 +108,7 @@ class MedicineService {
   Future<int> deleteDayTimes(int id, int day) async {
     Database db = await this._medicineDatabase.honeyBee;
     int result =
-    await db.rawDelete('DELETE FROM $dayTimesTable WHERE $timesId = $id');
+        await db.rawDelete('DELETE FROM $dayTimesTable WHERE $timesId = $id');
     int t = await getCountDayesTime(day);
     if (t == 0) deleteDayes(day);
     return result;
@@ -117,7 +119,7 @@ class MedicineService {
   Future<int> getCountDayTimes() async {
     Database db = await this._medicineDatabase.honeyBee;
     List<Map<String, dynamic>> x =
-    await db.rawQuery('SELECT COUNT (*) from $dayTimesTable');
+        await db.rawQuery('SELECT COUNT (*) from $dayTimesTable');
     int result = Sqflite.firstIntValue(x);
     return result;
   }
@@ -125,8 +127,13 @@ class MedicineService {
 
   // Get the 'Map List' [ List<Map> ] and convert it to 'medicine List' [ List<medicine> ]
   Future<List<MedicineTimes>> getDayTimesList() async {
-    var medicineTimesMapList = await getDayTimesMapList(); // Get 'Map List' from database
-    int count = medicineTimesMapList.length; // Count the number of map entries in db table
+    var medicineTimesMapList =
+        await getDayTimesMapList(); // Get 'Map List' from database
+    int count = medicineTimesMapList
+        .length; // Count the number of map entries in db table
+
+    // Count the number of map entries in db table
+
     List<MedicineTimes> medicineTimeList = List<MedicineTimes>();
     // For loop to create a 'medicine List' from a 'Map List'
     for (int i = 0; i < count; i++) {
@@ -172,6 +179,7 @@ class MedicineService {
 
   Future<List<MedicineInfo>> getselectMedicine(String name) async {
     List<MedicineInfo> _medicn = [];
+
     Database db = await this._medicineDatabase.honeyBee;
     var result = await db.rawQuery('SELECT  $patientTable.$patId as p_id, '
         '$patname,'
@@ -227,7 +235,7 @@ class MedicineService {
   Future<int> deleteMedicine(int id) async {
     Database db = await this._medicineDatabase.honeyBee;
     int result =
-    await db.rawDelete('DELETE FROM $medicinTable WHERE $medId = $id');
+        await db.rawDelete('DELETE FROM $medicinTable WHERE $medId = $id');
     return result;
   }
   //============================================================================================
@@ -247,7 +255,6 @@ class MedicineService {
 
     return result;
   }
-  //============================================================================================
 
   testDay() async {
     var db = await this._medicineDatabase.honeyBee;
@@ -275,12 +282,13 @@ class MedicineService {
     int result = Sqflite.firstIntValue(x);
     return result;
   }
+
   //============================================================================================
 
   Future<int> deleteDayes(int id) async {
     var db = await this._medicineDatabase.honeyBee;
     int result =
-    await db.rawDelete('DELETE FROM $midDayesTable WHERE $dayesId = $id');
+        await db.rawDelete('DELETE FROM $midDayesTable WHERE $dayesId = $id');
     return result;
   }
   //============================================================================================
@@ -289,7 +297,7 @@ class MedicineService {
   Future<int> getCount_Medicine() async {
     Database db = await this._medicineDatabase.honeyBee;
     List<Map<String, dynamic>> x =
-    await db.rawQuery('SELECT COUNT (*) from $medicinTable');
+        await db.rawQuery('SELECT COUNT (*) from $medicinTable');
     int result = Sqflite.firstIntValue(x);
     return result;
   }
@@ -298,7 +306,7 @@ class MedicineService {
   // Get the 'Map List' [ List<Map> ] and convert it to 'Note List' [ List<Note> ]
   Future<List<Medicine>> getMedicineList() async {
     var medicineMapList =
-    await getMedicineMapList(); // Get 'Map List' from database
+        await getMedicineMapList(); // Get 'Map List' from database
     int count =
         medicineMapList.length; // Count the number of map entries in db table
     List<Medicine> medicineList = List<Medicine>();
